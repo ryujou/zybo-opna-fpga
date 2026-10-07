@@ -1,0 +1,19 @@
+{
+  "case": "sch_high_channel",
+  "switch_tick": 44864,
+  "observations": {
+    "lle": {
+      "samples": 170,
+      "nonzero": 170,
+      "minimum": -16336,
+      "maximum": 800
+    },
+    "ymfm": {
+      "samples": 3062,
+      "nonzero": 0,
+      "minimum": 0,
+      "maximum": 0
+    }
+  },
+  "unresolved": true
+}

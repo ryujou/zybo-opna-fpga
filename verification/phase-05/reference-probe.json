@@ -1,0 +1,27 @@
+{
+  "failures": [
+    [
+      "rhythm_pan",
+      "lle-adpcm-ram8",
+      [
+        "audio 146816:212352 ch1 wanted False"
+      ]
+    ],
+    [
+      "adpcm_rate_0001",
+      "lle-adpcm-ram8",
+      [
+        "audio 10624:19010624 ch0 wanted True",
+        "audio 10624:19010624 ch1 wanted True"
+      ]
+    ],
+    [
+      "adpcm_rate_0001",
+      "ymfm",
+      [
+        "audio 10624:19010624 ch0 wanted True",
+        "audio 10624:19010624 ch1 wanted True"
+      ]
+    ]
+  ]
+}

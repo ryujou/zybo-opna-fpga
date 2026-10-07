@@ -1,0 +1,9 @@
+[submodule "hardware/rtl/opna_core/jt12"]
+	path = hardware/rtl/opna_core/jt12
+	url = https://github.com/jotego/jt12.git
+[submodule "tools/opna_sim/vendor/ymfm"]
+	path = tools/opna_sim/vendor/ymfm
+	url = https://github.com/aaronsgiles/ymfm.git
+[submodule "tools/opna_sim/vendor/ym2608_lle"]
+	path = tools/opna_sim/vendor/ym2608_lle
+	url = https://github.com/nukeykt/YM2608-LLE.git

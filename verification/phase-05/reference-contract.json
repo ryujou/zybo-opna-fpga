@@ -1,0 +1,860 @@
+{
+  "rhythm_rom_0": {
+    "lle": {
+      "observations": 82584,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    },
+    "ymfm": {
+      "observations": 152848,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    }
+  },
+  "rhythm_rom_1": {
+    "lle": {
+      "observations": 116034,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    },
+    "ymfm": {
+      "observations": 215056,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    }
+  },
+  "rhythm_rom_2": {
+    "lle": {
+      "observations": 1043147,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    },
+    "ymfm": {
+      "observations": 1936144,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    }
+  },
+  "rhythm_rom_3": {
+    "lle": {
+      "observations": 71492,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    },
+    "ymfm": {
+      "observations": 132112,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    }
+  },
+  "rhythm_rom_4": {
+    "lle": {
+      "observations": 227654,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    },
+    "ymfm": {
+      "observations": 422416,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    }
+  },
+  "rhythm_rom_5": {
+    "lle": {
+      "observations": 49262,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    },
+    "ymfm": {
+      "observations": 90640,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    }
+  },
+  "rhythm_levels": {
+    "lle": {
+      "observations": 86814,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    },
+    "ymfm": {
+      "observations": 159848,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    }
+  },
+  "rhythm_pan": {
+    "lle": {
+      "observations": 32254,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    },
+    "ymfm": {
+      "observations": 59200,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    }
+  },
+  "rhythm_stop_restart": {
+    "lle": {
+      "observations": 17082,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    },
+    "ymfm": {
+      "observations": 30932,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    }
+  },
+  "adpcm_nibbles_rom": {
+    "lle": {
+      "observations": 17741,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        44
+      ]
+    },
+    "ymfm": {
+      "observations": 26742,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        12
+      ]
+    }
+  },
+  "adpcm_nibbles_ram8": {
+    "lle": {
+      "observations": 17741,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        44
+      ]
+    },
+    "ymfm": {
+      "observations": 26742,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        12
+      ]
+    }
+  },
+  "adpcm_nibbles_ram1": {
+    "lle": {
+      "observations": 17810,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        44
+      ]
+    },
+    "ymfm": {
+      "observations": 26742,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        12
+      ]
+    }
+  },
+  "adpcm_rate_0000": {
+    "lle": {
+      "observations": 15452,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        40
+      ]
+    },
+    "ymfm": {
+      "observations": 26742,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        40
+      ]
+    }
+  },
+  "adpcm_rate_0001": {
+    "lle": {
+      "observations": 2129891,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        40
+      ]
+    },
+    "ymfm": {
+      "observations": 3752166,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        40
+      ]
+    }
+  },
+  "adpcm_rate_1000": {
+    "lle": {
+      "observations": 15735,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        40
+      ]
+    },
+    "ymfm": {
+      "observations": 26742,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        40
+      ]
+    }
+  },
+  "adpcm_rate_24de": {
+    "lle": {
+      "observations": 16114,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        40
+      ]
+    },
+    "ymfm": {
+      "observations": 26742,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        40
+      ]
+    }
+  },
+  "adpcm_rate_ffff": {
+    "lle": {
+      "observations": 19731,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        40
+      ]
+    },
+    "ymfm": {
+      "observations": 26742,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        40
+      ]
+    }
+  },
+  "adpcm_pan_00": {
+    "lle": {
+      "observations": 10779,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    },
+    "ymfm": {
+      "observations": 14428,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    }
+  },
+  "adpcm_pan_40": {
+    "lle": {
+      "observations": 10779,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    },
+    "ymfm": {
+      "observations": 14428,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    }
+  },
+  "adpcm_pan_80": {
+    "lle": {
+      "observations": 10779,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    },
+    "ymfm": {
+      "observations": 14428,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    }
+  },
+  "adpcm_pan_c0": {
+    "lle": {
+      "observations": 10779,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    },
+    "ymfm": {
+      "observations": 14428,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    }
+  },
+  "adpcm_levels": {
+    "lle": {
+      "observations": 42446,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    },
+    "ymfm": {
+      "observations": 56586,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    }
+  },
+  "adpcm_repeat": {
+    "lle": {
+      "observations": 19865,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        44
+      ]
+    },
+    "ymfm": {
+      "observations": 26742,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        40
+      ]
+    }
+  },
+  "adpcm_cpu_read_rom": {
+    "lle": {
+      "observations": 5481,
+      "dummy_reads": [
+        0,
+        0
+      ],
+      "payload_bytes": 16,
+      "status_reads": []
+    },
+    "ymfm": {
+      "observations": 8806,
+      "dummy_reads": [
+        0,
+        0
+      ],
+      "payload_bytes": 16,
+      "status_reads": []
+    }
+  },
+  "adpcm_cpu_read_ram8": {
+    "lle": {
+      "observations": 5481,
+      "dummy_reads": [
+        0,
+        0
+      ],
+      "payload_bytes": 16,
+      "status_reads": []
+    },
+    "ymfm": {
+      "observations": 8806,
+      "dummy_reads": [
+        0,
+        0
+      ],
+      "payload_bytes": 16,
+      "status_reads": []
+    }
+  },
+  "adpcm_cpu_read_ram1": {
+    "lle": {
+      "observations": 7833,
+      "dummy_reads": [
+        0,
+        0
+      ],
+      "payload_bytes": 16,
+      "status_reads": []
+    },
+    "ymfm": {
+      "observations": 8806,
+      "dummy_reads": [
+        0,
+        0
+      ],
+      "payload_bytes": 16,
+      "status_reads": []
+    }
+  },
+  "adpcm_cpu_write_read_ram8": {
+    "lle": {
+      "observations": 13366,
+      "dummy_reads": [
+        118,
+        118
+      ],
+      "payload_bytes": 16,
+      "status_reads": []
+    },
+    "ymfm": {
+      "observations": 21526,
+      "dummy_reads": [
+        0,
+        0
+      ],
+      "payload_bytes": 16,
+      "status_reads": []
+    }
+  },
+  "adpcm_cpu_write_read_ram1": {
+    "lle": {
+      "observations": 18425,
+      "dummy_reads": [
+        118,
+        118
+      ],
+      "payload_bytes": 16,
+      "status_reads": []
+    },
+    "ymfm": {
+      "observations": 21526,
+      "dummy_reads": [
+        0,
+        0
+      ],
+      "payload_bytes": 16,
+      "status_reads": []
+    }
+  },
+  "adpcm_cpu_boundary_ram8_000f": {
+    "lle": {
+      "observations": 11796,
+      "dummy_reads": [
+        0,
+        0
+      ],
+      "payload_bytes": 40,
+      "status_reads": []
+    },
+    "ymfm": {
+      "observations": 18190,
+      "dummy_reads": [
+        0,
+        0
+      ],
+      "payload_bytes": 40,
+      "status_reads": []
+    }
+  },
+  "adpcm_cpu_boundary_ram1_1fff": {
+    "lle": {
+      "observations": 9923,
+      "dummy_reads": [
+        0,
+        0
+      ],
+      "payload_bytes": 20,
+      "status_reads": []
+    },
+    "ymfm": {
+      "observations": 10370,
+      "dummy_reads": [
+        0,
+        0
+      ],
+      "payload_bytes": 20,
+      "status_reads": []
+    }
+  },
+  "adpcm_cpu_boundary_ram1_e001": {
+    "lle": {
+      "observations": 8247,
+      "dummy_reads": [
+        0,
+        0
+      ],
+      "payload_bytes": 16,
+      "status_reads": []
+    },
+    "ymfm": {
+      "observations": 8806,
+      "dummy_reads": [
+        0,
+        0
+      ],
+      "payload_bytes": 16,
+      "status_reads": []
+    }
+  },
+  "adpcm_limit_wrap": {
+    "lle": {
+      "observations": 19846,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    },
+    "ymfm": {
+      "observations": 26716,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    }
+  },
+  "adpcm_cpu_stream": {
+    "lle": {
+      "observations": 28634,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    },
+    "ymfm": {
+      "observations": 52200,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    }
+  },
+  "adpcm_reset_00": {
+    "lle": {
+      "observations": 7749,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        0
+      ]
+    },
+    "ymfm": {
+      "observations": 11930,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        0
+      ]
+    }
+  },
+  "adpcm_reset_01": {
+    "lle": {
+      "observations": 7749,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        0
+      ]
+    },
+    "ymfm": {
+      "observations": 11933,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        0
+      ]
+    }
+  },
+  "adpcm_reset_07": {
+    "lle": {
+      "observations": 7749,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        0
+      ]
+    },
+    "ymfm": {
+      "observations": 11933,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        0
+      ]
+    }
+  },
+  "adpcm_reset_15": {
+    "lle": {
+      "observations": 8025,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        0
+      ]
+    },
+    "ymfm": {
+      "observations": 11933,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        0
+      ]
+    }
+  },
+  "adpcm_status_masks": {
+    "lle": {
+      "observations": 9677,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        44,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32
+      ]
+    },
+    "ymfm": {
+      "observations": 15296,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        12,
+        0,
+        12,
+        4,
+        8,
+        8,
+        12
+      ]
+    }
+  },
+  "adpcm_cpu_end_rom": {
+    "lle": {
+      "observations": 10047,
+      "dummy_reads": [
+        0,
+        0
+      ],
+      "payload_bytes": 32,
+      "status_reads": [
+        8,
+        12
+      ]
+    },
+    "ymfm": {
+      "observations": 15113,
+      "dummy_reads": [
+        0,
+        0
+      ],
+      "payload_bytes": 32,
+      "status_reads": [
+        12,
+        8
+      ]
+    }
+  },
+  "adpcm_cpu_end_ram8": {
+    "lle": {
+      "observations": 10047,
+      "dummy_reads": [
+        0,
+        0
+      ],
+      "payload_bytes": 32,
+      "status_reads": [
+        8,
+        12
+      ]
+    },
+    "ymfm": {
+      "observations": 15113,
+      "dummy_reads": [
+        0,
+        0
+      ],
+      "payload_bytes": 32,
+      "status_reads": [
+        12,
+        8
+      ]
+    }
+  },
+  "adpcm_cpu_end_ram1": {
+    "lle": {
+      "observations": 3153,
+      "dummy_reads": [
+        0,
+        0
+      ],
+      "payload_bytes": 4,
+      "status_reads": [
+        8,
+        12
+      ]
+    },
+    "ymfm": {
+      "observations": 4165,
+      "dummy_reads": [
+        0,
+        0
+      ],
+      "payload_bytes": 4,
+      "status_reads": [
+        12,
+        8
+      ]
+    }
+  },
+  "adpcm_zero_silence": {
+    "lle": {
+      "observations": 491682,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        28
+      ]
+    },
+    "ymfm": {
+      "observations": 938979,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        8
+      ]
+    }
+  },
+  "adpcm_zero_nonquiet": {
+    "lle": {
+      "observations": 491680,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        12
+      ]
+    },
+    "ymfm": {
+      "observations": 938979,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        8
+      ]
+    }
+  },
+  "adpcm_zero_interrupted": {
+    "lle": {
+      "observations": 716942,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        28
+      ]
+    },
+    "ymfm": {
+      "observations": 1370229,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        8
+      ]
+    }
+  },
+  "adpcm_zero_flags": {
+    "lle": {
+      "observations": 962217,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        28,
+        28,
+        28,
+        12,
+        12,
+        28,
+        8,
+        12
+      ]
+    },
+    "ymfm": {
+      "observations": 1839840,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ]
+    }
+  },
+  "adpcm_zero_reset": {
+    "lle": {
+      "observations": 520500,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        0
+      ]
+    },
+    "ymfm": {
+      "observations": 976260,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": [
+        0
+      ]
+    }
+  },
+  "fm_ssg_rhythm_adpcm_parallel": {
+    "lle": {
+      "observations": 29644,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    },
+    "ymfm": {
+      "observations": 47688,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    }
+  },
+  "rhythm_adpcm_prescaler": {
+    "lle": {
+      "observations": 21296,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    },
+    "ymfm": {
+      "observations": 24488,
+      "dummy_reads": [],
+      "payload_bytes": 0,
+      "status_reads": []
+    }
+  }
+}

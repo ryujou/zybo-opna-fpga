@@ -1,0 +1,23 @@
+{
+  "title": "Counterattack",
+  "author": "MelonadeM",
+  "source": "https://github.com/tildearrow/furnace/blob/v0.6.8.3/demos/pc98/Counterattack.fur",
+  "source_file": "Counterattack.fur",
+  "export_file": "Counterattack.vgm",
+  "exporter": "Furnace 0.6.8.3 (232), official win64-console portable release",
+  "export_command": "furnace.exe -vgmout Counterattack.vgm Counterattack.fur",
+  "release": "https://github.com/tildearrow/furnace/releases/tag/v0.6.8.3",
+  "rights": "Demo songs are not under the GPL; all rights reserved to their original authors.",
+  "rights_source": "https://github.com/tildearrow/furnace/blob/v0.6.8.3/demos/README.md",
+  "source_clock": 7987200,
+  "target_clock": 8000000,
+  "source_samples": 2246895,
+  "source_seconds": 50.95,
+  "sample_count": 9,
+  "sample_bytes": 34560,
+  "ssg_first_note_sample": 335160,
+  "ssg_first_note_seconds": 7.6,
+  "first_second_sources": ["FM", "RHY", "ADP"],
+  "first_second_ssg_codes": [1, 1, 1],
+  "timing": "Preserve every register value and its order. Convert absolute 44100 Hz VGM sample times to half-period ticks at the project's fixed 8 MHz clock using integer floor. Serialize each complete address/data transaction through Bus.reg (512 ticks), extending port-0 rhythm key register 0x10 transactions to 1248 ticks to wait 576 master clocks after data WR releases at start+96. Writes in the same sample retain their order and advance the next transaction as required by these documented waits. This is a real register stream expanded with manual bus waits; the source event times are retained separately, and the expanded event times can differ. The source's 7.9872 MHz clock is adapted to the project's 8 MHz clock."
+}

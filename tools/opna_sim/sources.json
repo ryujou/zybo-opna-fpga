@@ -1,0 +1,6 @@
+{
+  "jt12": {"url":"https://github.com/jotego/jt12", "revision":"dc9be7c1ff75d5b9a7f9d89da1b7fba212af1257", "path":"hardware/rtl/opna_core/jt12"},
+  "jt49": {"url":"https://github.com/jotego/jt49", "revision":"7f6abfd08a2af9a92dbd5b32c71ea773248a77e2", "path":"hardware/rtl/opna_core/jt12/jt49"},
+  "ymfm": {"url":"https://github.com/aaronsgiles/ymfm", "revision":"81aec25ccbb98f4873a255f7551ac4dadac59b4a", "path":"tools/opna_sim/vendor/ymfm"},
+  "ym2608_lle": {"url":"https://github.com/nukeykt/YM2608-LLE", "revision":"7a2aca7b6830b96e48e3a4e1a40d15525993fa60", "path":"tools/opna_sim/vendor/ym2608_lle"}
+}

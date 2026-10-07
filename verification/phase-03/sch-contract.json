@@ -1,0 +1,285 @@
+{
+  "reference": "lle",
+  "decision": "SCH-LLE-2026-10-07",
+  "chip_verified": false,
+  "cases": {
+    "sch_high_channel": {
+      "windows": {
+        "before": [
+          32864,
+          44864,
+          {
+            "lle": 3,
+            "ymfm": 3
+          }
+        ],
+        "after": [
+          48960,
+          73472,
+          {
+            "lle": 3,
+            "ymfm": 0
+          }
+        ]
+      },
+      "observations": {
+        "lle": {
+          "before": {
+            "expected_mask": 3,
+            "channels": {
+              "0": {
+                "samples": 41,
+                "nonzero": 41
+              },
+              "1": {
+                "samples": 42,
+                "nonzero": 42
+              }
+            }
+          },
+          "after": {
+            "expected_mask": 3,
+            "channels": {
+              "0": {
+                "samples": 85,
+                "nonzero": 85
+              },
+              "1": {
+                "samples": 85,
+                "nonzero": 85
+              }
+            }
+          }
+        },
+        "ymfm": {
+          "before": {
+            "expected_mask": 3,
+            "channels": {
+              "0": {
+                "samples": 749,
+                "nonzero": 749
+              },
+              "1": {
+                "samples": 749,
+                "nonzero": 749
+              }
+            }
+          },
+          "after": {
+            "expected_mask": 0,
+            "channels": {
+              "0": {
+                "samples": 1531,
+                "nonzero": 0
+              },
+              "1": {
+                "samples": 1531,
+                "nonzero": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "sch_key_alias": {
+      "windows": {
+        "after": [
+          24960,
+          48960,
+          {
+            "lle": 3,
+            "ymfm": 0
+          }
+        ]
+      },
+      "observations": {
+        "lle": {
+          "after": {
+            "expected_mask": 3,
+            "channels": {
+              "0": {
+                "samples": 84,
+                "nonzero": 84
+              },
+              "1": {
+                "samples": 83,
+                "nonzero": 83
+              }
+            }
+          }
+        },
+        "ymfm": {
+          "after": {
+            "expected_mask": 0,
+            "channels": {
+              "0": {
+                "samples": 1499,
+                "nonzero": 0
+              },
+              "1": {
+                "samples": 1499,
+                "nonzero": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "sch_enable_after_key": {
+      "windows": {
+        "before": [
+          32864,
+          44864,
+          {
+            "lle": 0,
+            "ymfm": 0
+          }
+        ],
+        "after": [
+          48960,
+          73472,
+          {
+            "lle": 3,
+            "ymfm": 3
+          }
+        ]
+      },
+      "observations": {
+        "lle": {
+          "before": {
+            "expected_mask": 0,
+            "channels": {
+              "0": {
+                "samples": 41,
+                "nonzero": 0
+              },
+              "1": {
+                "samples": 42,
+                "nonzero": 0
+              }
+            }
+          },
+          "after": {
+            "expected_mask": 3,
+            "channels": {
+              "0": {
+                "samples": 85,
+                "nonzero": 85
+              },
+              "1": {
+                "samples": 85,
+                "nonzero": 85
+              }
+            }
+          }
+        },
+        "ymfm": {
+          "before": {
+            "expected_mask": 0,
+            "channels": {
+              "0": {
+                "samples": 749,
+                "nonzero": 0
+              },
+              "1": {
+                "samples": 749,
+                "nonzero": 0
+              }
+            }
+          },
+          "after": {
+            "expected_mask": 3,
+            "channels": {
+              "0": {
+                "samples": 1531,
+                "nonzero": 1531
+              },
+              "1": {
+                "samples": 1531,
+                "nonzero": 1531
+              }
+            }
+          }
+        }
+      }
+    },
+    "sch_enable_after_other_key": {
+      "windows": {
+        "before": [
+          33376,
+          45376,
+          {
+            "lle": 0,
+            "ymfm": 0
+          }
+        ],
+        "after": [
+          49472,
+          73984,
+          {
+            "lle": 0,
+            "ymfm": 3
+          }
+        ]
+      },
+      "observations": {
+        "lle": {
+          "before": {
+            "expected_mask": 0,
+            "channels": {
+              "0": {
+                "samples": 42,
+                "nonzero": 0
+              },
+              "1": {
+                "samples": 42,
+                "nonzero": 0
+              }
+            }
+          },
+          "after": {
+            "expected_mask": 0,
+            "channels": {
+              "0": {
+                "samples": 85,
+                "nonzero": 0
+              },
+              "1": {
+                "samples": 85,
+                "nonzero": 0
+              }
+            }
+          }
+        },
+        "ymfm": {
+          "before": {
+            "expected_mask": 0,
+            "channels": {
+              "0": {
+                "samples": 749,
+                "nonzero": 0
+              },
+              "1": {
+                "samples": 749,
+                "nonzero": 0
+              }
+            }
+          },
+          "after": {
+            "expected_mask": 3,
+            "channels": {
+              "0": {
+                "samples": 1531,
+                "nonzero": 1531
+              },
+              "1": {
+                "samples": 1531,
+                "nonzero": 1531
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

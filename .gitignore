@@ -1,0 +1,11 @@
+/build/
+/tmp/
+/.Xil/
+**/__pycache__/
+*.pyc
+*.jou
+*.log
+*.pb
+/hardware/rtl/opna_core/jt10_opna_rom.sv
+/tools/opna_sim/fixtures/counterattack/Counterattack.fur
+/tools/opna_sim/fixtures/counterattack/Counterattack.vgm
