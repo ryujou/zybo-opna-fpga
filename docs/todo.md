@@ -29,6 +29,10 @@
 
 Phase 6为数字逻辑仿真完成点。Phase 7未板测则保持未通过。
 
+本次 Phase 7 仅执行离线工作，入口为 `.\scripts\run_opna_gate.ps1 -Phase 7 -Step D -Offline`。离线 A～D 通过仅表示本次授权范围完成，证据保持 `board_verified=false` 和 `phase7_full_acceptance=false`；整体 Phase 7 仍需实板验收。完整核心或全板资源超出 XC7Z010 容量即停止后续工作。
+
+当前 Phase 7 因整板综合 LUT 为 18734/17600 超限而停止，离线 C/D 未通过，未进行布局布线。结果见 [Phase 7](phases/phase-07.md)。
+
 ## 功能清单
 
 | ID | 必须覆盖的功能和边界 | 参考 | Phase |

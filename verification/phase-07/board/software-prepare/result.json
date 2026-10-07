@@ -1,0 +1,116 @@
+{
+  "status": "通过",
+  "board_verified": false,
+  "xsa": "J:\\lumia\\FPGA\\PC98\\build\\opna_phase7\\board\\zybo_opna-prepare.xsa",
+  "xsa_contains_bitstream": false,
+  "elf": "J:\\lumia\\FPGA\\PC98\\build\\opna_phase7\\board\\software-prepare\\opna_ps.elf",
+  "elf_bytes": 419572,
+  "counter_counts_per_second": 325000000,
+  "sample_base": 16777216,
+  "sample_bytes": 262144,
+  "sample_physical_reservation_bytes": 524288,
+  "event_buffer_bytes": 8388608,
+  "elf_allocated_sections": [
+    {
+      "name": ".text",
+      "address": 1048576,
+      "size": 49280
+    },
+    {
+      "name": ".init",
+      "address": 1097856,
+      "size": 12
+    },
+    {
+      "name": ".fini",
+      "address": 1097868,
+      "size": 12
+    },
+    {
+      "name": ".rodata",
+      "address": 1097888,
+      "size": 1356
+    },
+    {
+      "name": ".data",
+      "address": 1099244,
+      "size": 886
+    },
+    {
+      "name": ".mmu_tbl",
+      "address": 1114112,
+      "size": 16384
+    },
+    {
+      "name": ".ARM.exidx",
+      "address": 1130496,
+      "size": 8
+    },
+    {
+      "name": ".init_array",
+      "address": 1130504,
+      "size": 4
+    },
+    {
+      "name": ".fini_array",
+      "address": 1130508,
+      "size": 4
+    },
+    {
+      "name": ".bss",
+      "address": 1130528,
+      "size": 8482145
+    },
+    {
+      "name": ".heap",
+      "address": 9612673,
+      "size": 8207
+    },
+    {
+      "name": ".stack",
+      "address": 9620880,
+      "size": 14336
+    }
+  ],
+  "host": {
+    "status": "passed",
+    "board_verified": false,
+    "counter_counts_per_second": 325000000,
+    "music_writes": 887,
+    "music_sample_bytes": 34560,
+    "music_dispatch_late_writes": 824,
+    "music_max_dispatch_lateness_us": 9,
+    "music_source_completion_late_writes": 887,
+    "music_max_source_completion_lateness_us": 5383,
+    "checks": [
+      "fresh-BSP timer units and reciprocal conversion",
+      "SSM2603 16-bit I2S 48kHz ACTIVE/power/VMID and all failures",
+      "real USB PHY/EP0 descriptors/WinUSB/bulk callbacks",
+      "USB framed parser checksum/HELLO/invalid-bank rejection",
+      "native byte MMIO busy/queue/IC/reset/fault contract",
+      "live grouped events/absolute time/bank order/2048-write capacity",
+      "absolute playback deadline/late reporting/pause-resume state",
+      "8MiB upload boundary and malformed buffered events",
+      "Counterattack real VGM first-second 887 writes and 34560 sample bytes",
+      "full 256KiB DDR/8 RAM1 banks/cache/native-write readback/bounds",
+      "USB TX packetization/error/reset and RX overflow"
+    ]
+  },
+  "checks": [
+    "fresh XSA BSP generation and real SDK build",
+    "ARM application compile/link with real startup, IRQ/cache/USB/I2C drivers",
+    "all allocated ELF sections stay below native sample DDR",
+    "fresh BSP COUNTS_PER_SECOND used in executed host contracts",
+    "fresh-BSP timer units and reciprocal conversion",
+    "SSM2603 16-bit I2S 48kHz ACTIVE/power/VMID and all failures",
+    "real USB PHY/EP0 descriptors/WinUSB/bulk callbacks",
+    "USB framed parser checksum/HELLO/invalid-bank rejection",
+    "native byte MMIO busy/queue/IC/reset/fault contract",
+    "live grouped events/absolute time/bank order/2048-write capacity",
+    "absolute playback deadline/late reporting/pause-resume state",
+    "8MiB upload boundary and malformed buffered events",
+    "Counterattack real VGM first-second 887 writes and 34560 sample bytes",
+    "full 256KiB DDR/8 RAM1 banks/cache/native-write readback/bounds",
+    "USB TX packetization/error/reset and RX overflow"
+  ]
+}

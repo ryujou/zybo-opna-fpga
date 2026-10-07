@@ -1,0 +1,83 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Thu Oct  8 06:35:44 2026
+| Host         : WHM running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file J:/lumia/FPGA/PC98/build/opna_phase7/board/utilization-synth-hierarchical.rpt
+| Design       : opna_cpu_wrapper
+| Device       : xc7z010clg400-1
+| Speed File   : -1
+| Design State : Synthesized
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++---------------------------------------------------+---------------------------------------------------------------------------------------------------+------------+------------+---------+------+-------+--------+--------+------------+
+|                      Instance                     |                                               Module                                              | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs  | RAMB36 | RAMB18 | DSP Blocks |
++---------------------------------------------------+---------------------------------------------------------------------------------------------------+------------+------------+---------+------+-------+--------+--------+------------+
+| opna_cpu_wrapper                                  |                                                                                             (top) |      18734 |      18396 |      14 |  324 | 24409 |      0 |      2 |          0 |
+|   (opna_cpu_wrapper)                              |                                                                                             (top) |          0 |          0 |       0 |    0 |     0 |      0 |      0 |          0 |
+|   opna_cpu_i                                      |                                                                                          opna_cpu |      18734 |      18396 |      14 |  324 | 24409 |      0 |      2 |          0 |
+|     opna                                          |                                                                                   opna_cpu_opna_0 |      17843 |      17586 |       0 |  257 | 23307 |      0 |      2 |          0 |
+|       inst                                        |                                                                  opna_cpu_opna_0_opna_zybo_system |      17843 |      17586 |       0 |  257 | 23307 |      0 |      2 |          0 |
+|         memory                                    |                                                                   opna_cpu_opna_0_opna_ddr_memory |      11494 |      11494 |       0 |    0 | 17103 |      0 |      0 |          0 |
+|         audio                                     |                                                                 opna_cpu_opna_0_opna_audio_output |        155 |        155 |       0 |    0 |   149 |      0 |      0 |          0 |
+|         core                                      |                                                                            opna_cpu_opna_0_ym2608 |       5950 |       5693 |       0 |  257 |  5833 |      0 |      2 |          0 |
+|           fm.engine                               |                                                                          opna_cpu_opna_0_jt12_top |        846 |        609 |       0 |  237 |   673 |      0 |      2 |          0 |
+|             u_pg                                  |                                                                           opna_cpu_opna_0_jt12_pg |         56 |         26 |       0 |   30 |    60 |      0 |      0 |          0 |
+|             u_eg                                  |                                                                           opna_cpu_opna_0_jt12_eg |        205 |        156 |       0 |   49 |   151 |      0 |      0 |          0 |
+|               (u_eg)                              |                                                                           opna_cpu_opna_0_jt12_eg |         28 |         14 |       0 |   14 |    94 |      0 |      0 |          0 |
+|               u_comb                              |                                                                      opna_cpu_opna_0_jt12_eg_comb |        136 |        136 |       0 |    0 |     0 |      0 |      0 |          0 |
+|                 u_pure                            |                                                                      opna_cpu_opna_0_jt12_eg_pure |         69 |         69 |       0 |    0 |     0 |      0 |      0 |          0 |
+|             u_mmr                                 |                                                                          opna_cpu_opna_0_jt12_mmr |        262 |        171 |       0 |   91 |   289 |      0 |      0 |          0 |
+|               u_reg                               |                                                                          opna_cpu_opna_0_jt12_reg |        235 |        144 |       0 |   91 |   247 |      0 |      0 |          0 |
+|                 u_kon                             |                                                                          opna_cpu_opna_0_jt12_kon |         53 |         48 |       0 |    5 |    35 |      0 |      0 |          0 |
+|                 u_csr0                            |                                                                       opna_cpu_opna_0_jt12_csr__1 |         63 |         20 |       0 |   43 |    86 |      0 |      0 |          0 |
+|                   u_regch                         |                                                                    opna_cpu_opna_0_jt12_sh_rst__1 |         30 |          1 |       0 |   29 |    58 |      0 |      0 |          0 |
+|                 u_csr1                            |                                                                          opna_cpu_opna_0_jt12_csr |         63 |         20 |       0 |   43 |    86 |      0 |      0 |          0 |
+|                   u_regch                         |                                                                       opna_cpu_opna_0_jt12_sh_rst |         30 |          1 |       0 |   29 |    58 |      0 |      0 |          0 |
+|             u_op                                  |                                                                           opna_cpu_opna_0_jt12_op |        261 |        209 |       0 |   52 |   151 |      0 |      2 |          0 |
+|               (u_op)                              |                                                                           opna_cpu_opna_0_jt12_op |        166 |        166 |       0 |    0 |    99 |      0 |      0 |          0 |
+|           control                                 |                                                                    opna_cpu_opna_0_ym2608_control |       5102 |       5082 |       0 |   20 |  5160 |      0 |      0 |          0 |
+|         host                                      |                                                                     opna_cpu_opna_0_opna_axi_host |        236 |        236 |       0 |    0 |   215 |      0 |      0 |          0 |
+|     control_axi                                   |                                                                            opna_cpu_control_axi_0 |        421 |        356 |       0 |   65 |   562 |      0 |      0 |          0 |
+|       s00_couplers                                |                                                                          s00_couplers_imp_1THNMQ2 |        421 |        356 |       0 |   65 |   562 |      0 |      0 |          0 |
+|         auto_pc                                   |                                                                opna_cpu_control_axi_imp_auto_pc_0 |        421 |        356 |       0 |   65 |   562 |      0 |      0 |          0 |
+|           inst                                    |          opna_cpu_control_axi_imp_auto_pc_0_axi_protocol_converter_v2_1_37_axi_protocol_converter |        421 |        356 |       0 |   65 |   562 |      0 |      0 |          0 |
+|             gen_axilite.gen_b2s_conv.axilite_b2s  |                             opna_cpu_control_axi_imp_auto_pc_0_axi_protocol_converter_v2_1_37_b2s |        421 |        356 |       0 |   65 |   562 |      0 |      0 |          0 |
+|               WR.aw_channel_0                     |                  opna_cpu_control_axi_imp_auto_pc_0_axi_protocol_converter_v2_1_37_b2s_aw_channel |         77 |         77 |       0 |    0 |    86 |      0 |      0 |          0 |
+|                 cmd_translator_0                  |              opna_cpu_control_axi_imp_auto_pc_0_axi_protocol_converter_v2_1_37_b2s_cmd_translator |         33 |         33 |       0 |    0 |    68 |      0 |      0 |          0 |
+|               RD.ar_channel_0                     |                  opna_cpu_control_axi_imp_auto_pc_0_axi_protocol_converter_v2_1_37_b2s_ar_channel |         68 |         68 |       0 |    0 |    82 |      0 |      0 |          0 |
+|                 cmd_translator_0                  |            opna_cpu_control_axi_imp_auto_pc_0_axi_protocol_converter_v2_1_37_b2s_cmd_translator_1 |         32 |         32 |       0 |    0 |    68 |      0 |      0 |          0 |
+|               RD.r_channel_0                      |                   opna_cpu_control_axi_imp_auto_pc_0_axi_protocol_converter_v2_1_37_b2s_r_channel |         62 |         15 |       0 |   47 |    24 |      0 |      0 |          0 |
+|               SI_REG                              |                  opna_cpu_control_axi_imp_auto_pc_0_axi_register_slice_v2_1_36_axi_register_slice |        177 |        177 |       0 |    0 |   352 |      0 |      0 |          0 |
+|                 ar.ar_pipe                        |                 opna_cpu_control_axi_imp_auto_pc_0_axi_register_slice_v2_1_36_axic_register_slice |         68 |         68 |       0 |    0 |   112 |      0 |      0 |          0 |
+|                 aw.aw_pipe                        |               opna_cpu_control_axi_imp_auto_pc_0_axi_register_slice_v2_1_36_axic_register_slice_0 |         72 |         72 |       0 |    0 |   114 |      0 |      0 |          0 |
+|                 r.r_pipe                          | opna_cpu_control_axi_imp_auto_pc_0_axi_register_slice_v2_1_36_axic_register_slice__parameterized2 |         27 |         27 |       0 |    0 |    96 |      0 |      0 |          0 |
+|     ddr_axi                                       |                                                                                opna_cpu_ddr_axi_0 |        404 |        390 |      14 |    0 |   460 |      0 |      0 |          0 |
+|       inst                                        |                          opna_cpu_ddr_axi_0_axi_protocol_converter_v2_1_37_axi_protocol_converter |        404 |        390 |      14 |    0 |   460 |      0 |      0 |          0 |
+|         gen_axi4_axi3.axi3_conv_inst              |                                       opna_cpu_ddr_axi_0_axi_protocol_converter_v2_1_37_axi3_conv |        404 |        390 |      14 |    0 |   460 |      0 |      0 |          0 |
+|           USE_READ.USE_SPLIT_R.read_addr_inst     |                     opna_cpu_ddr_axi_0_axi_protocol_converter_v2_1_37_a_axi3_conv__parameterized0 |        160 |        158 |       2 |    0 |   185 |      0 |      0 |          0 |
+|             (USE_READ.USE_SPLIT_R.read_addr_inst) |                     opna_cpu_ddr_axi_0_axi_protocol_converter_v2_1_37_a_axi3_conv__parameterized0 |        102 |        102 |       0 |    0 |   147 |      0 |      0 |          0 |
+|             USE_R_CHANNEL.cmd_queue               |                                opna_cpu_ddr_axi_0_axi_data_fifo_v2_1_36_axic_fifo__parameterized1 |         58 |         56 |       2 |    0 |    38 |      0 |      0 |          0 |
+|               inst                                |                                 opna_cpu_ddr_axi_0_axi_data_fifo_v2_1_36_fifo_gen__parameterized1 |         58 |         56 |       2 |    0 |    38 |      0 |      0 |          0 |
+|           USE_WRITE.write_addr_inst               |                                     opna_cpu_ddr_axi_0_axi_protocol_converter_v2_1_37_a_axi3_conv |        219 |        207 |      12 |    0 |   259 |      0 |      0 |          0 |
+|             (USE_WRITE.write_addr_inst)           |                                     opna_cpu_ddr_axi_0_axi_protocol_converter_v2_1_37_a_axi3_conv |        102 |        102 |       0 |    0 |   157 |      0 |      0 |          0 |
+|             USE_BURSTS.cmd_queue                  |                                                opna_cpu_ddr_axi_0_axi_data_fifo_v2_1_36_axic_fifo |         67 |         59 |       8 |    0 |    56 |      0 |      0 |          0 |
+|               inst                                |                                                 opna_cpu_ddr_axi_0_axi_data_fifo_v2_1_36_fifo_gen |         67 |         59 |       8 |    0 |    56 |      0 |      0 |          0 |
+|                 fifo_gen_inst                     |                                                        opna_cpu_ddr_axi_0_fifo_generator_v13_2_14 |         43 |         35 |       8 |    0 |    56 |      0 |      0 |          0 |
+|                   inst_fifo_gen                   |                                                  opna_cpu_ddr_axi_0_fifo_generator_v13_2_14_synth |         43 |         35 |       8 |    0 |    56 |      0 |      0 |          0 |
+|                     gconvfifo.rf                  |                                                             opna_cpu_ddr_axi_0_fifo_generator_top |         43 |         35 |       8 |    0 |    56 |      0 |      0 |          0 |
+|                       grf.rf                      |                                                         opna_cpu_ddr_axi_0_fifo_generator_ramfifo |         43 |         35 |       8 |    0 |    56 |      0 |      0 |          0 |
+|             USE_B_CHANNEL.cmd_b_queue             |                                opna_cpu_ddr_axi_0_axi_data_fifo_v2_1_36_axic_fifo__parameterized0 |         50 |         46 |       4 |    0 |    46 |      0 |      0 |          0 |
+|               inst                                |                                 opna_cpu_ddr_axi_0_axi_data_fifo_v2_1_36_fifo_gen__parameterized0 |         50 |         46 |       4 |    0 |    46 |      0 |      0 |          0 |
++---------------------------------------------------+---------------------------------------------------------------------------------------------------+------------+------------+---------+------+-------+--------+--------+------------+
+
+

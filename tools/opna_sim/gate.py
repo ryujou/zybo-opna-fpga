@@ -310,12 +310,16 @@ def checked_step(phase, step, function, out, checks):
     except (RuntimeError, OSError, ValueError, subprocess.SubprocessError) as error:
         report = {"phase": phase, "step": step, "status": "未通过",
                   "checks": list(checks), "error": str(error)}
+        if phase == 7:
+            report.update(scope="offline", board_verified=False, phase7_full_acceptance=False)
         (out / f"gate-{step}.json").write_text(
             json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         set_step(phase, step, "未通过", f"[失败结果](../../build/opna_sim/phase-{phase:02}/gate-{step}.json)")
         invalidate_later(phase, step)
         raise GateFailure(phase, step, error) from error
     report = {"phase": phase, "step": step, "status": "通过", "checks": list(checks)}
+    if phase == 7:
+        report.update(scope="offline", board_verified=False, phase7_full_acceptance=False)
     FRESH_REPORTS[phase, step] = report
     (out / f"gate-{step}.json").write_text(
         json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -1252,6 +1256,94 @@ def execute_phase6(step, out, checks):
             checked_step(6, current, function, out, checks)
 
 
+def phase7_a(out, checks):
+    run([VIVADO / "vivado.bat", "-mode", "batch", "-source",
+         ROOT / "hardware/vivado/phase7_core_probe.tcl", "-nolog", "-nojournal"],
+        out / "core-probe.log")
+    report = (ROOT / "build/opna_phase7/core-probe/utilization.rpt").read_text(encoding="utf-8")
+    resources = {}
+    for name, label, capacity in (("lut", r"Slice LUTs\*?", 17600),
+                                  ("ff", "Slice Registers", 35200),
+                                  ("bram", "Block RAM Tile", 60), ("dsp", "DSPs", 80)):
+        match = re.search(r"\|\s*" + label + r"\s*\|\s*([0-9.]+)", report)
+        if not match or float(match[1]) > capacity:
+            raise RuntimeError(f"XC7Z010 complete-core resource capacity failed: {name}")
+        resources[name] = {"used": float(match[1]), "capacity": capacity}
+    (out / "core-capacity.json").write_text(json.dumps({"part": "xc7z010clg400-1",
+        "resources": resources, "features": ["FM", "SSG", "RHY", "ADPCM", "control", "memory"],
+        "status": "通过", "board_verified": False}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    checks.append("complete_core_xc7z010_capacity")
+
+
+def phase7_b(out, checks):
+    run([sys.executable, "-X", "utf8", TOOL / "phase7_board.py"], out / "board-tests.log")
+    report = json.loads((ROOT / "build/opna_phase7/board-tests/result.json").read_text(encoding="utf-8"))
+    if report.get("status") != "通过" or not report.get("checks") or report.get("board_verified") is not False:
+        raise RuntimeError("Phase 7 board simulation evidence incomplete")
+    checks.append("board_interfaces_directed_simulation")
+
+
+def phase7_c(out, checks):
+    for phase in range(1, 7):
+        for step in "ABCD":
+            if (phase, step) not in FRESH_REPORTS or FRESH_REPORTS[phase, step]["status"] != "通过":
+                raise RuntimeError(f"Phase {phase} {step} did not freshly execute in this invocation")
+    checks.append("phases_1_through_6_fresh_regression")
+    run([VIVADO / "vivado.bat", "-mode", "batch", "-source",
+         ROOT / "hardware/vivado/phase7_board.tcl", "-nolog", "-nojournal"], out / "board-build.log")
+    board = ROOT / "build/opna_phase7/board"
+    report = json.loads((board / "result.json").read_text(encoding="utf-8"))
+    if report.get("status") != "通过" or report.get("part") != "xc7z010clg400-1" or report.get("board_verified") is not False:
+        raise RuntimeError("current board implementation evidence incomplete")
+    for name, capacity in (("lut", 17600), ("ff", 35200), ("bram", 60), ("dsp", 80)):
+        if name not in report["resources"] or not 0 <= report["resources"][name] <= capacity:
+            raise RuntimeError(f"XC7Z010 board resource capacity failed: {name}")
+    if report["wns"] < 0 or report["tns"] < 0 or report["failing_endpoints"] != 0 or report["drc_errors"] != 0:
+        raise RuntimeError("board routing timing or DRC failed")
+    for name in ("bitstream", "xsa"):
+        path = Path(report[name])
+        if not path.is_absolute():
+            path = ROOT / path
+        if not path.is_file() or not path.stat().st_size:
+            raise RuntimeError(f"board output missing: {name}")
+    checks.append("board_capacity_routing_timing_drc_bitstream_xsa")
+    run([sys.executable, "-X", "utf8", ROOT / "scripts/build_phase7_ps.py", "--xsa", report["xsa"]],
+        out / "ps-build.log")
+    software = json.loads((board / "software/result.json").read_text(encoding="utf-8"))
+    elf = Path(software["elf"])
+    if not elf.is_absolute():
+        elf = ROOT / elf
+    if software.get("status") != "通过" or not software.get("checks") or not elf.is_file() or not elf.stat().st_size:
+        raise RuntimeError("PS software build evidence incomplete")
+    checks.append("fresh_xsa_ps_software_build")
+
+
+def phase7_d(out, checks):
+    required = {f"phase{phase}_cumulative_regression" for phase in range(1, 7)}
+    required.update(("complete_core_xc7z010_capacity", "board_interfaces_directed_simulation",
+                     "phases_1_through_6_fresh_regression", "board_capacity_routing_timing_drc_bitstream_xsa",
+                     "fresh_xsa_ps_software_build"))
+    if set(checks) != required or len(checks) != len(required):
+        raise RuntimeError("Phase 7 offline required checks missing or duplicated")
+    for step in "ABC":
+        if (7, step) not in FRESH_REPORTS or FRESH_REPORTS[7, step]["status"] != "通过":
+            raise RuntimeError(f"Phase 7 {step} fresh evidence missing")
+    document = (ROOT / "docs/phases/phase-07.md").read_text(encoding="utf-8")
+    for section in ("验收范围", "容量门", "步骤门控", "实现与证据", "当前结论"):
+        if section not in document:
+            raise RuntimeError(f"missing Phase 7 documentation: {section}")
+    (out / "offline-scope.json").write_text(json.dumps({"status": "通过", "scope": "offline",
+        "fresh_cumulative_phases": list(range(1, 7)), "programmed": False,
+        "board_verified": False, "phase7_full_acceptance": False}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    checks.append("phase7_offline_evidence_and_scope")
+
+
+def execute_phase7(step, out, checks):
+    for current, function in zip("ABCD", (phase7_a, phase7_b, phase7_c, phase7_d)):
+        if current <= step and (7, current) not in FRESH_REPORTS:
+            checked_step(7, current, function, out, checks)
+
+
 def invalidate_later(phase, step):
     for number in range(phase, 8):
         document = ROOT / f"docs/phases/phase-{number:02}.md"
@@ -1274,6 +1366,8 @@ def update_progress(phase, step, report):
     status = report["status"]
     if status == "通过":
         next_item = f"Phase {phase} 步骤 {'ABCD'['ABCD'.index(step) + 1]}" if step != "D" else f"Phase {phase + 1} 步骤 A"
+        if phase == 7 and step == "D":
+            next_item = "本次离线工作完成；整体 Phase 7 尚待实板验收。"
     elif status == "进行中":
         next_item = "等待当前门控结果，不进入后续步骤"
     else:
@@ -1292,23 +1386,28 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--phase", type=int, choices=range(1, 8), required=True)
     parser.add_argument("--step", choices=list("ABCD"), required=True)
+    parser.add_argument("--offline", action="store_true", help="Phase 7 offline acceptance; physical verification remains pending")
     args = parser.parse_args()
     out = BUILD / f"phase-{args.phase:02}"
     out.mkdir(parents=True, exist_ok=True)
     checks = []
     report = {"phase": args.phase, "step": args.step, "status": "未通过", "checks": checks}
+    if args.phase == 7:
+        report.update(scope="offline", board_verified=False, phase7_full_acceptance=False)
     started = False
     FRESH_REPORTS.clear()
     try:
         # The current phase always executes A through the requested step in
         # order. Fresh success advances the step; a failed check stops here.
-        if args.phase not in (1, 2, 3, 4, 5, 6):
-            raise RuntimeError("requested gate is not implemented; phase advancement denied")
+        if (args.phase == 7) != args.offline:
+            raise RuntimeError("Phase 7 requires --offline; physical board acceptance is not implemented")
         set_step(args.phase, args.step, "进行中", "运行中")
         started = True
         update_progress(args.phase, args.step, {"status": "进行中", "error": "正在执行当前与累计必需检查。"})
         executors = (execute_phase1, execute_phase2, execute_phase3,
-                     execute_phase4, execute_phase5, execute_phase6)
+                     execute_phase4, execute_phase5, execute_phase6, execute_phase7)
+        if args.phase == 7:
+            checked_step(7, "A", phase7_a, out, checks)
         for previous in range(1, args.phase):
             prerequisite_checks = [f"phase{phase}_cumulative_regression" for phase in range(1, previous)]
             executors[previous - 1]("D", BUILD / f"phase-{previous:02}", prerequisite_checks)

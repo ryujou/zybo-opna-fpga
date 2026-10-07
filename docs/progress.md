@@ -1,9 +1,9 @@
 # 当前进度
 
-- 当前Phase：6。
+- 当前Phase：7。
 - 当前步骤：D。
-- 门控：通过。
-- 检查结果：本次必需检查全部通过。
-- 证据：[gate-D.json](../verification/phase-06/gate-D.json)。
-- 下一项允许工作：Phase 7 步骤 A。
+- 门控：未通过。
+- 检查结果：完整整板综合使用18734/17600 LUT，超出1134；已按容量门停止。
+- 证据：[gate-D.json](../verification/phase-07/gate-D.json)。
+- 下一项允许工作：停止Phase 7，不执行布局布线、最终产物生成或实板测试。
 - 只有Phase 6门控通过才能声明数字逻辑仿真验收完成；板测属于Phase 7。

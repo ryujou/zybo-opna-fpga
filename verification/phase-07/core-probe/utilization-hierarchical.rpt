@@ -1,0 +1,45 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Thu Oct  8 05:45:02 2026
+| Host         : WHM running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file J:/lumia/FPGA/PC98/build/opna_phase7/core-probe/utilization-hierarchical.rpt
+| Design       : ym2608
+| Device       : xc7z010clg400-1
+| Speed File   : -1
+| Design State : Synthesized
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++-------------------+----------------+------------+------------+---------+------+------+--------+--------+------------+
+|      Instance     |     Module     | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | DSP Blocks |
++-------------------+----------------+------------+------------+---------+------+------+--------+--------+------------+
+| ym2608            |          (top) |       6096 |       5842 |       0 |  254 | 5776 |      0 |      2 |          0 |
+|   (ym2608)        |          (top) |          2 |          2 |       0 |    0 |    0 |      0 |      0 |          0 |
+|   control         | ym2608_control |       5296 |       5276 |       0 |   20 | 5160 |      0 |      0 |          0 |
+|   fm.engine       |       jt12_top |        798 |        564 |       0 |  234 |  616 |      0 |      2 |          0 |
+|     u_pg          |        jt12_pg |         56 |         26 |       0 |   30 |   60 |      0 |      0 |          0 |
+|     u_eg          |        jt12_eg |        205 |        156 |       0 |   49 |  139 |      0 |      0 |          0 |
+|       (u_eg)      |        jt12_eg |         28 |         14 |       0 |   14 |   82 |      0 |      0 |          0 |
+|       u_comb      |   jt12_eg_comb |        136 |        136 |       0 |    0 |    0 |      0 |      0 |          0 |
+|         u_pure    |   jt12_eg_pure |         69 |         69 |       0 |    0 |    0 |      0 |      0 |          0 |
+|     u_mmr         |       jt12_mmr |        218 |        127 |       0 |   91 |  247 |      0 |      0 |          0 |
+|       u_reg       |       jt12_reg |        195 |        104 |       0 |   91 |  212 |      0 |      0 |          0 |
+|         u_kon     |       jt12_kon |         53 |         48 |       0 |    5 |   35 |      0 |      0 |          0 |
+|         u_csr0    |    jt12_csr__1 |         63 |         20 |       0 |   43 |   86 |      0 |      0 |          0 |
+|           u_regch | jt12_sh_rst__1 |         30 |          1 |       0 |   29 |   58 |      0 |      0 |          0 |
+|         u_csr1    |       jt12_csr |         63 |         20 |       0 |   43 |   86 |      0 |      0 |          0 |
+|           u_regch |    jt12_sh_rst |         30 |          1 |       0 |   29 |   58 |      0 |      0 |          0 |
+|     u_op          |        jt12_op |        261 |        209 |       0 |   52 |  151 |      0 |      2 |          0 |
+|       (u_op)      |        jt12_op |        166 |        166 |       0 |    0 |   99 |      0 |      0 |          0 |
++-------------------+----------------+------------+------------+---------+------+------+--------+--------+------------+
+
+

@@ -1,0 +1,13 @@
+{
+  "phase": 7,
+  "step": "B",
+  "status": "通过",
+  "checks": [
+    "board_interfaces_directed_simulation"
+  ],
+  "evidence": "build/opna_phase7/board-tests/result.json",
+  "execution": "standalone_board_test_runner",
+  "scope": "offline",
+  "board_verified": false,
+  "phase7_full_acceptance": false
+}

@@ -1,0 +1,35 @@
+# SPDX-License-Identifier: MIT
+# Pin assignments: Digilent original Zybo Rev. B master constraints.
+# https://github.com/Digilent/digilent-xdc/blob/master/Zybo-Master.xdc
+set_property PACKAGE_PIN L16 [get_ports clk125]
+set_property IOSTANDARD LVCMOS33 [get_ports clk125]
+create_clock -add -name clk125 -period 8.00 -waveform {0 4} [get_ports clk125]
+set_property PACKAGE_PIN M14 [get_ports {led[0]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {led[0]}]
+set_property PACKAGE_PIN M15 [get_ports {led[1]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {led[1]}]
+set_property PACKAGE_PIN G14 [get_ports {led[2]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {led[2]}]
+set_property PACKAGE_PIN D18 [get_ports {led[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {led[3]}]
+set_property PACKAGE_PIN K18 [get_ports i2s_sclk]
+set_property IOSTANDARD LVCMOS33 [get_ports i2s_sclk]
+set_property IOB TRUE [get_ports i2s_sclk]
+set_property PACKAGE_PIN T19 [get_ports ac_mclk]
+set_property IOSTANDARD LVCMOS33 [get_ports ac_mclk]
+set_property PACKAGE_PIN P18 [get_ports ac_mute_n]
+set_property IOSTANDARD LVCMOS33 [get_ports ac_mute_n]
+set_property PACKAGE_PIN M17 [get_ports i2s_sd]
+set_property IOSTANDARD LVCMOS33 [get_ports i2s_sd]
+set_property IOB TRUE [get_ports i2s_sd]
+set_property PACKAGE_PIN L17 [get_ports i2s_ws]
+set_property IOSTANDARD LVCMOS33 [get_ports i2s_ws]
+set_property IOB TRUE [get_ports i2s_ws]
+set_property PACKAGE_PIN N18 [get_ports IIC_0_scl_io]
+set_property IOSTANDARD LVCMOS33 [get_ports IIC_0_scl_io]
+set_property PACKAGE_PIN N17 [get_ports IIC_0_sda_io]
+set_property IOSTANDARD LVCMOS33 [get_ports IIC_0_sda_io]
+
+set_clock_groups -asynchronous \
+    -group [get_clocks -include_generated_clocks clk125] \
+    -group [get_clocks clk_fpga_0]

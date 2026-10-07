@@ -1,13 +1,13 @@
 # YM2608 工作总结
 
-日期：2026-10-07  
-工程：`J:/lumia/FPGA/PC98`
+日期：2026-10-08  
+工程：`zybo-opna-fpga`
 
 ## 当前结论
 
 **Phase 1～6的A～D门控全部通过，数字逻辑仿真验收完成。** Phase 6完成14个正式用例与14个时钟暂停用例，共15,296,856条原始观察的数字值及tick与项目参考完整一致，D通过66项检查。结果见[Phase 6](phases/phase-06.md)，当前状态见[progress.md](progress.md)。
 
-当前实现包含六通道FM、三通道SSG、六种节奏音及ADPCM-B播放和样本内存访问。XC7Z010综合/布线及实板验证属于尚未开始的Phase 7。
+当前实现包含六通道FM、三通道SSG、六种节奏音及ADPCM-B播放和样本内存访问。完整核心XC7Z010独立综合为6096 LUT、5776 FF、1 BRAM、0 DSP。Phase 7整板综合为18734/17600 LUT，超出1134，已按容量门停止；板级定向仿真及准备软件构建通过，布局布线、时序/CDC和最终bit/XSA未完成。结果见[Phase 7](phases/phase-07.md)。源码已公开于[zybo-opna-fpga](https://github.com/ryujou/zybo-opna-fpga)。
 
 ## 技术路线与范围
 

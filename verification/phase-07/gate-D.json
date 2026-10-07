@@ -1,0 +1,14 @@
+{
+  "phase": 7,
+  "step": "D",
+  "status": "未通过",
+  "checks": [],
+  "reason": "full_board_resource_capacity_exceeded",
+  "evidence": "build/opna_phase7/board/capacity-stop.json",
+  "scope": "offline",
+  "board_verified": false,
+  "phase7_full_acceptance": false,
+  "fresh_cumulative_regression_completed": false,
+  "implementation_started": false,
+  "final_artifacts_generated": false
+}
