@@ -34,10 +34,10 @@ def prepare_assets(root, furnace=None):
         "// This project does not grant a license to the rhythm sample data.\n"
         "// See THIRD_PARTY_NOTICES.md.\n"
         "package jt10_opna_rom;\n"
-        "    localparam logic [65535:0] RHYTHM_ROM = {\n" +
+        "    localparam logic [8191:0][7:0] RHYTHM_ROM = {\n" +
         ",\n".join(chunks) + "\n    };\n"
         "    function automatic logic [7:0] rhythm_byte(input logic [12:0] address);\n"
-        "        return RHYTHM_ROM[address * 8 +: 8];\n"
+        "        return RHYTHM_ROM[address];\n"
         "    endfunction\n"
         "endpackage\n", encoding="utf-8")
 
