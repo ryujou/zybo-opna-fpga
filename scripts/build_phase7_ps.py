@@ -141,8 +141,10 @@ def build(args):
         raise ValueError("PS execution contracts did not pass")
     with zipfile.ZipFile(xsa) as archive:
         has_bitstream = any(name.lower().endswith(".bit") for name in archive.namelist())
+        (out / "ps7_init.tcl").write_bytes(archive.read("ps7_init.tcl"))
     return {"status": "通过", "board_verified": False, "xsa": str(xsa), "xsa_contains_bitstream": has_bitstream,
             "elf": str(elf), "elf_bytes": elf.stat().st_size, "counter_counts_per_second": frequency,
+            "ps7_init": str(out / "ps7_init.tcl"),
             "sample_base": 0x01000000, "sample_bytes": 262144, "sample_physical_reservation_bytes": 524288,
             "event_buffer_bytes": 8388608, "elf_allocated_sections": sections, "host": host,
             "checks": ["fresh XSA BSP generation and real SDK build", "ARM application compile/link with real startup, IRQ/cache/USB/I2C drivers",

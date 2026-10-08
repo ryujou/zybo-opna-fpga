@@ -34,6 +34,7 @@ module jt12_op(
     input   [9:0]   opna_phase_current,
     input           opna_overlap,
     input           opna_clk1_only,
+    input           opna_clk1_only_advance,
     input   [9:0]   eg_atten_IX,        // output from envelope generator
     input   [2:0]   fb_II,      // voice feedback
     input           xuse_prevprev1,
@@ -207,7 +208,7 @@ wire [11:0]  logsin_IX;
 reg [9:0] previous_modulation = 0;
 reg [9:0] held_pg_phase = 0;
 reg last_overlap = 0, replay_lookup = 0;
-wire lookup_repeat = opna_clk1_only && last_overlap;
+wire lookup_repeat = opna_clk1_only_advance && last_overlap;
 always @(posedge clk) if (clk_en) previous_modulation <= phasemod_VIII;
 // The PG latch precedes the operator, but its modulation ring commits after
 // the phase-index latch. An overlap therefore combines different phase taps.
@@ -222,7 +223,8 @@ wire [11:0] attenuation_logsin = (opna_overlap || lookup_repeat) ? logsin_curren
 // Leaving an overlap through clk1 repeats its phase-index latch. Keep that
 // lookup for the following attenuation transfer while the PG scan continues.
 always @(posedge clk) begin
-    if (lookup_repeat) begin
+    // Advance selects lookup data; repeat state commits on the gated clk1 event.
+    if (opna_clk1_only && last_overlap) begin
         replay_lookup <= 1;
         held_logsin <= logsin_current;
         held_sign <= phase_current[9];

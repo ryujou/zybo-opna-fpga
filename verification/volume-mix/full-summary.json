@@ -1,0 +1,688 @@
+[
+  {
+    "case": {
+      "name": "A Sacred Lot",
+      "file": "build\\native_music\\touhou_original\\th01_vgm\\A Sacred Lot.vgm",
+      "duration": 111.938,
+      "windows": [
+        5,
+        20,
+        87
+      ],
+      "output": "00"
+    },
+    "playback": {
+      "song": "build\\native_music\\touhou_original\\th01_vgm\\A Sacred Lot.vgm",
+      "duration": 111.93800453514739,
+      "source_clock": 7987200,
+      "board_clock": 8000000,
+      "writes": {
+        "FM/control": 10680,
+        "rhythm": 1173,
+        "SSG": 6869
+      },
+      "playback_status": {
+        "free_slots": 2048,
+        "queued_writes": 0,
+        "flags": 0,
+        "hardware_status": 16,
+        "dispatch_late_writes": 18722,
+        "max_dispatch_lateness_us": 919,
+        "sample_loaded": 0,
+        "clip_left": 0,
+        "clip_right": 0
+      },
+      "windows_seconds": [
+        5,
+        20,
+        87
+      ],
+      "clip_trigger": false,
+      "analog_recording": false,
+      "gains_q16": [
+        131072,
+        12288,
+        8192
+      ],
+      "mix_transport": "USB",
+      "passed": true,
+      "bus_trace": true,
+      "sample_verified_bytes": 0
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "name": "Eternal Shrine Maiden",
+      "file": "build\\native_music\\touhou_original\\th01_vgm\\Eternal Shrine Maiden.vgm",
+      "duration": 93.10797916666667,
+      "windows": [
+        5,
+        20,
+        63
+      ],
+      "output": "01"
+    },
+    "playback": {
+      "song": "build\\native_music\\touhou_original\\th01_vgm\\Eternal Shrine Maiden.vgm",
+      "duration": 93.10798185941043,
+      "source_clock": 7987200,
+      "board_clock": 8000000,
+      "writes": {
+        "FM/control": 3937,
+        "SSG": 3463,
+        "rhythm": 906
+      },
+      "playback_status": {
+        "free_slots": 2048,
+        "queued_writes": 0,
+        "flags": 0,
+        "hardware_status": 16,
+        "dispatch_late_writes": 8306,
+        "max_dispatch_lateness_us": 862,
+        "sample_loaded": 0,
+        "clip_left": 0,
+        "clip_right": 0
+      },
+      "windows_seconds": [
+        5,
+        20,
+        63
+      ],
+      "clip_trigger": false,
+      "analog_recording": false,
+      "gains_q16": [
+        131072,
+        12288,
+        8192
+      ],
+      "mix_transport": "USB",
+      "passed": true,
+      "bus_trace": true,
+      "sample_verified_bytes": 0
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "name": "The Legend of Kage",
+      "file": "build\\native_music\\touhou_original\\th01_vgm\\The Legend of Kage.vgm",
+      "duration": 85.36597916666666,
+      "windows": [
+        5,
+        20,
+        44
+      ],
+      "output": "02"
+    },
+    "playback": {
+      "song": "build\\native_music\\touhou_original\\th01_vgm\\The Legend of Kage.vgm",
+      "duration": 85.36598639455782,
+      "source_clock": 7987200,
+      "board_clock": 8000000,
+      "writes": {
+        "FM/control": 8509,
+        "SSG": 610,
+        "rhythm": 1329
+      },
+      "playback_status": {
+        "free_slots": 2048,
+        "queued_writes": 0,
+        "flags": 0,
+        "hardware_status": 16,
+        "dispatch_late_writes": 10448,
+        "max_dispatch_lateness_us": 862,
+        "sample_loaded": 0,
+        "clip_left": 0,
+        "clip_right": 0
+      },
+      "windows_seconds": [
+        5,
+        20,
+        44
+      ],
+      "clip_trigger": false,
+      "analog_recording": false,
+      "gains_q16": [
+        131072,
+        12288,
+        8192
+      ],
+      "mix_transport": "USB",
+      "passed": true,
+      "bus_trace": true,
+      "sample_verified_bytes": 0
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "name": "Reincarnation",
+      "file": "build\\native_music\\touhou_original\\th03_vgm\\Reincarnation.vgm",
+      "duration": 167.4,
+      "windows": [
+        5,
+        20,
+        148
+      ],
+      "output": "03"
+    },
+    "playback": {
+      "song": "build\\native_music\\touhou_original\\th03_vgm\\Reincarnation.vgm",
+      "duration": 167.4,
+      "source_clock": 7987200,
+      "board_clock": 8000000,
+      "writes": {
+        "FM/control": 12996,
+        "SSG": 26483,
+        "rhythm": 1213,
+        "ADPCM": 4
+      },
+      "playback_status": {
+        "free_slots": 2048,
+        "queued_writes": 0,
+        "flags": 0,
+        "hardware_status": 16,
+        "dispatch_late_writes": 40696,
+        "max_dispatch_lateness_us": 825,
+        "sample_loaded": 0,
+        "clip_left": 0,
+        "clip_right": 0
+      },
+      "windows_seconds": [
+        5,
+        20,
+        148
+      ],
+      "clip_trigger": false,
+      "analog_recording": false,
+      "gains_q16": [
+        262144,
+        13653,
+        8192
+      ],
+      "mix_transport": "USB",
+      "passed": true,
+      "bus_trace": true,
+      "sample_verified_bytes": 0
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "name": "Sailor of Time",
+      "file": "build\\native_music\\touhou_original\\th03_vgm\\Sailor of Time.vgm",
+      "duration": 115.03333333333333,
+      "windows": [
+        5,
+        20,
+        46
+      ],
+      "output": "04"
+    },
+    "playback": {
+      "song": "build\\native_music\\touhou_original\\th03_vgm\\Sailor of Time.vgm",
+      "duration": 115.03333333333333,
+      "source_clock": 7987200,
+      "board_clock": 8000000,
+      "writes": {
+        "FM/control": 13948,
+        "SSG": 20047,
+        "rhythm": 1906,
+        "ADPCM": 4
+      },
+      "playback_status": {
+        "free_slots": 2048,
+        "queued_writes": 0,
+        "flags": 0,
+        "hardware_status": 16,
+        "dispatch_late_writes": 35905,
+        "max_dispatch_lateness_us": 826,
+        "sample_loaded": 0,
+        "clip_left": 0,
+        "clip_right": 0
+      },
+      "windows_seconds": [
+        5,
+        20,
+        46
+      ],
+      "clip_trigger": false,
+      "analog_recording": false,
+      "gains_q16": [
+        262144,
+        13653,
+        8192
+      ],
+      "mix_transport": "USB",
+      "passed": true,
+      "bus_trace": true,
+      "sample_verified_bytes": 0
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "name": "Strawberry Crisis!!",
+      "file": "build\\native_music\\touhou_original\\th03_vgm\\Strawberry Crisis!!.vgm",
+      "duration": 169.93333333333334,
+      "windows": [
+        5,
+        20,
+        83
+      ],
+      "output": "05"
+    },
+    "playback": {
+      "song": "build\\native_music\\touhou_original\\th03_vgm\\Strawberry Crisis!!.vgm",
+      "duration": 169.93333333333334,
+      "source_clock": 7987200,
+      "board_clock": 8000000,
+      "writes": {
+        "FM/control": 12876,
+        "SSG": 15298,
+        "rhythm": 1571,
+        "ADPCM": 4
+      },
+      "playback_status": {
+        "free_slots": 2048,
+        "queued_writes": 0,
+        "flags": 0,
+        "hardware_status": 16,
+        "dispatch_late_writes": 29749,
+        "max_dispatch_lateness_us": 824,
+        "sample_loaded": 0,
+        "clip_left": 0,
+        "clip_right": 0
+      },
+      "windows_seconds": [
+        5,
+        20,
+        83
+      ],
+      "clip_trigger": false,
+      "analog_recording": false,
+      "gains_q16": [
+        262144,
+        13653,
+        8192
+      ],
+      "mix_transport": "USB",
+      "passed": true,
+      "bus_trace": true,
+      "sample_verified_bytes": 0
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "name": "Maidens Capriccio",
+      "file": "build\\native_music\\touhou_original\\th04_vgm\\Maidens Capriccio.vgm",
+      "duration": 77.91397916666666,
+      "windows": [
+        5,
+        20,
+        37
+      ],
+      "output": "06"
+    },
+    "playback": {
+      "song": "build\\native_music\\touhou_original\\th04_vgm\\Maidens Capriccio.vgm",
+      "duration": 77.91399092970522,
+      "source_clock": 7987200,
+      "board_clock": 8000000,
+      "writes": {
+        "FM/control": 7342,
+        "SSG": 12176,
+        "rhythm": 1177,
+        "ADPCM": 4
+      },
+      "playback_status": {
+        "free_slots": 2048,
+        "queued_writes": 0,
+        "flags": 0,
+        "hardware_status": 16,
+        "dispatch_late_writes": 20699,
+        "max_dispatch_lateness_us": 828,
+        "sample_loaded": 0,
+        "clip_left": 0,
+        "clip_right": 0
+      },
+      "windows_seconds": [
+        5,
+        20,
+        37
+      ],
+      "clip_trigger": false,
+      "analog_recording": false,
+      "gains_q16": [
+        131072,
+        21845,
+        8192
+      ],
+      "mix_transport": "USB",
+      "passed": true,
+      "bus_trace": true,
+      "sample_verified_bytes": 0
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "name": "Hometown (Remix city) [Street]",
+      "file": "build\\native_music\\pcm_ssg\\grounseed-nec-pc-9801-opna\\Hometown (Remix city) [Street].vgm",
+      "duration": 179.523,
+      "windows": [
+        5,
+        20,
+        118
+      ],
+      "output": "07"
+    },
+    "playback": {
+      "song": "build\\native_music\\pcm_ssg\\grounseed-nec-pc-9801-opna\\Hometown (Remix city) [Street].vgm",
+      "duration": 179.52301587301588,
+      "source_clock": 7987200,
+      "board_clock": 8000000,
+      "writes": {
+        "FM/control": 45589,
+        "SSG": 11585,
+        "ADPCM": 7093,
+        "rhythm": 3017
+      },
+      "playback_status": {
+        "free_slots": 2048,
+        "queued_writes": 0,
+        "flags": 0,
+        "hardware_status": 16,
+        "dispatch_late_writes": 67284,
+        "max_dispatch_lateness_us": 814,
+        "sample_loaded": 33088,
+        "clip_left": 0,
+        "clip_right": 0
+      },
+      "windows_seconds": [
+        5,
+        20,
+        118
+      ],
+      "clip_trigger": false,
+      "analog_recording": false,
+      "gains_q16": [
+        131072,
+        13653,
+        8192
+      ],
+      "mix_transport": "USB",
+      "passed": true,
+      "bus_trace": true,
+      "sample_verified_bytes": 33088
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "name": "Morning (Fretless 2 Slap)",
+      "file": "build\\native_music\\pcm_ssg\\grounseed-nec-pc-9801-opna\\Morning (Fretless 2 Slap).vgm",
+      "duration": 138.955,
+      "windows": [
+        5,
+        20,
+        111
+      ],
+      "output": "08"
+    },
+    "playback": {
+      "song": "build\\native_music\\pcm_ssg\\grounseed-nec-pc-9801-opna\\Morning (Fretless 2 Slap).vgm",
+      "duration": 138.95501133786848,
+      "source_clock": 7987200,
+      "board_clock": 8000000,
+      "writes": {
+        "FM/control": 14905,
+        "SSG": 4088,
+        "ADPCM": 4905,
+        "rhythm": 1764
+      },
+      "playback_status": {
+        "free_slots": 2048,
+        "queued_writes": 0,
+        "flags": 0,
+        "hardware_status": 16,
+        "dispatch_late_writes": 25662,
+        "max_dispatch_lateness_us": 829,
+        "sample_loaded": 165376,
+        "clip_left": 0,
+        "clip_right": 0
+      },
+      "windows_seconds": [
+        5,
+        20,
+        111
+      ],
+      "clip_trigger": false,
+      "analog_recording": false,
+      "gains_q16": [
+        131072,
+        13653,
+        8192
+      ],
+      "mix_transport": "USB",
+      "passed": true,
+      "bus_trace": true,
+      "sample_verified_bytes": 165376
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "name": "Special K [Kanami]",
+      "file": "build\\native_music\\pcm_ssg\\grounseed-nec-pc-9801-opna\\Special K [Kanami].vgm",
+      "duration": 102.61297916666666,
+      "windows": [
+        5,
+        20,
+        64
+      ],
+      "output": "09"
+    },
+    "playback": {
+      "song": "build\\native_music\\pcm_ssg\\grounseed-nec-pc-9801-opna\\Special K [Kanami].vgm",
+      "duration": 102.61299319727891,
+      "source_clock": 7987200,
+      "board_clock": 8000000,
+      "writes": {
+        "rhythm": 1072,
+        "FM/control": 16397,
+        "SSG": 1657,
+        "ADPCM": 1260
+      },
+      "playback_status": {
+        "free_slots": 2048,
+        "queued_writes": 0,
+        "flags": 0,
+        "hardware_status": 16,
+        "dispatch_late_writes": 20386,
+        "max_dispatch_lateness_us": 887,
+        "sample_loaded": 165376,
+        "clip_left": 0,
+        "clip_right": 0
+      },
+      "windows_seconds": [
+        5,
+        20,
+        64
+      ],
+      "clip_trigger": false,
+      "analog_recording": false,
+      "gains_q16": [
+        131072,
+        13653,
+        8192
+      ],
+      "mix_transport": "USB",
+      "passed": true,
+      "bus_trace": true,
+      "sample_verified_bytes": 165376
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "name": "CT_maintheme",
+      "file": "build\\native_music\\CT_maintheme.vgm",
+      "duration": 130.52683333333334,
+      "windows": [
+        5,
+        15,
+        20
+      ],
+      "output": "10"
+    },
+    "playback": {
+      "song": "build\\native_music\\CT_maintheme.vgm",
+      "duration": 130.52684807256236,
+      "source_clock": 7987200,
+      "board_clock": 8000000,
+      "writes": {
+        "FM/control": 121623,
+        "rhythm": 1598,
+        "ADPCM": 6169,
+        "SSG": 14664
+      },
+      "playback_status": {
+        "free_slots": 2048,
+        "queued_writes": 0,
+        "flags": 0,
+        "hardware_status": 16,
+        "dispatch_late_writes": 144054,
+        "max_dispatch_lateness_us": 827,
+        "sample_loaded": 190720,
+        "clip_left": 0,
+        "clip_right": 0
+      },
+      "windows_seconds": [
+        5,
+        15,
+        20
+      ],
+      "clip_trigger": false,
+      "analog_recording": false,
+      "gains_q16": [
+        131072,
+        28331,
+        8192
+      ],
+      "mix_transport": "USB",
+      "passed": true,
+      "bus_trace": true,
+      "sample_verified_bytes": 190720
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "name": "Counterattack",
+      "file": "tools\\opna_sim\\fixtures\\counterattack\\Counterattack.vgm",
+      "duration": 50.95,
+      "windows": [
+        5,
+        8,
+        20
+      ],
+      "output": "11"
+    },
+    "playback": {
+      "song": "tools\\opna_sim\\fixtures\\counterattack\\Counterattack.vgm",
+      "duration": 50.95,
+      "source_clock": 7987200,
+      "board_clock": 8000000,
+      "writes": {
+        "FM/control": 35514,
+        "rhythm": 818,
+        "ADPCM": 2803,
+        "SSG": 2345
+      },
+      "playback_status": {
+        "free_slots": 2048,
+        "queued_writes": 0,
+        "flags": 0,
+        "hardware_status": 16,
+        "dispatch_late_writes": 41480,
+        "max_dispatch_lateness_us": 856,
+        "sample_loaded": 34560,
+        "clip_left": 0,
+        "clip_right": 0
+      },
+      "windows_seconds": [
+        5,
+        8,
+        20
+      ],
+      "clip_trigger": false,
+      "analog_recording": false,
+      "gains_q16": [
+        131072,
+        28331,
+        8192
+      ],
+      "mix_transport": "USB",
+      "passed": true,
+      "bus_trace": true,
+      "sample_verified_bytes": 34560
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "name": "Blue_Nebula",
+      "file": "build\\native_music\\Blue_Nebula.vgm",
+      "duration": 179.06666666666666,
+      "windows": [
+        5,
+        20,
+        81
+      ],
+      "output": "12"
+    },
+    "playback": {
+      "song": "build\\native_music\\Blue_Nebula.vgm",
+      "duration": 179.06666666666666,
+      "source_clock": 8000000,
+      "board_clock": 8000000,
+      "writes": {
+        "FM/control": 15147,
+        "rhythm": 9748,
+        "ADPCM": 3,
+        "SSG": 4131
+      },
+      "playback_status": {
+        "free_slots": 2048,
+        "queued_writes": 0,
+        "flags": 0,
+        "hardware_status": 16,
+        "dispatch_late_writes": 29029,
+        "max_dispatch_lateness_us": 824,
+        "sample_loaded": 256,
+        "clip_left": 0,
+        "clip_right": 0
+      },
+      "windows_seconds": [
+        5,
+        20,
+        81
+      ],
+      "clip_trigger": false,
+      "analog_recording": false,
+      "gains_q16": [
+        131072,
+        28331,
+        8192
+      ],
+      "mix_transport": "USB",
+      "passed": true,
+      "bus_trace": true,
+      "sample_verified_bytes": 256
+    },
+    "passed": true
+  }
+]

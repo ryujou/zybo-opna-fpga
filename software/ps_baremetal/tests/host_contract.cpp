@@ -12,6 +12,9 @@
 struct RegisterWrite { u8 bank, reg, value; u64 completed; };
 static u64 host_ticks = 0;
 static u64 last_run0_ticks = 0;
+static u32 interface_id = 0x26080008;
+static std::array<u32, 3> mix_gains{{65536,65536,65536}};
+static std::array<u32, 2> clips{};
 static u32 control_value = 1, status_value = 0;
 static int native_wait = 0, reset_wait = 0, ddr_wait = 0;
 static int reset_requests = 0, polls = 0, sample_flushes = 0, sample_invalidates = 0;
@@ -44,6 +47,9 @@ int xil_printf(const char *, ...) { return 0; }
 int usleep(unsigned int us) { host_ticks += static_cast<u64>(us) * COUNTS_PER_SECOND / 1000000ULL; return 0; }
 u32 Xil_In32(UINTPTR address)
 {
+    if (address == 0x43C0001CU) return interface_id;
+    if (address >= 0x43C00024U && address <= 0x43C0002CU) return mix_gains[(address-0x43C00024U)/4];
+    if (address >= 0x43C00030U && address <= 0x43C00034U) return clips[(address-0x43C00030U)/4];
     if (address == 0x43C00004U) return control_value;
     if (address == 0x43C00008U) {
         ++polls;
@@ -71,6 +77,11 @@ void Xil_Out32(UINTPTR address, u32 value)
         require(!(control_value & 1), "DDR base changes only with RUN=0"); ddr_base = value;
     } else if (address == 0x43C00010U) {
         require(!(control_value & 1), "memory type changes only with RUN=0"); memory_type_value = value;
+    } else if (address >= 0x43C00024U && address <= 0x43C0002CU) {
+        require(control_value == 4, "mix writes stopped and muted");
+        mix_gains[(address-0x43C00024U)/4] = value;
+    } else if (address >= 0x43C00030U && address <= 0x43C00034U) {
+        clips[(address-0x43C00030U)/4] = 0;
     } else require(false, "known control register");
 }
 void Xil_Out8(UINTPTR address, u8 value)
@@ -266,13 +277,26 @@ int main(int argc, char **argv)
     require(usb_stalls > 0, "unsupported control request stalls");
     passed("real USB PHY/EP0 descriptors/WinUSB/bulk callbacks");
     response_bytes.clear(); frame(1);
-    require(response_bytes.size() == 30 && response_bytes[5] == 2 && response_bytes[6] == 1, "protocol 2.1 HELLO via actual USB RX/TX");
+    require(response_bytes.size() == 30 && response_bytes[5] == 2 && response_bytes[6] == 2, "protocol 2.2 HELLO via actual USB RX/TX");
     frame(6, {}, true);
     require(response_bytes[response_bytes.size() - 2] == 4, "bad protocol checksum rejected");
     const auto before_invalid = g_queue.count;
     frame(3, event(0,2,0x22,0xFF));
     require(g_queue.count == before_invalid, "invalid native bank rejected before enqueue");
     passed("USB framed parser checksum/HELLO/invalid-bank rejection");
+    auto gains = word(131072); auto ssg = word(21845), master = word(8192);
+    gains.insert(gains.end(),ssg.begin(),ssg.end()); gains.insert(gains.end(),master.begin(),master.end());
+    response_bytes.clear(); clips={7,9}; frame(0x12,gains);
+    require(response_bytes.size()==18 && response_bytes[2]==0x92 &&
+        std::equal(gains.begin(),gains.end(),response_bytes.begin()+5) &&
+        mix_gains==std::array<u32,3>{{131072,21845,8192}} && clips==std::array<u32,2>{{0,0}}, "SET_MIX echo/readback/clear");
+    clips={4,6}; response_bytes.clear(); frame(6);
+    require(response_bytes.size()==35 && load_u32(response_bytes.data()+26)==4 && load_u32(response_bytes.data()+30)==6, "STATUS clip counters");
+    response_bytes.clear(); frame(0x12,{1}); require(response_bytes[2]==0x7F, "SET_MIX invalid length rejected");
+    interface_id=0x26080007; response_bytes.clear(); frame(0x12,gains);
+    require(response_bytes[2]==0x7F, "SET_MIX old FPGA rejected"); interface_id=0x26080008;
+    frame(5); require(mix_gains==std::array<u32,3>{{65536,65536,65536}}, "reset restores MIDI defaults");
+    passed("SET_MIX protocol 2.2 gain readback, counters, reset, malformed and old FPGA");
     native_wait = 5; reset_wait = 2; status_value |= 4;
     require(opl_write_reg(0x22,0x08,1), "native writes ignore unrelated DDR prefetch pending");
     status_value &= ~4U;
@@ -308,7 +332,9 @@ int main(int argc, char **argv)
     auto song = event(100,0,0x10,1);
     auto second = event(20,1,0x00,0x80); song.insert(song.end(),second.begin(),second.end());
     auto third = event(500,0,0x28,0xF0); song.insert(song.end(),third.begin(),third.end());
-    upload_song(song); frame(11);
+    upload_song(song); frame(0x12,gains); frame(11);
+    require(mix_gains==std::array<u32,3>{{131072,21845,8192}}, "PLAY reset preserves selected mix");
+    response_bytes.clear(); frame(0x12,gains); require(response_bytes[2]==0x7F, "playing SET_MIX rejected");
     const u64 started = g_song.next_event_ticks;
     service_buffered_playback(); host_ticks = g_song.next_event_ticks; service_buffered_playback();
     service_buffered_playback();
@@ -322,6 +348,7 @@ int main(int argc, char **argv)
     native_wait = 7; ddr_wait = 400;
     frame(12);
     require(g_song.playback_paused && !(control_value & 1) && reset_requests == pause_resets, "pause freezes RUN without IC");
+    response_bytes.clear(); frame(0x12,gains); require(response_bytes[2]==0x7F, "paused SET_MIX rejected");
     const u64 pause_tick = g_pause_start_ticks, old_due = g_song.next_event_ticks;
     require(pause_tick == last_run0_ticks && pause_tick > before_pause && host_ticks > pause_tick && ddr_wait == 0,
             "pause epoch follows native busy wait and RUN0 response, before DDR drain");
@@ -418,6 +445,18 @@ int main(int argc, char **argv)
     std::vector<u8> overflow(8192,0); usb_ring_push_bytes(overflow.data(),overflow.size());
     require(usb_transport_error() == 1, "USB RX ring overflow visible instead of silent truncation");
     passed("USB TX packetization/error/reset and RX overflow");
+    g_usb.error = 0;
+    usb_ch9_reset_configured();
+    usb_transport_set_stop_callback([] { return true; });
+    usb_transport_write(large.data(), 1);
+    require(usb_transport_error() == 0, "mode switch cancels an unconfigured USB reply");
+    g_configured = 1;
+    g_usb.tx_busy = true;
+    usb_transport_write(large.data(), 1);
+    require(usb_transport_error() == 0, "mode switch cancels a busy USB reply");
+    g_usb.tx_busy = false;
+    usb_transport_set_stop_callback(nullptr);
+    passed("mode switch exits blocked native USB replies");
     std::printf("{\"status\":\"passed\",\"board_verified\":false,\"counter_counts_per_second\":%llu,\"music_writes\":887,\"music_sample_bytes\":34560,\"music_dispatch_late_writes\":%u,\"music_max_dispatch_lateness_us\":%llu,\"music_source_completion_late_writes\":%u,\"music_max_source_completion_lateness_us\":%llu,\"checks\":[",static_cast<unsigned long long>(COUNTS_PER_SECOND),music_late,static_cast<unsigned long long>(music_max_late),source_late,static_cast<unsigned long long>(source_max_late));
     for (size_t i=0;i<checks.size();++i) std::printf("%s\"%s\"",i?",":"",checks[i].c_str());
     std::puts("]}");

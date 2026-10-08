@@ -4,10 +4,10 @@
 
 | 步骤 | 状态 | 证据 |
 | --- | --- | --- |
-| A | 通过 | [检查结果](../../verification/phase-04/gate-A.json) |
-| B | 通过 | [检查结果](../../verification/phase-04/gate-B.json) |
-| C | 通过 | [检查结果](../../verification/phase-04/gate-C.json) |
-| D | 通过 | [检查结果](../../verification/phase-04/gate-D.json) |
+| A | 通过 | [检查结果](../../build/opna_sim/phase-04/gate-A.json) |
+| B | 通过 | [检查结果](../../build/opna_sim/phase-04/gate-B.json) |
+| C | 通过 | [检查结果](../../build/opna_sim/phase-04/gate-C.json) |
+| D | 通过 | [检查结果](../../build/opna_sim/phase-04/gate-D.json) |
 
 ## 行为与依据
 
@@ -37,8 +37,8 @@ SystemVerilog testbench同时记录FM PCM、三路SSG和控制变化。独立SSG
 
 ## 当前结论
 
-Phase 4 A～D全部通过：A共77项、B共115项、C共119项、D共120项检查通过。[完整门控结果](../../verification/phase-04/gate-D.json)。37个正式用例的SSG数字码、变化tick、FM PCM和控制记录与固定LLE完整一致，四个时钟暂停回归通过；Phase 1～3累计回归全部通过，本阶段没有未通过必需项。
+Phase 4 A～D全部通过：A共77项、B共115项、C共119项、D共120项检查通过。[完整门控结果](../../build/opna_sim/phase-04/gate-D.json)。37个正式用例的SSG数字码、变化tick、FM PCM和控制记录与固定LLE完整一致，四个时钟暂停回归通过；Phase 1～3累计回归全部通过，本阶段没有未通过必需项。
 
-最长包络周期用例运行10031360 tick，比较71798条完整观察，覆盖周期65535及高位计数进位：[比较结果](../../verification/phase-04/compare-ssg_envelope_periods.json)。八种FM算法在反馈等级5下的FM+SSG并行分频切换均通过，单个用例完整比较6568条观察。
+最长包络周期用例运行10031360 tick，比较71798条完整观察，覆盖周期65535及高位计数进位：[比较结果](../../build/opna_sim/phase-04/compare-ssg_envelope_periods.json)。八种FM算法在反馈等级5下的FM+SSG并行分频切换均通过，单个用例完整比较6568条观察。
 
 下一项允许工作为Phase 5 A。Phase 5～7未开始；Phase 6才是完整数字逻辑仿真验收完成点，XC7Z010资源与实板验证属于Phase 7。

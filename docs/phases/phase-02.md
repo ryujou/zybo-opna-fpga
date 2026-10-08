@@ -4,10 +4,10 @@
 
 | 步骤 | 状态 | 证据 |
 | --- | --- | --- |
-| A | 通过 | [检查结果](../../verification/phase-02/gate-A.json) |
-| B | 通过 | [检查结果](../../verification/phase-02/gate-B.json) |
-| C | 通过 | [检查结果](../../verification/phase-02/gate-C.json) |
-| D | 通过 | [检查结果](../../verification/phase-02/gate-D.json) |
+| A | 通过 | [检查结果](../../build/opna_sim/phase-02/gate-A.json) |
+| B | 通过 | [检查结果](../../build/opna_sim/phase-02/gate-B.json) |
+| C | 通过 | [检查结果](../../build/opna_sim/phase-02/gate-C.json) |
+| D | 通过 | [检查结果](../../build/opna_sim/phase-02/gate-D.json) |
 
 ## 行为与依据
 
@@ -65,7 +65,7 @@ flag_control固定将ADPCM掩码位维持为1，只检查本阶段的定时器�
 
 C累计重跑18个参考及RTL用例、Phase 1全套检查，并在bus_phase_sweep和timers_prescaler中每个芯片半周期插入3个half_ce=0的系统时钟，要求所有芯片时间观察仍逐位逐边沿一致。
 
-证据：[阶段门控](../../verification/phase-02/gate-D.json)、[定时器边界](../../verification/phase-02/compare-timer_a_minimum.json)、[IRQ控制](../../verification/phase-02/compare-flag_control.json)、[暂停使能](../../verification/phase-02/compare-paused-timers_prescaler.json)。输出缺失时不得视为通过。
+证据：[阶段门控](../../build/opna_sim/phase-02/gate-D.json)、[定时器边界](../../build/opna_sim/phase-02/compare-timer_a_minimum.json)、[IRQ控制](../../build/opna_sim/phase-02/compare-flag_control.json)、[暂停使能](../../build/opna_sim/phase-02/compare-paused-timers_prescaler.json)。输出缺失时不得视为通过。
 
 ## 当前结论
 

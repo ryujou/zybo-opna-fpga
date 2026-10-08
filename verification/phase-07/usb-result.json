@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "hardware_executed": true,
+  "scope": "USB control, sample DDR CPU roundtrip and buffered playback control",
+  "checks": [
+    "actual EP1 bulk descriptors and HELLO 2.1 capabilities",
+    "actual IC reset and STATUS without DDR fault",
+    "all 262144 sample DDR bytes including the last packed RAM1 bank byte",
+    "Counterattack 887 writes/34560 samples and actual USB pause/resume completion"
+  ],
+  "sample_roundtrip_bytes": 262144,
+  "music_writes_sent": 887,
+  "music_sample_bytes": 34560,
+  "playback_status": {
+    "free_slots": 2048,
+    "queued_writes": 0,
+    "flags": 0,
+    "hardware_status": 16,
+    "dispatch_late_writes": 887,
+    "max_dispatch_lateness_us": 804,
+    "sample_loaded": 34560
+  },
+  "final_status": {
+    "free_slots": 2048,
+    "queued_writes": 0,
+    "flags": 0,
+    "hardware_status": 16,
+    "dispatch_late_writes": 887,
+    "max_dispatch_lateness_us": 804,
+    "sample_loaded": 34560
+  }
+}

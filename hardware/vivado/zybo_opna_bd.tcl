@@ -34,9 +34,11 @@ proc create_opna_bd_design {design_name} {
         create_bd_port -dir O $port
     }
     create_bd_port -dir O -from 3 -to 0 led
+    create_bd_port -dir I sw0
     create_bd_port -dir O -type clk -freq_hz 12288002 ac_mclk
 
     set core [create_bd_cell -type module -reference opna_zybo_system opna]
+    connect_bd_net [get_bd_ports sw0] [get_bd_pins opna/sw0]
     set control [create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 control_axi]
     set_property CONFIG.NUM_MI {1} $control
     set ddr [create_bd_cell -type ip -vlnv xilinx.com:ip:axi_protocol_converter:2.1 ddr_axi]

@@ -42,7 +42,7 @@ module ym2608 #(parameter ENABLE_FM = 1, ENABLE_RHYTHM = 1, ENABLE_ADPCM = 1) (
     wire fm_csm_key;
     wire fm_step;
     wire [19:0] fm_pg_add;
-    wire fm_overlap, fm_clk1_only;
+    wire fm_overlap, fm_clk1_only, fm_clk1_only_advance;
     wire [6:0] fm_am;
     wire [6:0] fm_tl;
     wire [3:0] fm_ssg;
@@ -57,6 +57,7 @@ module ym2608 #(parameter ENABLE_FM = 1, ENABLE_RHYTHM = 1, ENABLE_ADPCM = 1) (
             .rst(!ic_n), .clk(clk), .cen(half_ce && chip_clk),
             .din(din), .addr(addr), .cs_n(cs_n || !half_ce), .wr_n(wr_n),
             .opna_key(fm_key), .opna_sch(six_channels), .opna_overlap(fm_overlap), .opna_clk1_only(fm_clk1_only),
+            .opna_clk1_only_advance(fm_clk1_only_advance),
             .opna_csm_key(fm_csm_key),
             .opna_feedback(fm_feedback), .opna_mod_algorithm(fm_mod_algorithm), .opna_tl(fm_tl), .opna_am(fm_am), .opna_ssg(fm_ssg), .opna_pg_add(fm_pg_add), .opna_fm_step(fm_step), .opna_scan(fm_scan),
             .opna_lfo(fm_lfo),

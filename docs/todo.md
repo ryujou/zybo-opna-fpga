@@ -29,9 +29,9 @@
 
 Phase 6为数字逻辑仿真完成点。Phase 7未板测则保持未通过。
 
-本次 Phase 7 仅执行离线工作，入口为 `.\scripts\run_opna_gate.ps1 -Phase 7 -Step D -Offline`。离线 A～D 通过仅表示本次授权范围完成，证据保持 `board_verified=false` 和 `phase7_full_acceptance=false`；整体 Phase 7 仍需实板验收。完整核心或全板资源超出 XC7Z010 容量即停止后续工作。
+离线检查入口为 `.\scripts\run_opna_gate.ps1 -Phase 7 -Step D -Offline`。离线 A～D 通过证据保持 `board_verified=false` 和 `phase7_full_acceptance=false`；整体 Phase 7 仍需实板验收。
 
-当前 Phase 7 因整板综合 LUT 为 18734/17600 超限而停止，离线 C/D 未通过，未进行布局布线。结果见 [Phase 7](phases/phase-07.md)。
+当前含双 ILA 整板的容量与布线时序通过，实际 ILA、USB 与 DDR 数字板测通过；全部声音源、256 KiB 样本空间、缓存覆盖及原生时序契约保留。Phase 1–7 A–D 本轮累计离线门控全部通过，数字板级验收完成。结果见 [Phase 7](phases/phase-07.md)。
 
 ## 功能清单
 
@@ -55,3 +55,8 @@ Phase 6为数字逻辑仿真完成点。Phase 7未板测则保持未通过。
 ## 执行规则
 
 推进前重跑当前及此前必需检查，不只读旧通过标记。失败留在本阶段，记录差异位置和下一步修复任务；修复后执行累计回归。后续改动使旧门控失效时先修复。证据放build/opna_sim，文档链接结果。技术门控自动执行，不增加人工审批。
+
+
+## USB MIDI 应用验收
+
+在已通过的 Phase 7 硬件上增加独立 USB MIDI 应用，FPGA RTL 与时序约束保持实测版本。应用验收包括 Windows 系统驱动枚举、MIDI 协议与音色控制、实际 I2S 声道/静音、Cynthia 东方曲目播放及对应源码/固件交付。记录见 [USB MIDI](../verification/usb-midi/) 与 [固件说明](../software/usb_midi/README.md)。

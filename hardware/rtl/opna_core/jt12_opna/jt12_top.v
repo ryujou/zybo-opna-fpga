@@ -45,6 +45,7 @@ module jt12_top (
     input [19:0] opna_pg_add,
     input opna_overlap,
     input opna_clk1_only,
+    input opna_clk1_only_advance,
     input [6:0] opna_am,
     input [6:0] opna_tl,
     input [3:0] opna_ssg,
@@ -595,6 +596,7 @@ jt12_op #(.num_ch(num_ch)) u_op(
     .clk_en         ( clk_en        ),
     .pg_phase_VIII  ( phase_VIII    ),
     .opna_phase_current(phase_current_VIII), .opna_overlap(opna_overlap), .opna_clk1_only(opna_clk1_only),
+    .opna_clk1_only_advance(opna_clk1_only_advance),
     .eg_atten_IX    ( eg_IX         ),
     .fb_II          ( opna_feedback ),
 

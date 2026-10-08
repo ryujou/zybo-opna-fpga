@@ -33,6 +33,15 @@ def main():
     if "BOARD_SUBSYSTEM_PASS" not in content or "Fatal" in content:
         raise RuntimeError(f"board subsystem simulation failed: {log}")
     result["checks"] += [line[6:] for line in content.splitlines() if line.startswith("CHECK ")]
+    gate.run([gate.VIVADO / "xvlog.bat", "--sv",
+              Path(__file__).with_name("phase7_host_boundary_tb.sv")], OUT / "compile-host-boundary.log", OUT)
+    gate.run([gate.VIVADO / "xelab.bat", "phase7_host_boundary_tb", "-s", "host_boundary",
+              "--debug", "typical", "--timescale", "1ns/1ps"], OUT / "elaborate-host-boundary.log", OUT)
+    boundary_log = OUT / "simulate-host-boundary.log"
+    gate.run([gate.VIVADO / "xsim.bat", "host_boundary", "-runall"], boundary_log, OUT)
+    boundary_content = boundary_log.read_text(encoding="utf-8")
+    if "HOST_BOUNDARY_PASS" not in boundary_content or "Fatal" in boundary_content:
+        raise RuntimeError(f"host boundary simulation failed: {boundary_log}")
     gate.compile_audio(OUT, "board_native_reference", ssg=True, rhythm=True, adpcm=True)
     gate.run([gate.VIVADO / "xvlog.bat", "--sv",
               Path(__file__).with_name("phase7_board_ddr_model.sv"),
@@ -45,7 +54,10 @@ def main():
     if "BOARD_NATIVE_PASS" not in content or "Fatal" in content:
         raise RuntimeError(f"native board simulation failed: {native_log}")
     result["checks"] += [line[6:] for line in content.splitlines() if line.startswith("CHECK ")]
-    result["metrics"] = [line for line in content.splitlines() if line.startswith(("NATIVE_CASE ", "START_SWITCH ", "PAUSE_PHASE ", "METRICS "))]
+    result["metrics"] = [line for line in boundary_content.splitlines()
+                         if line.startswith(("RESET_BOUNDARY ", "BUS_FAULT_BOUNDARY ", "HOST_BOUNDARY_METRICS "))]
+    result["metrics"] += [line for line in content.splitlines()
+                          if line.startswith(("NATIVE_CASE ", "START_SWITCH ", "PAUSE_PHASE ", "NATIVE_RESET_", "METRICS "))]
     if set(result["checks"]) != REQUIRED_CHECKS:
         result["status"] = "进行中"
         (OUT / "result.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")

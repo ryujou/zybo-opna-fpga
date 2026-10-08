@@ -1300,7 +1300,9 @@ def phase7_c(out, checks):
             raise RuntimeError(f"XC7Z010 board resource capacity failed: {name}")
     if report["wns"] < 0 or report["tns"] < 0 or report["failing_endpoints"] != 0 or report["drc_errors"] != 0:
         raise RuntimeError("board routing timing or DRC failed")
-    for name in ("bitstream", "xsa"):
+    if report["whs"] < 0 or report["hold_failures"] != 0 or report["wpws"] < 0 or report["pulse_failures"] != 0 or report["cdc_critical"] != 0:
+        raise RuntimeError("board hold, pulse width or CDC failed")
+    for name in ("bitstream", "xsa", "ltx"):
         path = Path(report[name])
         if not path.is_absolute():
             path = ROOT / path

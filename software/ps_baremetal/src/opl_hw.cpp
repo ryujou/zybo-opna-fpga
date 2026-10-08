@@ -55,14 +55,33 @@ bool opl_write_reg(u8 reg, u8 data, u8 bank)
     return wait_idle(mask);
 }
 
-bool opl_reset_core(void)
+bool opl_reset_core(bool reset_mix)
 {
 	sample_upload = false;
     // IC is an actual hardware reset, including its release stabilization.
     Xil_Out32(OPNA_BASE + kControl, OPNA_RUN | OPNA_MUTE | OPNA_RESET);
     if (!wait_idle(OPNA_RESETTING | OPNA_HOST_PENDING)) return false;
     Xil_Out32(OPNA_BASE + kControl, OPNA_RUN);
-    return true;
+    return !reset_mix || opl_set_mix(65536, 65536, 65536);
+}
+
+bool opl_set_mix(u32 pcm, u32 ssg, u32 master)
+{
+    if (Xil_In32(OPNA_BASE + 0x01c) != 0x26080008U) return false;
+    const bool running = (Xil_In32(OPNA_BASE + kControl) & OPNA_RUN) != 0;
+    if (!opl_set_running(false)) return false;
+    Xil_Out32(OPNA_BASE + 0x024, pcm);
+    Xil_Out32(OPNA_BASE + 0x028, ssg);
+    Xil_Out32(OPNA_BASE + 0x02c, master);
+    if (Xil_In32(OPNA_BASE + 0x024) != pcm || Xil_In32(OPNA_BASE + 0x028) != ssg ||
+        Xil_In32(OPNA_BASE + 0x02c) != master) return false;
+    return !running || opl_set_running(true);
+}
+
+u32 opl_clip_count(bool right) { return Xil_In32(OPNA_BASE + (right ? 0x034 : 0x030)); }
+void opl_clear_clips(void) {
+    Xil_Out32(OPNA_BASE + 0x030, 1);
+    Xil_Out32(OPNA_BASE + 0x034, 1);
 }
 
 bool opl_set_running(bool running, u64 *pause_ticks)

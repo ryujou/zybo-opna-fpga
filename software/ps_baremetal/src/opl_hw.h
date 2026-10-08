@@ -18,12 +18,15 @@ constexpr u32 OPNA_HOST_PENDING = 32U;
 
 u32 opl_status(void);
 bool opl_write_reg(u8 reg, u8 data, u8 bank);
-bool opl_reset_core(void);
+bool opl_reset_core(bool reset_mix = true);
 bool opl_set_running(bool running, u64 *pause_ticks = nullptr);
 bool opl_sample_begin(u32 offset, u32 length, u8 memory_type);
 bool opl_sample_write(const u8 *data, u32 length);
 bool opl_sample_end(void);
 bool opl_sample_read(u32 offset, u8 *data, u32 length);
 u32 opl_sample_loaded(void);
+bool opl_set_mix(u32 pcm, u32 ssg, u32 master);
+u32 opl_clip_count(bool right);
+void opl_clear_clips(void);
 
 #endif

@@ -1,14 +1,22 @@
 {
   "phase": 7,
   "step": "D",
-  "status": "未通过",
-  "checks": [],
-  "reason": "full_board_resource_capacity_exceeded",
-  "evidence": "build/opna_phase7/board/capacity-stop.json",
+  "status": "通过",
+  "checks": [
+    "complete_core_xc7z010_capacity",
+    "phase1_cumulative_regression",
+    "phase2_cumulative_regression",
+    "phase3_cumulative_regression",
+    "phase4_cumulative_regression",
+    "phase5_cumulative_regression",
+    "phase6_cumulative_regression",
+    "board_interfaces_directed_simulation",
+    "phases_1_through_6_fresh_regression",
+    "board_capacity_routing_timing_drc_bitstream_xsa",
+    "fresh_xsa_ps_software_build",
+    "phase7_offline_evidence_and_scope"
+  ],
   "scope": "offline",
   "board_verified": false,
-  "phase7_full_acceptance": false,
-  "fresh_cumulative_regression_completed": false,
-  "implementation_started": false,
-  "final_artifacts_generated": false
+  "phase7_full_acceptance": false
 }

@@ -1,0 +1,63 @@
+{
+  "status": "passed",
+  "scope": "actual Zybo digital board tests",
+  "board_verified": true,
+  "phase7_full_acceptance": true,
+  "chip_verified": false,
+  "analog_output_measured": false,
+  "part": "xc7z010clg400-1",
+  "cable_serial": "210279540276A",
+  "board_id": "0x26080007",
+  "bitstream": "J:/lumia/FPGA/PC98/build/opna_phase7/pipeline-board/zybo_opna.bit",
+  "xsa": "J:/lumia/FPGA/PC98/build/opna_phase7/pipeline-board/zybo_opna.xsa",
+  "ltx": "J:/lumia/FPGA/PC98/build/opna_phase7/pipeline-board/zybo_opna.ltx",
+  "application": "J:\\lumia\\FPGA\\PC98\\build\\opna_phase7\\pipeline-board\\software\\opna_ps.elf",
+  "normal_usb_firmware_restored": true,
+  "wns_ns": 0.262,
+  "tns_ns": 0.0,
+  "whs_ns": 0.051,
+  "native_profiles": [
+    "dc",
+    "fm",
+    "rhythm",
+    "rom",
+    "ram8",
+    "ram1",
+    "write_ram8",
+    "write_ram1"
+  ],
+  "native_ticks": 65536,
+  "native_output_bits_per_tick": 74,
+  "native_differences": 0,
+  "audio_clocks": 24576,
+  "i2s_errors": 0,
+  "sample_pin_checks": 336,
+  "sample_roundtrip_bytes": 262144,
+  "playback_status": {
+    "free_slots": 2048,
+    "queued_writes": 0,
+    "flags": 0,
+    "hardware_status": 16,
+    "dispatch_late_writes": 887,
+    "max_dispatch_lateness_us": 804,
+    "sample_loaded": 34560
+  },
+  "evidence": {
+    "implementation": "result.json",
+    "software": "software/result.json",
+    "ila": "hardware/ila-result.json",
+    "usb": "usb-result.json",
+    "download": "jtag-restore.log",
+    "methodology": "methodology.rpt",
+    "cumulative_offline": "../../opna_sim/phase-07/gate-D.json",
+    "reproduced_implementation": "../board/result.json"
+  },
+  "cumulative_offline_gate": "Phase 1-7 A-D passed",
+  "methodology_large_setup_violations": 0,
+  "native_write_pulses": {
+    "ram8": 1,
+    "ram1": 8
+  },
+  "native_write_readback_bytes_per_profile": 262144,
+  "acceptance_scope": "digital board integration; analog audio and YM2608 silicon comparison excluded"
+}

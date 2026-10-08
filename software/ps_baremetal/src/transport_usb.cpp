@@ -61,6 +61,7 @@ struct UsbTransportState {
 UsbTransportState g_usb = {};
 XScuGic g_usb_gic = {};
 bool g_usb_gic_ready = false;
+bool (*g_should_stop)() = nullptr;
 u8 g_dma_memory[kUsbDmaMemorySize] USB_ALIGN_CACHELINE = {};
 u8 g_tx_buffer[kUsbTxChunkSize] USB_ALIGN_CACHELINE = {};
 
@@ -203,12 +204,13 @@ int usb_setup_interrupts(XUsbPs_Config *config)
 			return status;
 		}
 
-		Xil_ExceptionInit();
-		Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_IRQ_INT,
-			(Xil_ExceptionHandler)XScuGic_InterruptHandler, &g_usb_gic);
-		Xil_ExceptionEnable();
 		g_usb_gic_ready = true;
 	}
+    // MIDI mode installs a different GIC instance on the same CPU.
+    Xil_ExceptionInit();
+    Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_IRQ_INT,
+        (Xil_ExceptionHandler)XScuGic_InterruptHandler, &g_usb_gic);
+    Xil_ExceptionEnable();
 
 #ifdef SDT
 	const u16 intr_num = static_cast<u16>(XGet_IntrId(config->IntrId) + XGet_IntrOffset(config->IntrId));
@@ -400,6 +402,7 @@ void usb_transport_close_stream(void)
 	}
 
 	XUsbPs_Stop(&g_usb.instance);
+	XUsbPs_ClrBits(&g_usb.instance, XUSBPS_OTGCSR_OFFSET, XUSBPS_OTGSC_OT_MASK);
 	XUsbPs_IntrDisable(&g_usb.instance, XUSBPS_IXR_ALL);
 	g_usb.initialized = false;
 }
@@ -426,6 +429,7 @@ void usb_transport_write(const u8 *data, size_t length)
 	}
 
 	while (!usb_ch9_is_configured()) {
+        if (g_usb.error || (g_should_stop && g_should_stop())) return;
 		usleep(1000);
 	}
 
@@ -436,6 +440,7 @@ void usb_transport_write(const u8 *data, size_t length)
 		}
 
 		while (g_usb.tx_busy) {
+            if (g_usb.error || (g_should_stop && g_should_stop())) return;
 			usleep(100);
 		}
 
@@ -451,6 +456,7 @@ void usb_transport_write(const u8 *data, size_t length)
 
 		wait_loops = 0;
 		while (g_usb.tx_busy && wait_loops < 50000U) {
+            if (g_usb.error || (g_should_stop && g_should_stop())) return;
 			usleep(100);
 			++wait_loops;
 		}
@@ -471,3 +477,4 @@ const TransportCapabilities &usb_transport_get_capabilities(void)
 }
 
 int usb_transport_error(void) { return g_usb.error; }
+void usb_transport_set_stop_callback(bool (*should_stop)()) { g_should_stop = should_stop; }

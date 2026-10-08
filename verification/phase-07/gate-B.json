@@ -3,10 +3,15 @@
   "step": "B",
   "status": "通过",
   "checks": [
+    "complete_core_xc7z010_capacity",
+    "phase1_cumulative_regression",
+    "phase2_cumulative_regression",
+    "phase3_cumulative_regression",
+    "phase4_cumulative_regression",
+    "phase5_cumulative_regression",
+    "phase6_cumulative_regression",
     "board_interfaces_directed_simulation"
   ],
-  "evidence": "build/opna_phase7/board-tests/result.json",
-  "execution": "standalone_board_test_runner",
   "scope": "offline",
   "board_verified": false,
   "phase7_full_acceptance": false

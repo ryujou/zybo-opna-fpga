@@ -1,0 +1,23 @@
+{
+  "libvgm_revision": "c8b998b606895990c409a512b86c5509070f9f0d",
+  "zlib_version": "1.2.11",
+  "ym2608_core": "MAME",
+  "ssg_core": "MAME AY8910",
+  "rate": 48000,
+  "format": "stereo float32 in PCM16 units before final clipping",
+  "loops": 1,
+  "global_volume": "file header",
+  "device_volume": "file header and libvgm device normalization",
+  "calibration_hardware": {
+    "fpga_id": "0x26080007",
+    "usb_protocol": "2.1",
+    "mixer_gains": [
+      1,
+      1,
+      1
+    ],
+    "clock_hz": 8000000
+  },
+  "common_headroom": 0.125,
+  "resampler": "RSMODE_LINEAR (0), pinned PlayerBase default; MAME source rate downsampled to 48000"
+}

@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "hardware_capture": true,
+  "audio_clocks": 4096,
+  "errors": 0,
+  "first_errors": [],
+  "distinct_frames": 17,
+  "nonzero_frames": 4096,
+  "frame_examples": [
+    "05830504",
+    "06310655",
+    "06fb06de",
+    "07120cf9",
+    "071a0821",
+    "074c0cc7",
+    "07560ae7",
+    "077c06e0"
+  ],
+  "dc_expected_frame": null
+}

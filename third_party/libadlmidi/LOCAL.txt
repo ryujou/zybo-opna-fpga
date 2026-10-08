@@ -1,0 +1,12 @@
+Source: https://github.com/Wohlstand/libADLMIDI
+Revision: 84d27bc2bdbd6dd249537a7f7d2450cbd402482e
+Version: 1.5.1
+
+This source/include snapshot retains the upstream license files. The local
+ADLMIDI_FPGA build selects FpgaOPL3 at chip creation and starts with one chip.
+The application supplies fpga_chip.h; no software OPL emulator is compiled.
+
+The Windows desktop build defines ADLMIDI_DESKTOP_VISUAL. Nuked stores each
+channel's contribution at the left/right mixing points, and its C++ adapter
+exposes the emulator state for PCM inspection. These additions are excluded
+from the ARM/FPGA build.

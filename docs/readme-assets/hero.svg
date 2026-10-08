@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="440" viewBox="0 0 1200 440" role="img" aria-labelledby="title desc">
+  <title id="title">Zybo OPNA USB-MIDI and direct VGM sound module</title>
+  <desc id="desc">Bare-metal Zynq MIDI processing, FPGA OPNA synthesis, and a SW0 mode selection and direct VGM register playback.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#0b1626"/><stop offset="1" stop-color="#152b3b"/>
+    </linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#8ab3c3" stroke-opacity=".07"/>
+    </pattern>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+      <path d="M0 0L6 3L0 6" fill="none" stroke="#54c6c1" stroke-width="1.2"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="440" rx="20" fill="url(#background)"/>
+  <rect width="1200" height="440" rx="20" fill="url(#grid)"/>
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <rect x="56" y="48" width="206" height="30" rx="15" fill="#193c46" stroke="#32646c"/>
+    <circle cx="73" cy="63" r="4" fill="#68d3c7"/>
+    <text x="88" y="68" fill="#83d7ce" font-size="12" font-weight="600" letter-spacing="1.1">FPGA YM2608 SOUND</text>
+    <text x="54" y="157" fill="#f5f9fd" font-size="62" font-weight="700" letter-spacing="-2">ZYBO OPNA</text>
+    <text x="57" y="194" fill="#d4e0ec" font-size="20" font-weight="600" letter-spacing="2.5">USB-MIDI + DIRECT VGM</text>
+    <text x="57" y="235" fill="#9fb4c8" font-size="17">FM, SSG, rhythm and ADPCM on FPGA.</text>
+    <g font-size="12" fill="#d3e2eb">
+      <rect x="57" y="268" width="109" height="32" rx="6" fill="#1c3546" stroke="#355569"/>
+      <text x="74" y="289">USB-MIDI 1.0</text>
+      <rect x="178" y="268" width="103" height="32" rx="6" fill="#1c3546" stroke="#355569"/>
+      <text x="198" y="289">BARE METAL</text>
+      <rect x="293" y="268" width="155" height="32" rx="6" fill="#1c3546" stroke="#355569"/>
+      <text x="311" y="289">VGM / VGZ / PMD</text>
+    </g>
+    <path d="M760 128H808M760 256H808" stroke="#395e71" stroke-width="2"/>
+    <circle cx="756" cy="128" r="4" fill="#54c6c1"/>
+    <circle cx="756" cy="256" r="4" fill="#eebc74"/>
+    <rect x="808" y="62" width="332" height="104" rx="13" fill="#132d3d" stroke="#3e697a"/>
+    <rect x="808" y="62" width="5" height="104" rx="2" fill="#62c9c2"/>
+    <text x="832" y="89" fill="#81d6ce" font-size="11" font-weight="600" letter-spacing="1.8">ZYNQ ARM</text>
+    <text x="832" y="123" fill="#edf5fa" font-size="24" font-weight="600">MIDI / direct VGM</text>
+    <text x="832" y="146" fill="#92b1c3" font-size="13">SW0 · MIDI XG / OPNA events</text>
+    <path d="M973 168V194" stroke="#54c6c1" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="990" y="188" fill="#80aaa9" font-size="11">AXI registers</text>
+    <rect x="808" y="205" width="332" height="116" rx="13" fill="#152e3c" stroke="#76684b"/>
+    <rect x="808" y="205" width="5" height="116" rx="2" fill="#eebc74"/>
+    <text x="832" y="232" fill="#eebc74" font-size="11" font-weight="600" letter-spacing="1.8">FPGA LOGIC</text>
+    <text x="832" y="266" fill="#edf5fa" font-size="27" font-weight="600">OPNA</text>
+    <text x="832" y="294" fill="#aebac4" font-size="13">FM + SSG + rhythm + ADPCM</text>
+    <path d="M971 253H983L990 245L998 266L1007 232L1016 272L1026 244L1035 263L1045 252H1115" fill="none" stroke="#eebc74" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M57 342H1140" stroke="#395568" stroke-opacity=".7"/>
+    <g font-size="11" letter-spacing="1.3" fill="#7f9eb3">
+      <text x="57" y="373">BOARD</text><text x="310" y="373">DEVICE</text><text x="646" y="373">DESKTOP TOOL</text>
+    </g>
+    <g font-size="16" fill="#e1ebf2" font-weight="600">
+      <text x="57" y="401">Digilent Zybo / XC7Z010</text>
+      <text x="310" y="401">MIDI / VGM via SW0</text>
+      <text x="646" y="401">Python + Vue / Browser</text>
+    </g>
+    <text x="1140" y="400" text-anchor="end" fill="#62c9c2" font-size="12">Vivado / Vitis 2025.2</text>
+  </g>
+</svg>

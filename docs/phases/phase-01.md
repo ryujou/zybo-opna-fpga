@@ -4,10 +4,10 @@
 
 | 步骤 | 状态 | 证据 |
 | --- | --- | --- |
-| A | 通过 | [检查结果](../../verification/phase-01/gate-A.json) |
-| B | 通过 | [检查结果](../../verification/phase-01/gate-B.json) |
-| C | 通过 | [检查结果](../../verification/phase-01/gate-C.json) |
-| D | 通过 | [检查结果](../../verification/phase-01/gate-D.json) |
+| A | 通过 | [检查结果](../../build/opna_sim/phase-01/gate-A.json) |
+| B | 通过 | [检查结果](../../build/opna_sim/phase-01/gate-B.json) |
+| C | 通过 | [检查结果](../../build/opna_sim/phase-01/gate-C.json) |
+| D | 通过 | [检查结果](../../build/opna_sim/phase-01/gate-D.json) |
 
 ## 输入与时间
 
@@ -40,10 +40,10 @@ XSim本阶段验证输入边沿、引脚重放、读取采样及JT10B可展开�
 - tb_opna_trace_replay.sv在XSim中展开JT10B，重放同一引脚输入并检查读采样边沿。
 - compare.py按tick/kind/index排序后精确比较，拒绝空输入和重复观察键，报告首差异和附近总线事件。
 - scripts/run_opna_gate.ps1按A/B/C/D累计执行；前置门控未通过则返回非零；当前门控失败会使后续已有门控失效。
-- [参考重复性](../../verification/phase-01/repeat-tone-lle.json)。
-- [漏写检出](../../verification/phase-01/reject-dropped-write-lle.json)。
-- [单时钟偏移检出](../../verification/phase-01/reject-shifted-clock-lle.json)：读值保持15，观察时间由tick 4287移至4289，仍拒绝。
-- [样本错误检出](../../verification/phase-01/reject-altered-sample-lle.json)。
+- [参考重复性](../../build/opna_sim/phase-01/repeat-tone-lle.json)。
+- [漏写检出](../../build/opna_sim/phase-01/reject-dropped-write-lle.json)。
+- [单时钟偏移检出](../../build/opna_sim/phase-01/reject-shifted-clock-lle.json)：读值保持15，观察时间由tick 4287移至4289，仍拒绝。
+- [样本错误检出](../../build/opna_sim/phase-01/reject-altered-sample-lle.json)。
 
 ## 限制
 

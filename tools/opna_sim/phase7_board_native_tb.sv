@@ -63,6 +63,7 @@ module phase7_native_tb;
     wire M_AXI_RREADY;
     assign M_AXI_RID=0; assign M_AXI_BID=0;
     reg inject_error=0,stall_reads=0; reg[15:0] latency=24;
+    wire sw0=0;
     opna_zybo_system dut(.*);
     phase7_ddr_model dram( .clk(sys_clk), .resetn(sys_resetn),
         .M_AXI_ARADDR(M_AXI_ARADDR), .M_AXI_AWADDR(M_AXI_AWADDR), .M_AXI_ARLEN(M_AXI_ARLEN), .M_AXI_AWLEN(M_AXI_AWLEN), .M_AXI_ARSIZE(M_AXI_ARSIZE), .M_AXI_AWSIZE(M_AXI_AWSIZE), .M_AXI_ARBURST(M_AXI_ARBURST), .M_AXI_AWBURST(M_AXI_AWBURST), .M_AXI_ARVALID(M_AXI_ARVALID), .M_AXI_AWVALID(M_AXI_AWVALID), .M_AXI_WVALID(M_AXI_WVALID), .M_AXI_WLAST(M_AXI_WLAST), .M_AXI_ARREADY(M_AXI_ARREADY), .M_AXI_AWREADY(M_AXI_AWREADY), .M_AXI_WREADY(M_AXI_WREADY), .M_AXI_WDATA(M_AXI_WDATA), .M_AXI_WSTRB(M_AXI_WSTRB), .M_AXI_RDATA(M_AXI_RDATA), .M_AXI_RRESP(M_AXI_RRESP), .M_AXI_BRESP(M_AXI_BRESP), .M_AXI_RVALID(M_AXI_RVALID), .M_AXI_RLAST(M_AXI_RLAST), .M_AXI_BVALID(M_AXI_BVALID), .M_AXI_RREADY(M_AXI_RREADY), .M_AXI_BREADY(M_AXI_BREADY),
@@ -179,16 +180,31 @@ module phase7_native_tb;
         integer stop_tick;
         stop_tick=native_ticks+count; wait(native_ticks>=stop_tick);
     endtask
+    task wait_pin_phase(input integer phase);
+        case(phase)
+            0: begin
+                wait(!(dut.memory_dm_d==0 && dut.memory_ras_n && dut.memory_cas_n));
+                wait(dut.memory_dm_d==0 && dut.memory_ras_n && dut.memory_cas_n);
+            end
+            1: begin
+                wait(!(!dut.memory_ras_n && dut.memory_cas_n));
+                wait(!dut.memory_ras_n && dut.memory_cas_n);
+            end
+            2: begin
+                wait(!(!dut.memory_cas_n && !dut.memory_dm_d));
+                wait(!dut.memory_cas_n && !dut.memory_dm_d);
+            end
+            3: begin
+                wait(!(dut.memory_dm_d && (!dut.memory_romcs_n || dut.memory_mden)));
+                wait(dut.memory_dm_d && (!dut.memory_romcs_n || dut.memory_mden));
+            end
+            4: wait(dut.memory.write_pending);
+        endcase
+    endtask
     task pause_phase(input integer phase,input integer kind);
         integer frozen,changed;
         reg frozen_ras,frozen_cas,frozen_input;
-        case(phase)
-            0: wait(dut.memory_dm_d==0 && dut.memory_ras_n && dut.memory_cas_n);
-            1: wait(!dut.memory_ras_n && dut.memory_cas_n);
-            2: wait(!dut.memory_cas_n && !dut.memory_dm_d);
-            3: wait(dut.memory_dm_d && (!dut.memory_romcs_n || dut.memory_mden));
-            4: wait(dut.memory.write_pending);
-        endcase
+        wait_pin_phase(phase);
         write(4,0,15,0); frozen=native_ticks;
         frozen_ras=dut.memory_ras_n; frozen_cas=dut.memory_cas_n; frozen_input=dut.memory_dm_d;
         if(phase==0 && !(frozen_ras && frozen_cas && !frozen_input)) $fatal(1,"pause before RAS stage absent");
@@ -222,6 +238,89 @@ module phase7_native_tb;
         reg_write(1,12,8'hff); reg_write(1,13,8'hff);
         reg_write(1,9,8'hff); reg_write(1,10,8'hff); reg_write(1,11,8'hff);
         check_enable=1;
+    endtask
+    // The two monitors have independent pin history; the memory scoreboard updates
+    // its history on the same SYS edge and must not hide a new native WE here.
+    reg bank_previous_we=1,bank_previous_cas=1;
+    integer accepted_bank_writes=0;
+    reg [7:0] accepted_bank_mask=0;
+    always @(posedge sys_clk) if(sys_resetn) begin
+        if(dut.memory_type!=0 && !dut.memory_ras_n && !dut.memory_cas_n &&
+           !dut.memory_we_n && !dut.memory_dm_d && (bank_previous_we || bank_previous_cas)) begin
+            accepted_bank_mask=0; accepted_bank_writes=0;
+        end
+        bank_previous_we<=dut.memory_we_n; bank_previous_cas<=dut.memory_cas_n;
+        if(M_AXI_AWVALID && M_AXI_AWREADY) begin
+            accepted_bank_mask[((M_AXI_AWADDR-32'h01000000)>>15)&7]=1;
+            accepted_bank_writes=accepted_bank_writes+1;
+        end
+    end
+    localparam RESET_DRAIN_TIMEOUT_SYS=1024;
+    reg reset_focus=0,reset_watch=0,reset_drain_complete=0;
+    integer reset_clock_count=0,reset_start_count=0,reset_start_writes=0;
+    integer reset_cases=0,reset_commits=0,reset_request_sys=0,max_reset_drain_sys=0;
+    reg accepted_reset,consumed_low;
+    always @(posedge sys_clk) begin
+        accepted_reset=reset_focus && sys_resetn && dut.host.state==0 &&
+                       dut.host.aw_hold && dut.host.w_hold && !S_AXI_BVALID &&
+                       dut.host.aw_address==4 && dut.host.write_strobes==15 && dut.host.write_data[1];
+        consumed_low=reset_watch && dut.half_ce && !dut.ic_n;
+        if(sys_resetn && dut.half_ce) begin
+            reset_clock_count=reset_clock_count+1;
+            if(reset_watch && dut.ic_n) $fatal(1,"RESET consumed old IC native state");
+        end
+        #1;
+        if(reset_watch && !reset_drain_complete) begin
+            if(sys_cycles-reset_request_sys>RESET_DRAIN_TIMEOUT_SYS)
+                $fatal(1,"RESET drain exceeded %0d SYS",RESET_DRAIN_TIMEOUT_SYS);
+            if(!dut.reset_pending && dut.ic_n==0) begin
+                if(sys_cycles-reset_request_sys>max_reset_drain_sys)
+                    max_reset_drain_sys=sys_cycles-reset_request_sys;
+                reset_drain_complete=1;
+            end
+        end
+        if(consumed_low) begin
+            if(reset_clock_count!=reset_start_count+1 || memory_writes!=reset_start_writes)
+                $fatal(1,"RESET extra native progress/write count%0d/%0d writes%0d/%0d",
+                       reset_clock_count,reset_start_count,memory_writes,reset_start_writes);
+            reset_watch=0; reset_commits=reset_commits+1;
+        end
+        if(accepted_reset) begin
+            reset_request_sys=sys_cycles; reset_watch=1; reset_drain_complete=0;
+            reset_start_count=reset_clock_count; reset_start_writes=memory_writes;
+        end
+    end
+    task reset_phase(input integer phase,input integer kind);
+        integer frozen,frozen_writes,frozen_faults;
+        reg frozen_ras,frozen_cas,frozen_input;
+        integer written_physical[0:7];
+        wait_pin_phase(phase);
+        write(4,0,15,0); frozen=native_ticks; frozen_writes=memory_writes; frozen_faults=dut.memory_faults;
+        frozen_ras=dut.memory_ras_n; frozen_cas=dut.memory_cas_n; frozen_input=dut.memory_dm_d;
+        if(phase==0 && !(frozen_ras && frozen_cas && !frozen_input)) $fatal(1,"reset before RAS point absent");
+        if(phase==1 && !(!frozen_ras && frozen_cas)) $fatal(1,"reset RAS point absent");
+        if(phase==2 && !(!frozen_cas && !frozen_input)) $fatal(1,"reset CAS point absent");
+        if(phase==3 && !(frozen_input && (!dut.memory_romcs_n || dut.memory_mden))) $fatal(1,"reset input point absent");
+        if(phase==4)
+            for(integer bank=0;bank<(kind==2 ? 8 : 1);bank=bank+1)
+                written_physical[bank]=kind==2 ? bank*32768+(external_address>>3) : external_address;
+        repeat(12) @(posedge sys_clk);
+        if(native_ticks!=frozen || memory_writes!=frozen_writes) $fatal(1,"paused RESET prelude progressed");
+        check_enable=0; write(4,2,15,0); wait(!dut.resetting); #2;
+        if(dut.memory_fault || dut.run_enable || reset_watch) $fatal(1,"native RESET completion kind%0d phase%0d",kind,phase);
+        if(memory_writes!=frozen_writes || dut.memory_faults!=frozen_faults)
+            $fatal(1,"native RESET extra write/fault kind%0d phase%0d",kind,phase);
+        if(phase==4) begin
+            if(accepted_bank_writes!=(kind==2 ? 8 : 1) || (kind==2 && accepted_bank_mask!=8'hff))
+                $fatal(1,"accepted bank write drain count%0d mask%h",accepted_bank_writes,accepted_bank_mask);
+            for(integer bank=0;bank<(kind==2 ? 8 : 1);bank=bank+1)
+                if(dram.bytes[written_physical[bank]]!==expected[written_physical[bank]])
+                    $fatal(1,"reset RAM bank payload bank%0d physical%h got%h expected%h",bank,written_physical[bank],dram.bytes[written_physical[bank]],expected[written_physical[bank]]);
+            $display("NATIVE_RESET_WRITE_DRAIN kind=%0d axi_bank_writes=%0d bankmask=%h payload_exact=1",kind,accepted_bank_writes,accepted_bank_mask);
+        end
+        reset_cases=reset_cases+1;
+        $display("NATIVE_RESET_PHASE kind=%0d phase=%0d ras=%0d cas=%0d input=%0d old_native_progress=0 extra_native_write=0",kind,phase,frozen_ras,frozen_cas,frozen_input);
+        write(4,1,15,0);
     endtask
     reg[31:0] value;
     reg[15:0] audio_l,audio_r;
@@ -276,6 +375,19 @@ module phase7_native_tb;
         end
         wait(!dut.memory_pending);
         for(integer i=0;i<8;i=i+1) if(dram.bytes[i]!==8'hd0+i) $fatal(1,"native RAM1 CPU DDR payload");
+        reset_focus=1;
+        for(integer kind=1;kind<3;kind=kind+1) begin
+            for(integer phase=0;phase<4;phase=phase+1) begin
+                configure(kind,0,kind==2 ? 31 : 3); reg_write(1,0,8'hb0); wait_ticks(1024);
+                reset_phase(phase,kind);
+            end
+            configure(kind,0,15); reg_write(1,0,8'h60); byte_write(2,8); byte_write(3,8'hd0);
+            reset_phase(4,kind);
+        end
+        reset_focus=0;
+        if(reset_cases!=10 || reset_commits!=20) $fatal(1,"RESET coverage cases%0d commits%0d",reset_cases,reset_commits);
+        $display("NATIVE_RESET_BOUNDARY_PASS cases=%0d control_resets=%0d max_pending_wait_sys=%0d pending_timeout_sys=%0d",
+                 reset_cases,reset_commits,max_reset_drain_sys,RESET_DRAIN_TIMEOUT_SYS);
         configure(1,0,15); reg_write(1,0,8'hb0); check_enable=0; stall_reads=1;
         wait(dut.memory_fault);
         if(dut.memory_faults==0) $fatal(1,"underrun counter absent");
@@ -298,7 +410,7 @@ module phase7_native_tb;
         @(negedge sys_clk); baseline_ticks=native_ticks; baseline_candidates=candidate_ticks;
         repeat(1000) @(negedge sys_clk);
         if(candidate_ticks-baseline_candidates!=160 || native_ticks-baseline_ticks!=160) $fatal(1,"4/25 frequency ratio");
-        $display("METRICS native_data_ticks=%0d memory_writes=%0d loops=%0d crossed_lines=%0d ras=%0d cas=%0d half_ce_1000sys=160 fault_paths=%0d min_pin_to_input_sys=%0d min_prefetch_lead_sys=%0d",data_ticks,memory_writes,loops,crossed_lines,rows,columns,dut.memory_faults,min_pin_budget,min_prefetch_lead);
+        $display("METRICS native_data_ticks=%0d memory_writes=%0d loops=%0d crossed_lines=%0d ras=%0d cas=%0d half_ce_1000sys=160 fault_events=%0d min_pin_to_input_sys=%0d min_prefetch_lead_sys=%0d reset_points=%0d reset_control_commits=%0d max_reset_wait_sys=%0d",data_ticks,memory_writes,loops,crossed_lines,rows,columns,dut.memory_faults,min_pin_budget,min_prefetch_lead,reset_cases,reset_commits,max_reset_drain_sys);
         $display("CHECK native_core_hp0_rom_ram8_ram1_data_ticks_zero_stalls");
         $display("CHECK native_memory_cross_line_loop_tail_cpu_read_write");
         $display("CHECK system_half_ce_4_of_25_continuous_clock");

@@ -7,6 +7,7 @@
 #include "opl_hw.h"
 #include "timer_ps.h"
 #include "transport.h"
+#include "transport_backend.h"
 #include "xil_printf.h"
 #include "xparameters.h"
 #include "xstatus.h"
@@ -32,10 +33,11 @@ constexpr u8 kTypeSampleBegin = 0x0E;
 constexpr u8 kTypeSampleChunk = 0x0F;
 constexpr u8 kTypeSampleEnd = 0x10;
 constexpr u8 kTypeSampleRead = 0x11;
+constexpr u8 kTypeSetMix = 0x12;
 constexpr u8 kTypeError = 0x7F;
 constexpr u8 kResponseMask = 0x80;
 constexpr u8 kVersionMajor = 2;
-constexpr u8 kVersionMinor = 1;
+constexpr u8 kVersionMinor = 2;
 constexpr size_t kQueueCapacity = 2048;
 constexpr size_t kSongBufferSize = 8 * 1024 * 1024;
 
@@ -345,7 +347,7 @@ bool validate_buffered_song()
 
 void send_status()
 {
-	u8 payload[21];
+	u8 payload[29];
 	u16 free_slots = static_cast<u16>(kQueueCapacity - g_queue.count);
 	bool playing = g_stream_playback_armed || g_queue.count != 0 || g_song.playback_active;
 	payload[0] = static_cast<u8>(free_slots & 0xFF);
@@ -358,6 +360,8 @@ void send_status()
     const u64 late_us = TimerTicksToMicroseconds(g_max_late_ticks);
     store_u32(payload + 13, static_cast<u32>(late_us > 0xFFFFFFFFULL ? 0xFFFFFFFFULL : late_us));
     store_u32(payload + 17, opl_sample_loaded());
+    store_u32(payload + 21, opl_clip_count(false));
+    store_u32(payload + 25, opl_clip_count(true));
 	send_frame(static_cast<u8>(kTypeStatus | kResponseMask), payload, sizeof(payload));
 }
 
@@ -558,7 +562,7 @@ bool start_buffered_playback()
 	buffered_stop_playback();
 	g_late_writes = 0; g_max_late_ticks = 0;
 	g_source_completion_late_writes = 0; g_max_source_completion_late_ticks = 0;
-	if (!opl_reset_core()) { send_error(12); return false; }
+	if (!opl_reset_core(false)) { send_error(12); return false; }
 	g_song.play_offset = 0;
 	g_song.playback_active = true;
 	g_debug_buffered_stage = 1;
@@ -707,6 +711,17 @@ bool handle_frame(u8 type, const u8 *payload, u16 length, bool *keep_running)
     case kTypeSampleChunk: return sample_chunk(payload, length);
     case kTypeSampleEnd: return sample_end();
     case kTypeSampleRead: return sample_read(payload, length);
+    case kTypeSetMix:
+        if (length != 12 || g_song.playback_active || g_song.playback_paused ||
+            g_queue.count || g_stream_playback_armed || g_sample_upload) {
+            send_error(16); return false;
+        }
+        if (!opl_set_mix(load_u32(payload), load_u32(payload+4), load_u32(payload+8))) {
+            send_error(12); return false;
+        }
+        opl_clear_clips();
+        send_frame(kTypeSetMix | kResponseMask, payload, 12);
+        return true;
 	default:
 		send_error(1);
 		return false;
@@ -769,8 +784,9 @@ bool feed_parser(FrameParser *parser, u8 byte, bool *keep_running)
 
 } // namespace
 
-int stream_session(void)
+int stream_session(bool (*should_stop)())
 {
+    usb_transport_set_stop_callback(should_stop);
 	if (transport_open_stream() != XST_SUCCESS) {
 		xil_printf("Transport init failed.\r\n");
 		return -1;
@@ -791,6 +807,7 @@ int stream_session(void)
 	FrameParser parser;
 	bool keep_running = true;
 	while (keep_running) {
+        if (should_stop && should_stop()) break;
 		bool did_work = false;
 		if (transport_error()) {
 			stop_all_playback();
@@ -806,7 +823,7 @@ int stream_session(void)
 		}
 
 		u8 byte = 0;
-		while (transport_read_byte(&byte)) {
+		while ((!should_stop || !should_stop()) && transport_read_byte(&byte)) {
 			feed_parser(&parser, byte, &keep_running);
 			did_work = true;
 		}
@@ -822,6 +839,8 @@ int stream_session(void)
 		}
 	}
 
+	stop_all_playback();
+    opl_set_running(false);
 	transport_close_stream();
 	return 0;
 }

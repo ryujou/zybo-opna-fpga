@@ -7,3 +7,12 @@
 [submodule "tools/opna_sim/vendor/ym2608_lle"]
 	path = tools/opna_sim/vendor/ym2608_lle
 	url = https://github.com/nukeykt/YM2608-LLE.git
+[submodule "third_party/libopnmidi"]
+	path = third_party/libopnmidi
+	url = https://github.com/Wohlstand/libOPNMIDI.git
+[submodule "third_party/libvgm"]
+	path = third_party/libvgm
+	url = https://github.com/ValleyBell/libvgm.git
+[submodule "third_party/zlib"]
+	path = third_party/zlib
+	url = https://github.com/madler/zlib.git

@@ -27,4 +27,30 @@ The script downloads the official Windows console ZIP to `build/private-tools/fu
 
 The PS adaptation in `software/ps_baremetal` reuses only the stream parser, transport backends, USB descriptors/control requests, codec setup, SCU timer and linker script from the listed source. OPNA changes provide real IC reset and busy handling, full native DDR samples, a common timer frequency and 16-bit/48 kHz codec setup. The timer files retain Sam Bobrowicz / Copyright 2014 Digilent, Inc. attribution and the reference to the Xilinx SCU timer example. The linker script retains its AMD 2023 MIT notice. The original software license texts are in `software/ps_baremetal/LICENSES/`.
 
-The PS7 and pin MIT notices are preserved in `hardware/vivado/LICENSE.digilent`. Vivado/Vitis SDK binaries and generated BSP libraries remain local build dependencies and are not included in the public repository. Physical verification remains pending.
+The PS7 and pin MIT notices are preserved in `hardware/vivado/LICENSE.digilent`. Vivado/Vitis SDK binaries and generated BSP libraries remain local build dependencies and are not included in the public repository. Digital board verification is recorded in `verification/phase-07/`. Analog audio has not been measured.
+
+## USB MIDI firmware
+
+`software/usb_midi` adapts the USB class transport and MIDI packet parser from [ryujou/zybo-opl3-fpga, usb-midi-opl3](https://github.com/ryujou/zybo-opl3-fpga/tree/usb-midi-opl3/software/usb_midi). The OPNA synthesis control uses [libOPNMIDI](https://github.com/Wohlstand/libOPNMIDI) pinned at `8e228213756f741533ef3f5d80cb7ec778479749`, under GPL-3.0-or-later with file-specific LGPL and MIT notices. Its sources and licenses are in the `third_party/libopnmidi` submodule. The build substitutes a hardware register backend; no software sound emulator is linked.
+
+The embedded `fm_banks/xg.wopn` bank is Copyright 2018–2026 Vitaliy Novichkov, MIT; its complete notice is `third_party/libopnmidi/fm_banks/xg-readme.txt`. The MIDI application and its linked components are distributed under GPL-3.0-or-later, retaining these component notices.
+
+The local hardware build contains the six fixed rhythm sounds described above. `firmware/usb_midi/BOOT.bin` includes that complete FPGA configuration; the MIDI application currently uses its six FM voices. Rhythm samples retain their original rights and are not relicensed as original project data.
+
+Touhou test MIDI arrangements by Gyana Ren, based on music by ZUN, were obtained from [VGMusic's PC-98 directory](https://www.vgmusic.com/music/computer/nec/pc-98/). Test songs remain local and are not redistributed. The firmware contains the MIT instrument bank, not these songs.
+
+## PMD desktop decoder
+
+`third_party/98fmplayer` contains the PMD driver, OPNA timer/emulation sources and required headers from [myon98/98fmplayer](https://github.com/myon98/98fmplayer/tree/4fa914e4b2b994cb3ccf92d571a20a7cdf1fe36a), revision `4fa914e4b2b994cb3ccf92d571a20a7cdf1fe36a`, Copyright 2016 Takamichi Horikawa, BSD-2-Clause; the complete license is retained there. `tools/pmd_decode.c` records the driver register writes; the software audio output is discarded. Touhou PMD music remains local in ignored build directories and is not included in the public source.
+
+## Browser player and software waveforms
+
+`pc_player` adapts the project's Zybo OPL3 Vue/FastAPI player, retaining its source and runtime notices. The OPNA browser adapter uses the common PC98 parser and USB protocol. Bundled Windows x64 helpers in `pc_player/native/bin` are software display/PMD decoding components, not the board audio engine.
+
+- `third_party/libvgm`: ValleyBell/libvgm, revision `c8b998b606895990c409a512b86c5509070f9f0d`. Core-specific licenses are retained in the submodule; the selected cores are MAME YM2608 and MAME AY8910. See its `README.md`, `emu/cores/fmopn.c` and `emu/cores/ay8910.c` for attribution and license terms.
+- `third_party/zlib`: madler/zlib 1.2.11, revision `cacf7f1d4e3d44d871b605da3b647f07d718623f`, zlib license in `README` and `zlib.h`.
+- `third_party/libadlmidi`: source snapshot of Wohlstand/libADLMIDI `84d27bc2bdbd6dd249537a7f7d2450cbd402482e`, with the existing OPL3 desktop observation hooks described in `LOCAL.txt`. GPL-3.0/LGPL-2.1 and core-specific notices are retained. Used only for OPL3/MIDI display support, not to render OPNA songs.
+- `pc_player/libusb-1.0.dll`: libusb 1.0.24, LGPL-2.1-or-later. Source: https://github.com/libusb/libusb/tree/v1.0.24 ; full license is included in `pc_player/THIRD_PARTY.txt`.
+- Vue, Python/FastAPI/Uvicorn and their dependencies retain their upstream licenses; versions are fixed in `pc_player/web/package-lock.json` and `pc_player/requirements.txt`. Qt and PyInstaller are not needed by the browser launcher.
+
+Original VGM/VGZ/PMD music, ADPCM sample blocks, private reference renders and patched diagnostic songs are not distributed. The dual-mode FPGA image includes the fixed rhythm sounds under the same rights boundary described above.

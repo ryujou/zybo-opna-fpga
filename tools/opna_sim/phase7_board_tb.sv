@@ -2,7 +2,8 @@
 module phase7_host_test(output reg done=0);
     reg clk=0; always #5 clk=~clk;
     reg resetn=0;
-    wire half_ce=1;
+    reg mode_switch=0;
+    wire half_ce=1, raw_half_due=1;
     reg core_busy=0, core_irq_n=1, memory_fault=0;
     wire [1:0] memory_type,core_addr;
     wire [7:0] core_dout=8'ha0+core_addr;
@@ -16,13 +17,16 @@ module phase7_host_test(output reg done=0);
     wire s_awready,s_wready,s_arready,s_bvalid,s_rvalid;
     wire [1:0] s_bresp,s_rresp;
     wire [31:0] s_rdata,ddr_base;
-    wire run_enable,mute,invalidate,ic_n,resetting,cs_n,wr_n,rd_n;
+    wire run_enable,mute,invalidate,ic_n,resetting,reset_pending,cs_n,wr_n,rd_n;
     wire [7:0] core_din;
     wire prime_valid,prime_resume; wire [17:0] prime_address;
     reg prime_done=0;
     always @(posedge clk) begin
         prime_done<=prime_valid && prime_resume;
     end
+    wire [31:0] pcm_gain, ssg_gain, master_gain;
+    wire [1:0] clip_clear;
+    reg [31:0] clip_left=0, clip_right=0;
     opna_axi_host dut(.*);
     integer writes=0;
     reg [7:0] observed_data[0:15]; reg [1:0] observed_port[0:15];
@@ -83,6 +87,25 @@ module phase7_host_test(output reg done=0);
     endtask
     initial begin
         repeat(4) @(posedge clk); @(negedge clk); resetn=1; wait(!resetting);
+        read32('h24,65536); read32('h28,65536); read32('h2c,65536);
+        write32('h24,131072,15,0,2); // RUN rejects gain changes.
+        write32(4,0,15,0,0);
+        write32('h24,131072,15,0,2); // Stopped without MUTE also rejects.
+        write32(4,4,15,0,0);
+        write32('h24,131072,15,0,0); write32('h28,21845,15,1,0); write32('h2c,8192,15,0,0);
+        read32('h24,131072); read32('h28,21845); read32('h2c,8192);
+        write32('h24,1,1,0,2); read32('h24,131072);
+        clip_left=11; clip_right=17; read32('h30,11); read32('h34,17);
+        fork
+            begin write32('h30,1,15,0,0); end
+            begin wait(clip_clear[0]); @(negedge clk); clip_left=0; end
+        join
+        fork
+            begin write32('h34,1,15,0,0); end
+            begin wait(clip_clear[1]); @(negedge clk); clip_right=0; end
+        join
+        read32('h30,0); read32('h34,0);
+        write32(4,1,15,0,0);
         write32(0,32'hdeadbeef,15,0,0);
         if(writes!=4) $fatal(1,"host full strobes count");
         for(integer i=0;i<4;i=i+1)
@@ -90,7 +113,14 @@ module phase7_host_test(output reg done=0);
         write32(3,32'h42000000,8,1,0);
         if(observed_port[4]!==3 || observed_data[4]!==8'h42) $fatal(1,"host bank1 data byte");
         read32(3,32'ha3000000); read32(0,32'ha0);
-        read32(12,32'h01000000); read32(28,32'h26080007);
+        read32(12,32'h01000000); read32(28,32'h26080008);
+        read32(32,32'h53570000);
+        @(negedge clk); mode_switch=1;
+        repeat(3) @(posedge clk);
+        read32(32,32'h53570001);
+        @(negedge clk); mode_switch=0;
+        repeat(3) @(posedge clk);
+        read32(32,32'h53570000);
         write32(0,16,1,0,0); write32(1,32'h00003f00,2,0,0);
         write32(0,17,1,0,0); // Explicit 576 MCLK wait after rhythm WR release.
         core_busy=1;
@@ -125,6 +155,9 @@ module phase7_audio_test(output reg done=0);
     reg signed [15:0] pcm_left=0,pcm_right=0;
     reg [4:0] ssg_a=1,ssg_b=1,ssg_c=1;
     wire i2s_sclk,i2s_ws,i2s_sd,ac_mute_n,ready;
+    reg [31:0] pcm_gain=65536, ssg_gain=65536, master_gain=65536;
+    reg [1:0] clip_clear=0;
+    wire [31:0] clip_left, clip_right;
     opna_audio_output dut(.*);
     task pair(input signed[15:0] l,r);
         @(negedge sys_clk); pcm_left=l; pcm_valid=1;

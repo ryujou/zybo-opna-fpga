@@ -36,6 +36,7 @@ module ym2608_control #(parameter ENABLE_RHYTHM = 1, ENABLE_ADPCM = 1) (
     output wire [19:0] fm_pg_add,
     output wire fm_overlap,
     output wire fm_clk1_only,
+    output logic fm_clk1_only_advance,
     output wire [6:0] fm_am,
     output wire [6:0] fm_tl,
     output wire [3:0] fm_ssg,
@@ -250,27 +251,27 @@ module ym2608_control #(parameter ENABLE_RHYTHM = 1, ENABLE_ADPCM = 1) (
     assign adpcm_status = {q.adpcm.zero_flag,q.adpcm.brdy_flag,q.adpcm.eos_flag};
     assign adpcm_playing = q.adpcm.start_l[0];
     assign adc_sample = q.adpcm.adc_buf;
-    assign fm_key = s.key_latch[1];
-    assign fm_csm_key = s.csm_key;
+    logic [6:0] fm_key_advance;
+    logic [19:0] fm_pg_add_advance;
+    logic [2:0] fm_mod_algorithm_advance, fm_feedback_advance;
+    logic fm_csm_key_advance;
+    assign fm_key = fm_key_advance;
+    assign fm_csm_key = fm_csm_key_advance;
     // JT stage II follows the native phase adder by twelve operator slots.
-    assign fm_feedback = s.pg_connect[1][0][5:3];
-    assign fm_mod_algorithm = s.pg_connect[1][5][2:0];
-    assign fm_tl = s.tl_output;
-    assign fm_ssg = s.ssg_output;
-    assign fm_am = s.am_output;
-    assign fm_pg_add = s.pg_add_history[12];
+    assign fm_feedback = fm_feedback_advance;
+    assign fm_mod_algorithm = fm_mod_algorithm_advance;
+    logic [6:0] fm_tl_advance, fm_am_advance;
+    logic [3:0] fm_ssg_advance;
+    assign fm_tl = fm_tl_advance;
+    assign fm_ssg = fm_ssg_advance;
+    assign fm_am = fm_am_advance;
+    assign fm_pg_add = fm_pg_add_advance;
     assign fm_step = half_ce && s.fm_run;
-    assign fm_overlap = s.clk1 && s.clk2;
+    logic fm_overlap_advance;
+    assign fm_overlap = fm_overlap_advance;
     assign fm_clk1_only = half_ce && s.clk1 && !s.clk2;
-    integer fm_slot, fm_channel;
-    always_comb begin
-        // JT's operator pipeline completes just before the matching native clk1.
-        fm_slot = s.fsm2[1] * 3 + s.fsm1[1] + 7;
-        if (fm_slot >= 24) fm_slot = fm_slot - 24;
-        fm_channel = fm_slot % 6;
-        fm_scan[4:3] = fm_slot / 6;
-        fm_scan[2:0] = fm_channel < 3 ? fm_channel : fm_channel + 1;
-    end
+    logic [4:0] fm_slot;
+    logic [2:0] fm_channel;
     assign fm_lfo = s.lfo_loaded;
     assign fm_eg_step = s.eg_step[2];
     assign fm_eg_low = s.eg_low_lock;
@@ -295,7 +296,7 @@ module ym2608_control #(parameter ENABLE_RHYTHM = 1, ENABLE_ADPCM = 1) (
     always_comb begin
       s = q;
       s.pcm_valid = 0;
-      if (half_ce) begin
+      begin
         reset_chip = !ic_n;
         if (!chip_clk) begin
             divider_overflow = 0;
@@ -1016,6 +1017,29 @@ module ym2608_control #(parameter ENABLE_RHYTHM = 1, ENABLE_ADPCM = 1) (
             s.previous_sh2 = serial_sh2;
         end
         s.previous_s = serial_s;
+      end
+      fm_overlap_advance = s.clk1 && s.clk2;
+      fm_clk1_only_advance = s.clk1 && !s.clk2;
+      fm_ssg_advance = s.ssg_output;
+      fm_tl_advance = s.tl_output;
+      fm_am_advance = s.am_output;
+      fm_pg_add_advance = s.pg_add_history[12];
+      fm_mod_algorithm_advance = s.pg_connect[1][5][2:0];
+      fm_key_advance = s.key_latch[1];
+      fm_csm_key_advance = s.csm_key;
+      fm_feedback_advance = s.pg_connect[1][0][5:3];
+      // JT's operator pipeline completes just before the matching native clk1.
+      fm_slot = s.fsm2[1] * 5'd3 + 5'(s.fsm1[1]) + 5'd7;
+      if (fm_slot >= 5'd24) fm_slot = fm_slot - 5'd24;
+      fm_channel = fm_slot % 5'd6;
+      fm_scan[4:3] = fm_slot / 5'd6;
+      fm_scan[2:0] = fm_channel < 3'd3 ? fm_channel : fm_channel + 3'd1;
+      // Select the completed native phase at the boundary; retain procedural
+      // if semantics for disabled or unknown enables.
+      if (half_ce) begin
+      end else begin
+          s = q;
+          s.pcm_valid = 0;
       end
     end
     always @(posedge clk) q <= s;

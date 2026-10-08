@@ -126,10 +126,11 @@ module opna_zybo_system (
     output wire M_AXI_RREADY,
     (* X_INTERFACE_INFO="xilinx.com:signal:interrupt:1.0 irq INTERRUPT", X_INTERFACE_PARAMETER="SENSITIVITY LEVEL_HIGH" *)
     output wire irq,
+    input wire sw0,
     output wire i2s_sclk, i2s_ws, i2s_sd, ac_mute_n,
     output wire [3:0] led
 );
-    wire run_enable, mute, invalidate, resetting, ic_n;
+    wire run_enable, mute, invalidate, resetting, ic_n, reset_pending;
     wire [31:0] ddr_base, memory_faults;
     wire [1:0] memory_type;
     wire cs_n, wr_n, rd_n;
@@ -147,11 +148,12 @@ module opna_zybo_system (
     wire [4:0] ssg_a, ssg_b, ssg_c;
     reg [4:0] half_acc;
     reg chip_phase;
-    reg half_ce_delayed;
+    (* MARK_DEBUG="TRUE", KEEP="TRUE" *) reg half_ce_delayed;
     wire half_due=half_acc>=21;
     // A cache miss stops before consuming an incorrect sample. It is a visible
     // fault, never an alternate normal-play clock rate.
-    wire half_ce=half_due && (resetting || (run_enable && !memory_fault && memory_ready));
+    wire half_ce=sys_resetn && half_due && !reset_pending &&
+                 (resetting || (run_enable && !memory_fault && memory_ready));
     always @(posedge sys_clk) begin
         if (!sys_resetn) begin half_acc<=0; chip_phase<=0; half_ce_delayed<=0; end
         else begin
@@ -160,10 +162,33 @@ module opna_zybo_system (
             if (half_ce) chip_phase<=!chip_phase;
         end
     end
+    // ILA samples one system clock after a native half-cycle. Hold the
+    // consumed inputs so that they align with the resulting native outputs.
+    (* MARK_DEBUG="TRUE", KEEP="TRUE" *) reg [24:0] debug_native_inputs;
+    (* MARK_DEBUG="TRUE", KEEP="TRUE" *) wire [80:0] debug_native_outputs;
+    (* MARK_DEBUG="TRUE", KEEP="TRUE" *) reg [31:0] debug_sys_counter;
+    always @(posedge sys_clk) begin
+        if (!sys_resetn) begin debug_native_inputs<=0; debug_sys_counter<=0; end
+        else begin
+            debug_sys_counter<=debug_sys_counter+32'd1;
+            if (half_ce)
+                debug_native_inputs<={ic_n,cs_n,wr_n,rd_n,core_addr,core_din,
+                                      memory_data,memory_dt0,chip_phase,sys_resetn};
+        end
+    end
+    assign debug_native_outputs={audio_ready,memory_pending,chip_phase,resetting,
+        run_enable,memory_fault,memory_ready,memory_mden,memory_romcs_n,
+        memory_we_n,memory_cas_n,memory_ras_n,memory_a8,memory_dm_d,memory_dm,
+        ssg_c,ssg_b,ssg_a,pcm_right,pcm_left,pcm_valid,busy,irq_n,core_dout};
     assign irq=!irq_n || memory_fault;
     assign led={memory_fault,resetting,busy,run_enable};
+    wire [31:0] pcm_gain, ssg_gain, master_gain, clip_left, clip_right;
+    wire [1:0] clip_clear;
     opna_axi_host host (
-        .clk(sys_clk), .resetn(sys_resetn), .half_ce(half_ce), .core_busy(busy),
+        .pcm_gain(pcm_gain), .ssg_gain(ssg_gain), .master_gain(master_gain),
+        .clip_left(clip_left), .clip_right(clip_right), .clip_clear(clip_clear),
+        .mode_switch(sw0),
+        .clk(sys_clk), .resetn(sys_resetn), .raw_half_due(half_due), .half_ce(half_ce), .core_busy(busy),
         .core_irq_n(irq_n), .memory_fault(memory_fault), .core_dout(core_dout),
         .adpcm_status(adpcm_status), .memory_pending(memory_pending), .audio_ready(audio_ready),
         .memory_faults(memory_faults), .s_awaddr(S_AXI_AWADDR), .s_araddr(S_AXI_ARADDR),
@@ -173,7 +198,7 @@ module opna_zybo_system (
         .s_arready(S_AXI_ARREADY), .s_bvalid(S_AXI_BVALID), .s_rvalid(S_AXI_RVALID),
         .s_bresp(S_AXI_BRESP), .s_rresp(S_AXI_RRESP), .s_rdata(S_AXI_RDATA),
         .run_enable(run_enable), .mute(mute), .ddr_base(ddr_base), .memory_type(memory_type),
-        .invalidate(invalidate), .ic_n(ic_n), .resetting(resetting), .cs_n(cs_n),
+        .invalidate(invalidate), .ic_n(ic_n), .resetting(resetting), .reset_pending(reset_pending), .cs_n(cs_n),
         .wr_n(wr_n), .rd_n(rd_n), .core_addr(core_addr), .core_din(core_din),
         .prime_valid(prime_valid), .prime_resume(prime_resume), .prime_address(prime_address), .prime_done(prime_done)
     );
@@ -223,6 +248,8 @@ module opna_zybo_system (
     assign M_AXI_AWQOS=0;
     assign M_AXI_WLAST=1;
     opna_audio_output audio (
+        .pcm_gain(pcm_gain), .ssg_gain(ssg_gain), .master_gain(master_gain),
+        .clip_left(clip_left), .clip_right(clip_right), .clip_clear(clip_clear),
         .sys_clk(sys_clk), .sys_resetn(sys_resetn), .audio_clk(audio_clk),
         .audio_resetn(audio_resetn), .mute(mute || memory_fault || resetting),
         .pcm_valid(pcm_valid & {2{half_ce_delayed}}), .pcm_left(pcm_left), .pcm_right(pcm_right),

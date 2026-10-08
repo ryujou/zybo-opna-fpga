@@ -16,9 +16,9 @@
 & "$env:OPNA_VIVADO_ROOT/bin/vivado.bat" -mode batch -source hardware/vivado/phase7_board.tcl
 ```
 
-构建在综合后先检查容量；超限立即停止。布线、setup/hold 时序和 DRC 满足后才生成 `build/opna_phase7/board/zybo_opna.bit` 与 `zybo_opna.xsa`。CDC 和实际端口时序也属于离线验收，不执行器件编程。
+构建在综合后插入原生与音频两组 ILA，再检查包含 debug hub 的整板容量；超限立即停止。布线、setup/hold/pulse 时序、DRC 和 CDC 满足后才生成 `build/opna_phase7/board/zybo_opna.bit`、`zybo_opna.xsa` 与 `zybo_opna.ltx`。实际端口时序也属于离线验收。器件编程及实际 ILA 采集单独执行。
 
-当前整板综合为 18,734 / 17,600 LUT（106.44%），已在容量检查处停止，未进行布局布线或生成最终 bit/XSA。FF 为 24,409 / 35,200，BRAM 为 1 / 60，DSP 为 0 / 80。证据见 [Phase 7](../../docs/phases/phase-07.md)。
+当前已实测整板实现为 11,576 / 17,600 LUT、12,343 / 35,200 FF、38.5 / 60 BRAM、0 / 80 DSP；布线 WNS +0.262 ns、TNS 0、WHS +0.051 ns。八组实际原生 ILA、音频 ILA、USB 与 DDR 检查通过，交付目录为 `build/opna_phase7/pipeline-board`。Phase 1–7 A–D 累计离线门控全部通过。证据与板测命令见 [Phase 7](../../docs/phases/phase-07.md)。
 
 PS7 配置及引脚依据 Digilent 原 Zybo Rev. B 资料，来源和 MIT 许可见 `zybo_ps7.tcl`、`hardware/rtl/constraints/zybo.xdc` 和 `LICENSE.digilent`。厂家 preset 的四个负 DQS-to-CLK 延迟保持原值；PSU1～4 配置提示与实现时序、DRC 检查分别核对。
 

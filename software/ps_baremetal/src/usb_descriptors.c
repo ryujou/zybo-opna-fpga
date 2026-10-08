@@ -210,7 +210,11 @@ u32 XUsbPs_Ch9SetupStrDescReply(u8 *BufPtr, u32 BufLen, u8 Index)
 	static const char *StringList[] = {
 		"UNUSED",
 		"Ryujou",
+#ifdef OPNA_DUAL_MODE
+        "Zybo PC98 OPNA",
+#else
 		"Zybo OPNA USB Interface",
+#endif
 		"ZOPNAUSB0001",
 		"Default Configuration",
 		"OPNA Data Interface",

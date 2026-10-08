@@ -15,5 +15,6 @@ bool usb_transport_read_byte(u8 *value);
 void usb_transport_write(const u8 *data, size_t length);
 const TransportCapabilities &usb_transport_get_capabilities(void);
 int usb_transport_error(void);
+void usb_transport_set_stop_callback(bool (*should_stop)());
 
 #endif

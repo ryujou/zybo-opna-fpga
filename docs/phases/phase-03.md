@@ -4,10 +4,10 @@
 
 | 步骤 | 状态 | 证据 |
 | --- | --- | --- |
-| A | 通过 | [检查结果](../../verification/phase-03/gate-A.json) |
-| B | 通过 | [检查结果](../../verification/phase-03/gate-B.json) |
-| C | 通过 | [检查结果](../../verification/phase-03/gate-C.json) |
-| D | 通过 | [检查结果](../../verification/phase-03/gate-D.json) |
+| A | 通过 | [检查结果](../../build/opna_sim/phase-03/gate-A.json) |
+| B | 通过 | [检查结果](../../build/opna_sim/phase-03/gate-B.json) |
+| C | 通过 | [检查结果](../../build/opna_sim/phase-03/gate-C.json) |
+| D | 通过 | [检查结果](../../build/opna_sim/phase-03/gate-D.json) |
 
 ## 行为与依据
 
@@ -54,7 +54,7 @@ CSM采用27 bit7=1、bit6=0，即80模式；依据两个固定模型的译码一
 
 A检查每个用例的两个参考均能运行，PCM在16位范围，规定声道有活动/静音，并输出固定LLE逐边沿PCM预期。B必须逐项通过RTL比较才算波形实现通过。C重跑Phase 1～2以及本阶段全部用例，并对six_channels_slots、lfo_am_pm、dynamic_writes_keys和fm_reset_phase_011插入每tick三个half_ce=0的系统周期；数字样本及芯片tick仍须完整一致。D核对清单、完整比较证据和文档。
 
-输出：build/opna_sim/phase-03。门控结果：[gate-A.json](../../verification/phase-03/gate-A.json)。
+输出：build/opna_sim/phase-03。门控结果：[gate-A.json](../../build/opna_sim/phase-03/gate-A.json)。
 
 B接入JT12的FULLFM六通道路径。ENABLE_FM=0仅供此前控制阶段独立回归，正常核心默认启用FM。全分辨率算子输出进入[原生两相累加与串行输出](../../hardware/rtl/opna_core/ym2608_control.sv)，按S/SH1/SH2还原各声道的PCM值与有效时刻，包括运行中IC截断的串行字。该接入必须通过严格比较，不能以可展开或有声作为通过依据。
 
@@ -72,8 +72,8 @@ OP2调制使用当前OP1结果，算法5的OP3调制使用保存的OP1结果。B
 
 最小输入先写29=9F，单独配置第4通道、写28=F4，持续发声后只写29=1F，之后不改key。两个参考在切换后稳定4096半周期之后的输出不同：LLE仍有非零PCM，ymfm全为0。这是活动/静音的功能差异，不是采样率或数值精度差异。
 
-- 可重放输入：sch_high_channel.bus（本地输出：`../../build/opna_sim/phase-03/sch_high_channel.bus`）。
-- 四组契约断言：[sch-contract.json](../../verification/phase-03/sch-contract.json)。
+- 可重放输入：[sch_high_channel.bus](../../build/opna_sim/phase-03/sch_high_channel.bus)。
+- 四组契约断言：[sch-contract.json](../../build/opna_sim/phase-03/sch-contract.json)。
 - 固定LLE的fmopna_impl.c第943行把reg_sch用于key通道的高位选择；该信号没有连接到FM输出屏蔽。
 - 固定ymfm的ymfm_opn.cpp第1392行选择3F/07输出掩码，第1406行将它应用于FM混音。
 - [原始手册](https://nemesis.hacking-cult.org/MegaDrive/Documentation/YM2608J.PDF)第18～19页定义SCH的三/六通道及key分配限制，但没有明确给出已发声高通道在清SCH瞬间的状态转移。尚无该具体序列的实片证据。
@@ -113,7 +113,7 @@ OP2调制使用当前OP1结果，算法5的OP3调制使用保存的OP1结果。B
 
 ### 成熟软件音源与PC-98模拟器对照
 
-固定源码版本和文件清单见[sources.json](../../verification/phase-03/software-review/sources.json)。下表区分源码检查与实际重放；没有运行完整PC-98模拟器。SCH均指寄存器29的bit7，通道编号为CH1～CH6。
+固定源码版本和文件清单见[sources.json](../../build/opna_sim/phase-03/software-review/sources.json)。下表区分源码检查与实际重放；没有运行完整PC-98模拟器。SCH均指寄存器29的bit7，通道编号为CH1～CH6。
 
 | 实现 | SCH=0时的逻辑 | 证据方式及范围 |
 | --- | --- | --- |
@@ -129,7 +129,7 @@ libopna的[v0.1.8说明](https://github.com/myon98/98fmplayer/releases/tag/v0.1.
 
 #### 五个核心的同序列重放
 
-[重放脚本](../../tools/opna_sim/sch_review.py)构建libvgm、PMDWinS036、libopna三个未修改的上游核心，并调用固定LLE与ymfm参考。四个输入共20组重放均已生成观察结果，完整输入、输出CSV和构建日志位于build/opna_sim/phase-03/software-review；统计见[results.json](../../verification/phase-03/software-review/results.json)。
+[重放脚本](../../tools/opna_sim/sch_review.py)构建libvgm、PMDWinS036、libopna三个未修改的上游核心，并调用固定LLE与ymfm参考。四个输入共20组重放均已生成观察结果，完整输入、输出CSV和构建日志位于build/opna_sim/phase-03/software-review；统计见[results.json](../../build/opna_sim/phase-03/software-review/results.json)。
 
 | 探针 | 输入与观察目标 |
 | --- | --- |
@@ -162,9 +162,9 @@ py -3 -X utf8 tools/opna_sim/sch_review.py
 
 ## B验证结果
 
-全部43个正式FM用例通过完整PCM与控制记录比较。Phase 1（21项）、Phase 2（42项）及Phase 3 A（92项）累计回归通过；B共136项检查通过，[完整结果](../../verification/phase-03/gate-B.json)。原有32项、八个静态算法及三个包络探针全部通过。
+全部43个正式FM用例通过完整PCM与控制记录比较。Phase 1（21项）、Phase 2（42项）及Phase 3 A（92项）累计回归通过；B共136项检查通过，[完整结果](../../build/opna_sim/phase-03/gate-B.json)。原有32项、八个静态算法及三个包络探针全部通过。
 
-代表性证据：[algorithms_feedback](../../verification/phase-03/compare-algorithms_feedback.json)（4221条）、[frequency_detune_multiplier](../../verification/phase-03/compare-frequency_detune_multiplier.json)（3617条）、[envelope_boundaries](../../verification/phase-03/compare-envelope_boundaries.json)（8142条）、[ssg_eg_shapes](../../verification/phase-03/compare-ssg_eg_shapes.json)（3508条）、[lfo_am_pm](../../verification/phase-03/compare-lfo_am_pm.json)（6497条）、[dynamic_writes_keys](../../verification/phase-03/compare-dynamic_writes_keys.json)（1437条）。所有附加复位相位完整一致，观察数包含控制记录。
+代表性证据：[algorithms_feedback](../../build/opna_sim/phase-03/compare-algorithms_feedback.json)（4221条）、[frequency_detune_multiplier](../../build/opna_sim/phase-03/compare-frequency_detune_multiplier.json)（3617条）、[envelope_boundaries](../../build/opna_sim/phase-03/compare-envelope_boundaries.json)（8142条）、[ssg_eg_shapes](../../build/opna_sim/phase-03/compare-ssg_eg_shapes.json)（3508条）、[lfo_am_pm](../../build/opna_sim/phase-03/compare-lfo_am_pm.json)（6497条）、[dynamic_writes_keys](../../build/opna_sim/phase-03/compare-dynamic_writes_keys.json)（1437条）。所有附加复位相位完整一致，观察数包含控制记录。
 
 C检查时钟暂停及累计回归，D核对全部必需项的比较结果、观察数量、仿真结束标记和阶段文档。执行以下命令会按A→B→C→D顺序重新运行，失败立即停留在相应步骤：
 
@@ -174,4 +174,4 @@ C检查时钟暂停及累计回归，D核对全部必需项的比较结果、观
 
 ## 当前结论
 
-Phase 3 A～D全部通过。43个FM正式用例完整一致，四个时钟暂停回归通过，D共141项检查通过：[gate-D.json](../../verification/phase-03/gate-D.json)。本阶段没有未通过必需项，下一项允许工作为Phase 4 A。完整YM2608数字逻辑验收仍属于Phase 6，XC7Z010资源与板测属于Phase 7。当前证据限定于正式FM用例及已确认的SCH工程契约，未完成独立实片核验。
+Phase 3 A～D全部通过。43个FM正式用例完整一致，四个时钟暂停回归通过，D共141项检查通过：[gate-D.json](../../build/opna_sim/phase-03/gate-D.json)。本阶段没有未通过必需项，下一项允许工作为Phase 4 A。完整YM2608数字逻辑验收仍属于Phase 6，XC7Z010资源与板测属于Phase 7。当前证据限定于正式FM用例及已确认的SCH工程契约，未完成独立实片核验。

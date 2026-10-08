@@ -1,0 +1,5 @@
+PASS descriptors: AC/MS topology, endpoint/jack links, strings, no WCID
+PASS MIDI parser: messages, cable/CIN validation, multi-event transfers, fragmented/oversized SysEx
+frequency=439.962 high=36 low=14
+PASS OPNA: 128 GM programs, six voices, A4 439.962 Hz, sustain, bend, stereo, percussion, reset
+J:\lumia\FPGA\PC98\build\usb_midi\tests.exe

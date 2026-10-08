@@ -1,0 +1,14 @@
+[
+  {
+    "Status": "OK",
+    "Class": "MEDIA",
+    "FriendlyName": "Zybo OPNA MIDI",
+    "InstanceId": "USB\\VID_CAFE&PID_4014&MI_00\\7&246B3C1F&0&0000"
+  },
+  {
+    "Status": "OK",
+    "Class": "USB",
+    "FriendlyName": "USB Composite Device",
+    "InstanceId": "USB\\VID_CAFE&PID_4014\\ZOPNAMIDI0001"
+  }
+]

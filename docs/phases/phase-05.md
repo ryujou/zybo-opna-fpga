@@ -4,10 +4,10 @@
 
 | 步骤 | 状态 | 证据 |
 | --- | --- | --- |
-| A | 通过 | [检查结果](../../verification/phase-05/gate-A.json) |
-| B | 通过 | [检查结果](../../verification/phase-05/gate-B.json) |
-| C | 通过 | [检查结果](../../verification/phase-05/gate-C.json) |
-| D | 通过 | [检查结果](../../verification/phase-05/gate-D.json) |
+| A | 通过 | [检查结果](../../build/opna_sim/phase-05/gate-A.json) |
+| B | 通过 | [检查结果](../../build/opna_sim/phase-05/gate-B.json) |
+| C | 通过 | [检查结果](../../build/opna_sim/phase-05/gate-C.json) |
+| D | 通过 | [检查结果](../../build/opna_sim/phase-05/gate-D.json) |
 
 ## 行为与依据
 
@@ -54,12 +54,12 @@ RTL包含固定8192字节节奏ROM、六通道原生解码/音量运算、Delta-
 
 证据目录为build/opna_sim/phase-05。入口为`.\scripts\run_opna_gate.ps1 -Phase 5 -Step D`，顺序执行Phase 1～4累计回归及Phase 5 A～D。reference-contract.json保存两种参考的dummy read、载荷和状态预期；compare-*.json保存所有原始数字值及tick比较。
 
-ZERO静音轨迹的ADC采样码在tick 9409稳定为0xFF，ZERO在tick 4683801置位，间隔约292.15 ms。该轨迹[491682条观察记录](../../verification/phase-05/compare-adpcm_zero_silence.json)的原始数字值和tick完整一致；状态读取为0x1C，包含ZERO、BRDY及EOS。
+ZERO静音轨迹的ADC采样码在tick 9409稳定为0xFF，ZERO在tick 4683801置位，间隔约292.15 ms。该轨迹[491682条观察记录](../../build/opna_sim/phase-05/compare-adpcm_zero_silence.json)的原始数字值和tick完整一致；状态读取为0x1C，包含ZERO、BRDY及EOS。
 
-非静音轨迹保持ADC码0xBF，ZERO不置位，状态读取为0x0C，[491680条记录](../../verification/phase-05/compare-adpcm_zero_nonquiet.json)完整一致。中途声音轨迹在tick 2009377变为0x3F、2208169恢复0xFF，ZERO在6878361置位，重新静音后约291.89 ms；[716942条记录](../../verification/phase-05/compare-adpcm_zero_interrupted.json)完整一致。
+非静音轨迹保持ADC码0xBF，ZERO不置位，状态读取为0x0C，[491680条记录](../../build/opna_sim/phase-05/compare-adpcm_zero_nonquiet.json)完整一致。中途声音轨迹在tick 2009377变为0x3F、2208169恢复0xFF，ZERO在6878361置位，重新静音后约291.89 ms；[716942条记录](../../build/opna_sim/phase-05/compare-adpcm_zero_interrupted.json)完整一致。
 
 ## 当前结论
 
-Phase 5 A～D全部通过，检查数分别为103、152、157、158。48个正式RTL用例和五个时钟暂停用例的全部数字值及tick与项目参考完整一致，Phase 1～4累计回归在本轮重新执行并通过。[最终门控证据](../../verification/phase-05/gate-D.json)。
+Phase 5 A～D全部通过，检查数分别为103、152、157、158。48个正式RTL用例和五个时钟暂停用例的全部数字值及tick与项目参考完整一致，Phase 1～4累计回归在本轮重新执行并通过。[最终门控证据](../../build/opna_sim/phase-05/gate-D.json)。
 
 本阶段完成节奏音、ADPCM-B播放与样本存储访问、EOS/BRDY/ZERO及相关IRQ验收；ZERO数字验证范围如上，不包含录音编码或模拟电气特性。完整数字逻辑仿真验收属于Phase 6，综合、布线和实板验证属于Phase 7。

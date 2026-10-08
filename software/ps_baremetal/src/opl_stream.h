@@ -1,6 +1,6 @@
 #ifndef OPL_STREAM_H_
 #define OPL_STREAM_H_
 
-int stream_session(void);
+int stream_session(bool (*should_stop)() = nullptr);
 
 #endif

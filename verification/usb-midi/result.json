@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "date": "2026-10-08",
+  "board": "Digilent Zybo XC7Z010",
+  "usb_name": "Zybo OPNA MIDI",
+  "vid_pid": "CAFE:4014",
+  "windows_driver": "Microsoft usbaudio / wdma_usb.inf",
+  "player": "Cynthia 1.00.6228 (32 bit)",
+  "playback_mode": "All Once",
+  "complete_files": [
+    "touhou_5_stage2_remix_xg.mid",
+    "touhou_5_stage3_boss_alice_arrange_xg.mid",
+    "touhou_5_stage5_boss_yumeko_arrange_xg.mid"
+  ],
+  "source": "https://www.vgmusic.com/music/computer/nec/pc-98/",
+  "arranger": "Gyana Ren",
+  "composer": "ZUN",
+  "midi_non_meta_events": 45063,
+  "total_file_seconds": 341.476,
+  "last_player_time": "02m 02s 553ms",
+  "synthetic_load_seconds": 60,
+  "synthetic_load_messages": 63024,
+  "aggregate_board_counters": {
+    "midi_processed_events": 160104,
+    "midi_max_dispatch_us": 16798,
+    "midi_max_handler_us": 4932,
+    "(anonymous namespace)::received": 160104,
+    "(anonymous namespace)::overflows": 0,
+    "(anonymous namespace)::malformed": 0,
+    "(anonymous namespace)::resets": 3,
+    "midi_usb_setup_count": 29,
+    "midi_usb_ep0_tx_count": 11,
+    "midi_usb_send_errors": 0,
+    "__malloc_max_sbrked_mem": 700176,
+    "configured": 1,
+    "PORTSC": 2164262917
+  },
+  "aggregate_counter_scope": "protocol cases, synthetic load, ILA tones, GUI controls and complete Cynthia playlist",
+  "digital_i2s_verified": true,
+  "analog_audio_measured": false,
+  "sd_cold_boot_verified": false,
+  "boot_image_generated": true
+}

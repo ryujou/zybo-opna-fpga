@@ -1,0 +1,79 @@
+{
+  "left": {
+    "passed": true,
+    "hardware_capture": true,
+    "audio_clocks": 4096,
+    "errors": 0,
+    "first_errors": [],
+    "distinct_frames": 17,
+    "nonzero_frames": 4096,
+    "frame_examples": [
+      "00aa0000",
+      "00b60000",
+      "00be0000",
+      "00d30000",
+      "00dc0000",
+      "fc7c0000",
+      "fd860000",
+      "fe4a0000"
+    ],
+    "dc_expected_frame": null,
+    "expected_channels_passed": true
+  },
+  "right": {
+    "passed": true,
+    "hardware_capture": true,
+    "audio_clocks": 4096,
+    "errors": 0,
+    "first_errors": [],
+    "distinct_frames": 17,
+    "nonzero_frames": 4096,
+    "frame_examples": [
+      "0000001c",
+      "0000003d",
+      "0000003f",
+      "000000bf",
+      "000000da",
+      "000000f3",
+      "000000f9",
+      "0000012d"
+    ],
+    "dc_expected_frame": null,
+    "expected_channels_passed": true
+  },
+  "stereo": {
+    "passed": true,
+    "hardware_capture": true,
+    "audio_clocks": 4096,
+    "errors": 0,
+    "first_errors": [],
+    "distinct_frames": 17,
+    "nonzero_frames": 4096,
+    "frame_examples": [
+      "0083006d",
+      "008e0068",
+      "00a400b3",
+      "00a700c0",
+      "00b400b5",
+      "00b900e3",
+      "00d200fc",
+      "00de010c"
+    ],
+    "dc_expected_frame": null,
+    "expected_channels_passed": true
+  },
+  "quiet": {
+    "passed": true,
+    "hardware_capture": true,
+    "audio_clocks": 4096,
+    "errors": 0,
+    "first_errors": [],
+    "distinct_frames": 1,
+    "nonzero_frames": 0,
+    "frame_examples": [
+      "00000000"
+    ],
+    "dc_expected_frame": null,
+    "expected_channels_passed": true
+  }
+}

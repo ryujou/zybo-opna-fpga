@@ -9,7 +9,7 @@
 
 int main()
 {
-    if (Xil_In32(OPNA_BASE + 0x01C) != 0x26080007U) {
+    if (Xil_In32(OPNA_BASE + 0x01C) != 0x26080008U) {
         xil_printf("OPNA board ID mismatch\r\n");
         return 1;
     }

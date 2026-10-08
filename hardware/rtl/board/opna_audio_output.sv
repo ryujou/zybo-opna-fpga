@@ -5,6 +5,9 @@ module opna_audio_output (
     input wire [1:0] pcm_valid,
     input wire signed [15:0] pcm_left, pcm_right,
     input wire [4:0] ssg_a, ssg_b, ssg_c,
+    input wire [31:0] pcm_gain, ssg_gain, master_gain,
+    input wire [1:0] clip_clear,
+    output reg [31:0] clip_left, clip_right,
     output wire i2s_sclk, i2s_ws,
     output reg i2s_sd,
     output wire ac_mute_n, ready
@@ -23,19 +26,33 @@ module opna_audio_output (
             30: amplitude=14132; 31: amplitude=16382;
         endcase
     endfunction
-    function automatic signed [15:0] saturate(input signed [18:0] value);
+    function automatic signed [15:0] saturate(input signed [68:0] value);
         if (value>32767) saturate=32767;
         else if (value< -32768) saturate=-32768;
         else saturate=value[15:0];
+    endfunction
+    function automatic signed [68:0] round_q16(input signed [68:0] value);
+        if (value < 0) round_q16 = - ((-value + 69'sd32768) >>> 16);
+        else round_q16 = (value + 69'sd32768) >>> 16;
     endfunction
     reg signed [15:0] pending_left, pending_right, paired_left, paired_right;
     reg [1:0] seen;
     wire signed [15:0] next_left = pcm_valid[0] ? pcm_left : pending_left;
     wire signed [15:0] next_right = pcm_valid[1] ? pcm_right : pending_right;
     wire [1:0] next_seen = seen | pcm_valid;
-    wire [16:0] ssg_sum = {2'b0,amplitude(ssg_a)} +
-                          {2'b0,amplitude(ssg_b)} + {2'b0,amplitude(ssg_c)};
+    reg [14:0] amp_a, amp_b, amp_c;
+    reg [16:0] ssg_sum;
+    reg signed [15:0] sample_left, sample_right;
+    reg [31:0] gain_pcm, gain_ssg, gain_master;
+    reg signed [49:0] product_left, product_right;
+    reg [48:0] product_ssg;
+    reg signed [50:0] mixed_left, mixed_right;
+    reg signed [35:0] scaled_left, scaled_right;
+    reg signed [68:0] master_left, master_right, final_left, final_right;
+    reg [2:0] mix_stage;
+    reg sample_mute, sample_toggle;
     reg request_toggle, response_toggle;
+    reg mute_source;
     (* ASYNC_REG="TRUE" *) reg [1:0] request_sync, response_sync, mute_sync;
     reg [31:0] mailbox;
     reg [31:0] audio_frame;
@@ -50,7 +67,18 @@ module opna_audio_output (
         if (!sys_resetn) begin
             pending_left<=0; pending_right<=0; paired_left<=0; paired_right<=0;
             seen<=0; request_sync<=0; response_toggle<=0; mailbox<=0; sys_ready<=0;
+            mute_source<=1; mix_stage<=0;
+            amp_a<=0; amp_b<=0; amp_c<=0; ssg_sum<=0;
+            sample_left<=0; sample_right<=0; mixed_left<=0; mixed_right<=0;
+            gain_pcm<=65536; gain_ssg<=65536; gain_master<=65536;
+            product_left<=0; product_right<=0; product_ssg<=0;
+            scaled_left<=0; scaled_right<=0; master_left<=0; master_right<=0;
+            final_left<=0; final_right<=0; clip_left<=0; clip_right<=0;
+            sample_mute<=1; sample_toggle<=0;
         end else begin
+            if (clip_clear[0]) clip_left<=0;
+            if (clip_clear[1]) clip_right<=0;
+            mute_source<=mute;
             request_sync<={request_sync[0],request_toggle};
             if (pcm_valid[0]) pending_left<=pcm_left;
             if (pcm_valid[1]) pending_right<=pcm_right;
@@ -59,13 +87,44 @@ module opna_audio_output (
             end else seen<=next_seen;
             // A complete stereo mailbox is held until the next audio request.
             // Sampling the most recent native pair implements 48 kHz ZOH.
-            if (request_sync[1]!=response_toggle) begin
-                mailbox <= mute ? 32'b0 :
-                    {saturate($signed(paired_left)+$signed({2'b0,ssg_sum})),
-                     saturate($signed(paired_right)+$signed({2'b0,ssg_sum}))};
-                response_toggle<=request_sync[1];
-                sys_ready<=1;
-            end
+            case (mix_stage)
+                0: if (request_sync[1]!=response_toggle) begin
+                    amp_a<=amplitude(ssg_a); amp_b<=amplitude(ssg_b); amp_c<=amplitude(ssg_c);
+                    sample_left<=paired_left; sample_right<=paired_right;
+                    gain_pcm<=pcm_gain; gain_ssg<=ssg_gain; gain_master<=master_gain;
+                    sample_mute<=mute; sample_toggle<=request_sync[1]; mix_stage<=1;
+                end
+                1: begin
+                    ssg_sum<={2'b0,amp_a}+{2'b0,amp_b}+{2'b0,amp_c}; mix_stage<=2;
+                end
+                2: begin
+                    product_left<=sample_left*$signed({1'b0,gain_pcm});
+                    product_right<=sample_right*$signed({1'b0,gain_pcm});
+                    product_ssg<=ssg_sum*gain_ssg; mix_stage<=3;
+                end
+                3: begin
+                    mixed_left<=product_left+$signed({2'b0,product_ssg});
+                    mixed_right<=product_right+$signed({2'b0,product_ssg}); mix_stage<=4;
+                end
+                4: begin
+                    scaled_left<=round_q16(mixed_left);
+                    scaled_right<=round_q16(mixed_right); mix_stage<=5;
+                end
+                5: begin
+                    master_left<=scaled_left*$signed({1'b0,gain_master});
+                    master_right<=scaled_right*$signed({1'b0,gain_master}); mix_stage<=6;
+                end
+                6: begin
+                    final_left<=round_q16(master_left);
+                    final_right<=round_q16(master_right); mix_stage<=7;
+                end
+                7: begin
+                    mailbox<=sample_mute ? 32'b0 : {saturate(final_left),saturate(final_right)};
+                    if (!sample_mute && !clip_clear[0] && (final_left>32767 || final_left< -32768)) clip_left<=clip_left+1;
+                    if (!sample_mute && !clip_clear[1] && (final_right>32767 || final_right< -32768)) clip_right<=clip_right+1;
+                    response_toggle<=sample_toggle; sys_ready<=1; mix_stage<=0;
+                end
+            endcase
         end
     end
     always @(posedge audio_clk) begin
@@ -75,7 +134,7 @@ module opna_audio_output (
         end else begin
             phase<=phase+1'b1;
             response_sync<={response_sync[0],response_toggle};
-            mute_sync<={mute_sync[0],mute};
+            mute_sync<={mute_sync[0],mute_source};
             // WS changes one bit before each 16-bit I2S word. Remaining bits
             // in the 32-bit slot are zero; the codec is configured for 16 bits.
             if (phase==255) begin
