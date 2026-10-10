@@ -113,6 +113,25 @@ flowchart LR
     I2S --> AUDIO[SSM2603 / J5]
 ```
 
+<details>
+<summary><strong>查看板级包装层与 YM2608 核的 RTL 图</strong></summary>
+
+#### 板级 AXI / DDR / 音频包装层
+
+<img src="docs/readme-assets/opna_zybo_system_rtl.png" alt="opna_zybo_system 的实际 RTL 图" width="100%">
+
+`opna_axi_host` 处理 AXI 寄存器访问与原生总线调度；`ym2608` 产生 PCM 和 SSG 输出；`opna_ddr_memory` 连接样本存储；`opna_audio_output` 完成宽位增益混音、削波统计和 I²S 输出。
+
+#### YM2608 核
+
+<img src="docs/readme-assets/ym2608_core_rtl.png" alt="YM2608 顶层的实际 RTL 图" width="100%">
+
+`ym2608_control` 实现原生总线、定时器、SSG、节奏、ADPCM 与 PCM 输出控制；`fm.engine` 使用适配后的 `jt12_top` 完成六通道 FM 运算。两图均由 Vivado 2025.2 展开本项目 RTL 源码导出。
+
+源码：[板级包装层](hardware/rtl/board/opna_zybo_system.v) · [YM2608 顶层](hardware/rtl/opna_core/ym2608.sv) · [控制与混音](hardware/rtl/opna_core/ym2608_control.sv)。
+
+</details>
+
 | 目录 | 职责 |
 | --- | --- |
 | [hardware/rtl/opna_core](hardware/rtl/opna_core/) | YM2608 FM、SSG、节奏、ADPCM、定时器与原生总线。 |
