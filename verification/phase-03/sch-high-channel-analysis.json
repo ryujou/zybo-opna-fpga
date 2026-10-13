@@ -1,0 +1,14 @@
+{
+  "lle": {
+    "nonzero": 170,
+    "samples": 170,
+    "minimum": -16336,
+    "maximum": 800
+  },
+  "ymfm": {
+    "nonzero": 0,
+    "samples": 3062,
+    "minimum": 0,
+    "maximum": 0
+  }
+}

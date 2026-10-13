@@ -1,0 +1,910 @@
+{
+    "ltx_root": {
+        "version": 4,
+        "minor": 0,
+        "ltx_data": [
+            {
+                "name": "EDA_PROBESET",
+                "active": true,
+                "debug_cores": [
+                    {
+                        "type": "XSDB_V3",
+                        "name": "dbg_hub",
+                        "spec": "labtools_xsdbm_v3",
+                        "clk_input_freq_hz": "100000000"
+                    },
+                    {
+                        "type": "ILA_V3",
+                        "name": "opna_ila_native",
+                        "spec": "labtools_ila_v6",
+                        "core_location": {
+                            "user_chain": 1,
+                            "slave_index": 0,
+                            "bscan_switch_index": 0
+                        },
+                        "uuid": "B77802DB95D45824802E48DE7CC0ADC4",
+                        "pins": [
+                            {
+                                "name": "probe0",
+                                "id": 0,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 0,
+                                "nets": [
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/half_ce_delayed",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe1",
+                                "id": 1,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 24,
+                                "portIndex": 1,
+                                "nets": [
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/debug_native_inputs",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_inputs[24]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_inputs[23]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_inputs[22]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_inputs[21]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_inputs[20]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_inputs[19]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_inputs[18]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_inputs[17]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_inputs[16]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_inputs[15]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_inputs[14]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_inputs[13]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_inputs[12]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_inputs[11]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_inputs[10]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_inputs[9]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_inputs[8]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_inputs[7]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_inputs[6]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_inputs[5]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_inputs[4]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_inputs[3]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_inputs[2]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_inputs[1]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_inputs[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe2",
+                                "id": 2,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 80,
+                                "portIndex": 2,
+                                "nets": [
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/debug_native_outputs",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[80]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[79]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[78]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[77]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[76]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[75]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[74]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[73]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[72]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[71]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[70]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[69]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[68]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[67]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[66]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[65]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[64]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[63]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[62]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[61]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[60]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[59]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[58]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[57]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[56]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[55]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[54]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[53]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[52]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[51]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[50]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[49]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[48]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[47]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[46]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[45]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[44]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[43]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[42]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[41]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[40]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[39]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[38]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[37]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[36]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[35]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[34]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[33]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[32]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[31]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[30]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[29]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[28]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[27]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[26]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[25]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[24]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[23]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[22]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[21]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[20]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[19]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[18]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[17]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[16]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[15]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[14]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[13]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[12]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[11]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[10]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[9]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[8]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[7]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[6]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[5]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[4]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[3]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[2]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[1]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_native_outputs[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe3",
+                                "id": 3,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 31,
+                                "portIndex": 3,
+                                "nets": [
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/debug_sys_counter",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[31]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[30]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[29]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[28]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[27]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[26]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[25]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[24]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[23]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[22]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[21]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[20]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[19]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[18]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[17]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[16]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[15]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[14]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[13]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[12]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[11]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[10]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[9]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[8]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[7]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[6]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[5]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[4]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[3]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[2]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[1]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/debug_sys_counter[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "ILA_V3",
+                        "name": "opna_ila_audio",
+                        "spec": "labtools_ila_v6",
+                        "core_location": {
+                            "user_chain": 1,
+                            "slave_index": 1,
+                            "bscan_switch_index": 0
+                        },
+                        "uuid": "137DDB9AE23E57EF8987353C4EC9130A",
+                        "pins": [
+                            {
+                                "name": "probe0",
+                                "id": 4,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 31,
+                                "portIndex": 0,
+                                "nets": [
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[31]",
+                                        "isBus": false
+                                    },
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[30]",
+                                        "isBus": false
+                                    },
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[29]",
+                                        "isBus": false
+                                    },
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[28]",
+                                        "isBus": false
+                                    },
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[27]",
+                                        "isBus": false
+                                    },
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[26]",
+                                        "isBus": false
+                                    },
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[25]",
+                                        "isBus": false
+                                    },
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[24]",
+                                        "isBus": false
+                                    },
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[23]",
+                                        "isBus": false
+                                    },
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[22]",
+                                        "isBus": false
+                                    },
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[21]",
+                                        "isBus": false
+                                    },
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[20]",
+                                        "isBus": false
+                                    },
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[19]",
+                                        "isBus": false
+                                    },
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[18]",
+                                        "isBus": false
+                                    },
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[17]",
+                                        "isBus": false
+                                    },
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[16]",
+                                        "isBus": false
+                                    },
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[15]",
+                                        "isBus": false
+                                    },
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[14]",
+                                        "isBus": false
+                                    },
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[13]",
+                                        "isBus": false
+                                    },
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[12]",
+                                        "isBus": false
+                                    },
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[11]",
+                                        "isBus": false
+                                    },
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[10]",
+                                        "isBus": false
+                                    },
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[9]",
+                                        "isBus": false
+                                    },
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[8]",
+                                        "isBus": false
+                                    },
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[7]",
+                                        "isBus": false
+                                    },
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[6]",
+                                        "isBus": false
+                                    },
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[5]",
+                                        "isBus": false
+                                    },
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[4]",
+                                        "isBus": false
+                                    },
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[3]",
+                                        "isBus": false
+                                    },
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[2]",
+                                        "isBus": false
+                                    },
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[1]",
+                                        "isBus": false
+                                    },
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/audio_frame_reg_n_0_[0]",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe1",
+                                "id": 5,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 1,
+                                "nets": [
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/phase_reg_1",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/audio/phase_reg_1[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe1",
+                                "id": 6,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 1,
+                                "rightIndex": 1,
+                                "portIndex": 1,
+                                "nets": [
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/i2s_sclk_1",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe1",
+                                "id": 7,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 2,
+                                "rightIndex": 6,
+                                "portIndex": 1,
+                                "nets": [
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/phase_reg",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/audio/phase_reg[6]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/audio/phase_reg[5]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/audio/phase_reg[4]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/audio/phase_reg[3]"
+                                            },
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/audio/phase_reg[2]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe1",
+                                "id": 8,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 7,
+                                "rightIndex": 7,
+                                "portIndex": 1,
+                                "nets": [
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/i2s_ws_1",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe2",
+                                "id": 9,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 2,
+                                "nets": [
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/i2s_sd",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe2",
+                                "id": 10,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 1,
+                                "rightIndex": 1,
+                                "portIndex": 2,
+                                "nets": [
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/i2s_ws",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe2",
+                                "id": 11,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 2,
+                                "rightIndex": 2,
+                                "portIndex": 2,
+                                "nets": [
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/i2s_sclk",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe2",
+                                "id": 12,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 3,
+                                "rightIndex": 3,
+                                "portIndex": 2,
+                                "nets": [
+                                    {
+                                        "name": "ac_mute_n_OBUF",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe3",
+                                "id": 13,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 3,
+                                "nets": [
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/request_toggle_reg_n_0",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe3",
+                                "id": 14,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 1,
+                                "rightIndex": 1,
+                                "portIndex": 3,
+                                "nets": [
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/response_sync",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/audio/response_sync[1]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe3",
+                                "id": 15,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 2,
+                                "rightIndex": 2,
+                                "portIndex": 3,
+                                "nets": [
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/mute_sync",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "opna_cpu_i/opna/inst/audio/mute_sync[1]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe3",
+                                "id": 16,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 3,
+                                "rightIndex": 3,
+                                "portIndex": 3,
+                                "nets": [
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio/active_reg_n_0",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe3",
+                                "id": 17,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 4,
+                                "rightIndex": 4,
+                                "portIndex": 3,
+                                "nets": [
+                                    {
+                                        "name": "opna_cpu_i/opna/inst/audio_resetn",
+                                        "isBus": false
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

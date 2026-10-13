@@ -1,0 +1,34 @@
+{
+  "status": "通过",
+  "checks": [
+    "host_independent_aw_w_ar_four_byte_banks_busy_backpressure_ic_fault",
+    "audio_external_i2s16_stereo_pair_zoh_ssg_saturation_async_reset",
+    "native_core_hp0_rom_ram8_ram1_data_ticks_zero_stalls",
+    "native_memory_cross_line_loop_tail_cpu_read_write",
+    "system_half_ce_4_of_25_continuous_clock",
+    "ddr_underrun_stops_mutes_and_axi_errors_recover"
+  ],
+  "board_verified": false,
+  "metrics": [
+    "NATIVE_CASE kind=0 data_ticks=1400 native_ticks=100495 candidate_ticks=100495",
+    "PAUSE_PHASE kind=0 phase=0 ras=1 cas=1 input=0",
+    "PAUSE_PHASE kind=0 phase=1 ras=0 cas=1 input=0",
+    "PAUSE_PHASE kind=0 phase=2 ras=0 cas=0 input=0",
+    "PAUSE_PHASE kind=0 phase=3 ras=0 cas=0 input=1",
+    "START_SWITCH kind=0 native_ticks=100486 candidate_ticks=100486",
+    "NATIVE_CASE kind=1 data_ticks=1400 native_ticks=100495 candidate_ticks=100495",
+    "PAUSE_PHASE kind=1 phase=0 ras=1 cas=1 input=0",
+    "PAUSE_PHASE kind=1 phase=1 ras=0 cas=1 input=0",
+    "PAUSE_PHASE kind=1 phase=2 ras=0 cas=0 input=0",
+    "PAUSE_PHASE kind=1 phase=3 ras=0 cas=0 input=1",
+    "START_SWITCH kind=1 native_ticks=100486 candidate_ticks=100486",
+    "NATIVE_CASE kind=2 data_ticks=11136 native_ticks=100683 candidate_ticks=100683",
+    "PAUSE_PHASE kind=2 phase=0 ras=1 cas=1 input=0",
+    "PAUSE_PHASE kind=2 phase=1 ras=0 cas=1 input=0",
+    "PAUSE_PHASE kind=2 phase=2 ras=0 cas=0 input=0",
+    "PAUSE_PHASE kind=2 phase=3 ras=0 cas=0 input=1",
+    "START_SWITCH kind=2 native_ticks=100613 candidate_ticks=100613",
+    "PAUSE_PHASE kind=2 phase=4 ras=0 cas=0 input=0",
+    "METRICS native_data_ticks=31571 memory_writes=72 loops=11 crossed_lines=24 ras=9490 cas=4075 half_ce_1000sys=160 fault_paths=13 min_pin_to_input_sys=30 min_prefetch_lead_sys=60"
+  ]
+}

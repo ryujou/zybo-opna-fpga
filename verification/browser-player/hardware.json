@@ -1,0 +1,50 @@
+{
+  "pause_position": 1.75,
+  "first_hardware": {
+    "free_slots": 2048,
+    "queued_writes": 0,
+    "flags": 1,
+    "hardware_status": 16,
+    "dispatch_late_writes": 3557,
+    "max_dispatch_lateness_us": 831,
+    "sample_loaded": 190720,
+    "clip_left": 0,
+    "clip_right": 0
+  },
+  "wave_peaks": [
+    0.043502,
+    0.043527,
+    8e-06,
+    0.023797,
+    0.006482,
+    0.00142,
+    0.0,
+    0.014961
+  ],
+  "counterattack_hardware": {
+    "free_slots": 2048,
+    "queued_writes": 0,
+    "flags": 1,
+    "hardware_status": 16,
+    "dispatch_late_writes": 1771,
+    "max_dispatch_lateness_us": 855,
+    "sample_loaded": 34560,
+    "clip_left": 0,
+    "clip_right": 0
+  },
+  "pmd_completed": {
+    "duration": 77.91691609977325,
+    "hardware": {
+      "free_slots": 2048,
+      "queued_writes": 0,
+      "flags": 0,
+      "hardware_status": 16,
+      "dispatch_late_writes": 49149,
+      "max_dispatch_lateness_us": 823,
+      "sample_loaded": 34560,
+      "clip_left": 0,
+      "clip_right": 0
+    }
+  },
+  "console_errors": []
+}

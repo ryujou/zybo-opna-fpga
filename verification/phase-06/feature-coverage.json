@@ -1,0 +1,294 @@
+{
+  "features": {
+    "BUS": {
+      "phase": 2,
+      "report": "../phase-02/gate-D.json",
+      "checks": [
+        "rtl_bus_phase_sweep",
+        "rtl_bank_isolation",
+        "rtl_reset_active",
+        "rtl_ssg_masks"
+      ]
+    },
+    "CLK": {
+      "phase": 2,
+      "report": "../phase-02/gate-D.json",
+      "checks": [
+        "rtl_prescaler",
+        "rtl_channel_mode",
+        "rtl_timers_prescaler"
+      ]
+    },
+    "TIM": {
+      "phase": 2,
+      "report": "../phase-02/gate-D.json",
+      "checks": [
+        "rtl_timer_a",
+        "rtl_timer_b",
+        "rtl_timer_a_minimum",
+        "rtl_timer_b_minimum",
+        "rtl_timer_enable_stop",
+        "rtl_irq_mask",
+        "rtl_status_read_hold"
+      ]
+    },
+    "FM": {
+      "phase": 3,
+      "report": "../phase-03/gate-D.json",
+      "checks": [
+        "fm_rtl_six_channels_slots",
+        "fm_rtl_algorithms_feedback",
+        "fm_rtl_frequency_latch",
+        "fm_rtl_frequency_detune_multiplier"
+      ]
+    },
+    "EG": {
+      "phase": 3,
+      "report": "../phase-03/gate-D.json",
+      "checks": [
+        "fm_rtl_envelope_boundaries",
+        "fm_rtl_ssg_eg_shapes",
+        "fm_rtl_attack_rounding",
+        "fm_rtl_decay_granularity"
+      ]
+    },
+    "MOD": {
+      "phase": 3,
+      "report": "../phase-03/gate-D.json",
+      "checks": [
+        "fm_rtl_lfo_am_pm",
+        "fm_rtl_channel3_special",
+        "fm_rtl_csm_timer_a"
+      ]
+    },
+    "SCH": {
+      "phase": 3,
+      "report": "../phase-03/gate-D.json",
+      "checks": [
+        "sch_contract_sch_high_channel",
+        "sch_contract_sch_key_alias",
+        "sch_contract_sch_enable_after_key",
+        "sch_contract_sch_enable_after_other_key"
+      ]
+    },
+    "SSG": {
+      "phase": 4,
+      "report": "../phase-04/gate-D.json",
+      "checks": [
+        "ssg_rtl_ssg_reset",
+        "ssg_rtl_ssg_tones_abc",
+        "ssg_rtl_ssg_tone_periods",
+        "ssg_rtl_ssg_fixed_levels",
+        "ssg_rtl_ssg_mixer_modes",
+        "ssg_rtl_ssg_noise_periods",
+        "ssg_rtl_ssg_shape_00",
+        "ssg_rtl_ssg_shape_01",
+        "ssg_rtl_ssg_shape_02",
+        "ssg_rtl_ssg_shape_03",
+        "ssg_rtl_ssg_shape_04",
+        "ssg_rtl_ssg_shape_05",
+        "ssg_rtl_ssg_shape_06",
+        "ssg_rtl_ssg_shape_07",
+        "ssg_rtl_ssg_shape_08",
+        "ssg_rtl_ssg_shape_09",
+        "ssg_rtl_ssg_shape_10",
+        "ssg_rtl_ssg_shape_11",
+        "ssg_rtl_ssg_shape_12",
+        "ssg_rtl_ssg_shape_13",
+        "ssg_rtl_ssg_shape_14",
+        "ssg_rtl_ssg_shape_15",
+        "ssg_rtl_ssg_envelope_periods",
+        "ssg_rtl_ssg_retrigger_phases",
+        "ssg_rtl_ssg_readback_bank",
+        "ssg_rtl_ssg_prescaler",
+        "ssg_rtl_fm_ssg_parallel",
+        "ssg_rtl_fm_ssg_prescaler",
+        "ssg_rtl_fm_ssg_algorithm_0_prescaler",
+        "ssg_rtl_fm_ssg_algorithm_1_prescaler",
+        "ssg_rtl_fm_ssg_algorithm_2_prescaler",
+        "ssg_rtl_fm_ssg_algorithm_3_prescaler",
+        "ssg_rtl_fm_ssg_algorithm_4_prescaler",
+        "ssg_rtl_fm_ssg_algorithm_5_prescaler",
+        "ssg_rtl_fm_ssg_algorithm_6_prescaler",
+        "ssg_rtl_fm_ssg_algorithm_7_prescaler",
+        "ssg_rtl_ssg_reset_active"
+      ]
+    },
+    "RHY": {
+      "phase": 5,
+      "report": "../phase-05/gate-D.json",
+      "checks": [
+        "adpcm_rtl_rhythm_rom_0",
+        "adpcm_rtl_rhythm_rom_1",
+        "adpcm_rtl_rhythm_rom_2",
+        "adpcm_rtl_rhythm_rom_3",
+        "adpcm_rtl_rhythm_rom_4",
+        "adpcm_rtl_rhythm_rom_5",
+        "adpcm_rtl_rhythm_levels",
+        "adpcm_rtl_rhythm_pan",
+        "adpcm_rtl_rhythm_stop_restart",
+        "adpcm_rtl_rhythm_adpcm_prescaler"
+      ]
+    },
+    "ADP": {
+      "phase": 5,
+      "report": "../phase-05/gate-D.json",
+      "checks": [
+        "adpcm_rtl_adpcm_nibbles_rom",
+        "adpcm_rtl_adpcm_nibbles_ram8",
+        "adpcm_rtl_adpcm_nibbles_ram1",
+        "adpcm_rtl_adpcm_rate_0000",
+        "adpcm_rtl_adpcm_rate_0001",
+        "adpcm_rtl_adpcm_rate_1000",
+        "adpcm_rtl_adpcm_rate_24de",
+        "adpcm_rtl_adpcm_rate_ffff",
+        "adpcm_rtl_adpcm_pan_00",
+        "adpcm_rtl_adpcm_pan_40",
+        "adpcm_rtl_adpcm_pan_80",
+        "adpcm_rtl_adpcm_pan_c0",
+        "adpcm_rtl_adpcm_levels",
+        "adpcm_rtl_adpcm_repeat",
+        "adpcm_rtl_adpcm_cpu_read_rom",
+        "adpcm_rtl_adpcm_cpu_read_ram8",
+        "adpcm_rtl_adpcm_cpu_read_ram1",
+        "adpcm_rtl_adpcm_cpu_write_read_ram8",
+        "adpcm_rtl_adpcm_cpu_write_read_ram1",
+        "adpcm_rtl_adpcm_cpu_boundary_ram8_000f",
+        "adpcm_rtl_adpcm_cpu_boundary_ram1_1fff",
+        "adpcm_rtl_adpcm_cpu_boundary_ram1_e001",
+        "adpcm_rtl_adpcm_limit_wrap",
+        "adpcm_rtl_adpcm_cpu_stream",
+        "adpcm_rtl_adpcm_reset_00",
+        "adpcm_rtl_adpcm_reset_01",
+        "adpcm_rtl_adpcm_reset_07",
+        "adpcm_rtl_adpcm_reset_15",
+        "adpcm_rtl_adpcm_status_masks",
+        "adpcm_rtl_adpcm_cpu_end_rom",
+        "adpcm_rtl_adpcm_cpu_end_ram8",
+        "adpcm_rtl_adpcm_cpu_end_ram1",
+        "adpcm_rtl_adpcm_zero_silence",
+        "adpcm_rtl_adpcm_zero_nonquiet",
+        "adpcm_rtl_adpcm_zero_interrupted",
+        "adpcm_rtl_adpcm_zero_flags",
+        "adpcm_rtl_adpcm_zero_reset"
+      ]
+    },
+    "STA": {
+      "phase": 5,
+      "report": "../phase-05/gate-D.json",
+      "checks": [
+        "adpcm_rtl_adpcm_status_masks",
+        "adpcm_rtl_adpcm_zero_silence",
+        "adpcm_rtl_adpcm_zero_nonquiet",
+        "adpcm_rtl_adpcm_zero_interrupted",
+        "adpcm_rtl_adpcm_zero_flags",
+        "adpcm_rtl_adpcm_zero_reset"
+      ]
+    },
+    "MIX": {
+      "phase": 6,
+      "cases": [
+        "mix_pan_00",
+        "mix_pan_40",
+        "mix_pan_80",
+        "mix_pan_c0",
+        "mix_clipping",
+        "mix_split_sources",
+        "run_seed_2608",
+        "run_seed_cafe",
+        "run_reset_serial_even",
+        "run_reset_serial_odd",
+        "run_reset_timer_irq",
+        "run_music_counterattack",
+        "run_long_drift"
+      ],
+      "comparisons": [
+        "compare-mix_pan_00.json",
+        "compare-paused-mix_pan_00.json",
+        "compare-mix_pan_40.json",
+        "compare-paused-mix_pan_40.json",
+        "compare-mix_pan_80.json",
+        "compare-paused-mix_pan_80.json",
+        "compare-mix_pan_c0.json",
+        "compare-paused-mix_pan_c0.json",
+        "compare-mix_clipping.json",
+        "compare-paused-mix_clipping.json",
+        "compare-mix_split_sources.json",
+        "compare-paused-mix_split_sources.json",
+        "compare-run_seed_2608.json",
+        "compare-paused-run_seed_2608.json",
+        "compare-run_seed_cafe.json",
+        "compare-paused-run_seed_cafe.json",
+        "compare-run_reset_serial_even.json",
+        "compare-paused-run_reset_serial_even.json",
+        "compare-run_reset_serial_odd.json",
+        "compare-paused-run_reset_serial_odd.json",
+        "compare-run_reset_timer_irq.json",
+        "compare-paused-run_reset_timer_irq.json",
+        "compare-run_music_counterattack.json",
+        "compare-paused-run_music_counterattack.json",
+        "compare-run_long_drift.json",
+        "compare-paused-run_long_drift.json"
+      ]
+    },
+    "RUN": {
+      "phase": 6,
+      "cases": [
+        "mix_pan_00",
+        "mix_pan_40",
+        "mix_pan_80",
+        "mix_pan_c0",
+        "mix_clipping",
+        "mix_split_sources",
+        "run_seed_2608",
+        "run_seed_cafe",
+        "run_reset_serial_even",
+        "run_reset_serial_odd",
+        "run_reset_timer_irq",
+        "run_reset_memory",
+        "run_music_counterattack",
+        "run_long_drift"
+      ],
+      "comparisons": [
+        "compare-mix_pan_00.json",
+        "compare-paused-mix_pan_00.json",
+        "compare-mix_pan_40.json",
+        "compare-paused-mix_pan_40.json",
+        "compare-mix_pan_80.json",
+        "compare-paused-mix_pan_80.json",
+        "compare-mix_pan_c0.json",
+        "compare-paused-mix_pan_c0.json",
+        "compare-mix_clipping.json",
+        "compare-paused-mix_clipping.json",
+        "compare-mix_split_sources.json",
+        "compare-paused-mix_split_sources.json",
+        "compare-run_seed_2608.json",
+        "compare-paused-run_seed_2608.json",
+        "compare-run_seed_cafe.json",
+        "compare-paused-run_seed_cafe.json",
+        "compare-run_reset_serial_even.json",
+        "compare-paused-run_reset_serial_even.json",
+        "compare-run_reset_serial_odd.json",
+        "compare-paused-run_reset_serial_odd.json",
+        "compare-run_reset_timer_irq.json",
+        "compare-paused-run_reset_timer_irq.json",
+        "compare-run_reset_memory.json",
+        "compare-paused-run_reset_memory.json",
+        "compare-run_music_counterattack.json",
+        "compare-paused-run_music_counterattack.json",
+        "compare-run_long_drift.json",
+        "compare-paused-run_long_drift.json"
+      ]
+    }
+  },
+  "fresh_cumulative_phases": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "sch_decision": "SCH-LLE-2026-10-07",
+  "sch_chip_verified": false,
+  "board_verified": false
+}

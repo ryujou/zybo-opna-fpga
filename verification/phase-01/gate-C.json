@@ -1,0 +1,27 @@
+{
+  "phase": 1,
+  "step": "C",
+  "status": "通过",
+  "checks": [
+    "source_versions",
+    "lle_reset_and_read",
+    "ymfm_reset_and_read",
+    "lle_active_fm_ssg_busy",
+    "ymfm_active_fm_ssg_busy",
+    "lle_native_pan_left",
+    "ymfm_native_pan_left",
+    "lle_native_pan_right",
+    "ymfm_native_pan_right",
+    "xsim_vendor_elaboration_and_edge_replay",
+    "repeat_register_lle",
+    "repeat_register_ymfm",
+    "repeat_tone_lle",
+    "repeat_tone_ymfm",
+    "reject_dropped-write_lle",
+    "reject_dropped-write_ymfm",
+    "reject_shifted-clock_lle",
+    "reject_shifted-clock_ymfm",
+    "reject_altered_sample_lle",
+    "reject_altered_sample_ymfm"
+  ]
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "KeyName": "DEVPKEY_Device_DriverInfPath",
+    "Data": "wdma_usb.inf"
+  },
+  {
+    "KeyName": "DEVPKEY_Device_DriverProvider",
+    "Data": "Microsoft"
+  },
+  {
+    "KeyName": "DEVPKEY_Device_Service",
+    "Data": "usbaudio"
+  }
+]

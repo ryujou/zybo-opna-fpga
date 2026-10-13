@@ -1,0 +1,36 @@
+{
+  "cases": [
+    "adpcm_nibbles_rom",
+    "adpcm_nibbles_ram8",
+    "adpcm_nibbles_ram1",
+    "adpcm_pan_c0",
+    "adpcm_cpu_read_rom",
+    "adpcm_cpu_write_read_ram1",
+    "adpcm_reset_15",
+    "adpcm_status_masks"
+  ],
+  "ticks": 838863,
+  "runs": {
+    "1": {
+      "seconds": 82.97830880002584,
+      "peak_concurrent_processes": 1,
+      "byte_equal": true,
+      "completion_markers": 8,
+      "full_exact_reference_comparisons": 8
+    },
+    "4": {
+      "seconds": 26.496151999919675,
+      "peak_concurrent_processes": 4,
+      "byte_equal": true,
+      "completion_markers": 8,
+      "full_exact_reference_comparisons": 8
+    },
+    "8": {
+      "seconds": 14.479664299986325,
+      "peak_concurrent_processes": 8,
+      "byte_equal": true,
+      "completion_markers": 8,
+      "full_exact_reference_comparisons": 8
+    }
+  }
+}

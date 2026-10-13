@@ -1,0 +1,31 @@
+{
+  "part": "xc7z010clg400-1",
+  "resources": {
+    "lut": {
+      "used": 6096.0,
+      "capacity": 17600
+    },
+    "ff": {
+      "used": 5776.0,
+      "capacity": 35200
+    },
+    "bram": {
+      "used": 1.0,
+      "capacity": 60
+    },
+    "dsp": {
+      "used": 0.0,
+      "capacity": 80
+    }
+  },
+  "features": [
+    "FM",
+    "SSG",
+    "RHY",
+    "ADPCM",
+    "control",
+    "memory"
+  ],
+  "status": "通过",
+  "board_verified": false
+}

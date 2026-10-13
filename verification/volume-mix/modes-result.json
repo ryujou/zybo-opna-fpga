@@ -1,0 +1,81 @@
+{
+  "passed": true,
+  "midi": {
+    "left": {
+      "passed": true,
+      "hardware_capture": true,
+      "audio_clocks": 4096,
+      "errors": 0,
+      "first_errors": [],
+      "distinct_frames": 17,
+      "nonzero_frames": 4096,
+      "frame_examples": [
+        "009a0000",
+        "00ab0000",
+        "fd5a0000",
+        "fd5c0000",
+        "fd680000",
+        "fd7d0000",
+        "fda50000",
+        "fdab0000"
+      ],
+      "dc_expected_frame": null
+    },
+    "right": {
+      "passed": true,
+      "hardware_capture": true,
+      "audio_clocks": 4096,
+      "errors": 0,
+      "first_errors": [],
+      "distinct_frames": 16,
+      "nonzero_frames": 4096,
+      "frame_examples": [
+        "0000fccd",
+        "0000fcd4",
+        "0000fcea",
+        "0000fd01",
+        "0000fd04",
+        "0000fd21",
+        "0000fd33",
+        "0000fd4a"
+      ],
+      "dc_expected_frame": null
+    },
+    "stereo": {
+      "passed": true,
+      "hardware_capture": true,
+      "audio_clocks": 4096,
+      "errors": 0,
+      "first_errors": [],
+      "distinct_frames": 17,
+      "nonzero_frames": 4096,
+      "frame_examples": [
+        "003c000a",
+        "006f004f",
+        "0073009a",
+        "0090009b",
+        "00910083",
+        "fc14fbff",
+        "fc2cfc2f",
+        "fc7bfc9a"
+      ],
+      "dc_expected_frame": null
+    },
+    "quiet": {
+      "passed": true,
+      "hardware_capture": true,
+      "audio_clocks": 4096,
+      "errors": 0,
+      "first_errors": [],
+      "distinct_frames": 1,
+      "nonzero_frames": 0,
+      "frame_examples": [
+        "00000000"
+      ],
+      "dc_expected_frame": null
+    }
+  },
+  "cli_two_songs": true,
+  "gain_reset_unity": true,
+  "gui": true
+}

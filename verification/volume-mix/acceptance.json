@@ -1,0 +1,220 @@
+{
+  "passed": true,
+  "usb_protocol": "2.2",
+  "fpga_interface": "0x26080008",
+  "songs": 13,
+  "full_playback_seconds": 1602.32716553288,
+  "final_clips_left": 0,
+  "final_clips_right": 0,
+  "sample_readback_bytes": 589376,
+  "windows": 39,
+  "native_probe_points": 319488,
+  "i2s_clocks": 159744,
+  "verified_register_prefix_writes": 1664,
+  "maximum_dispatch_lateness_us": 919,
+  "timing": {
+    "status": "通过",
+    "part": "xc7z010clg400-1",
+    "resources": {
+      "lut": 12483,
+      "ff": 12772,
+      "bram": 38.5,
+      "dsp": 14
+    },
+    "synth_resources": {
+      "lut": 13377,
+      "ff": 13187,
+      "bram": 38.5,
+      "dsp": 14
+    },
+    "wns": 0.07,
+    "tns": 0.0,
+    "failing_endpoints": 0,
+    "whs": 0.053,
+    "ths": 0.0,
+    "hold_failures": 0,
+    "wpws": 2.0,
+    "tpws": 0.0,
+    "pulse_failures": 0,
+    "drc_errors": 0,
+    "cdc_critical": 0,
+    "bitstream": "build/usb_dual/volume-fix/board/zybo_opna.bit",
+    "xsa": "build/usb_dual/volume-fix/board/zybo_opna.xsa",
+    "ltx": "build/usb_dual/volume-fix/board/zybo_opna.ltx",
+    "board_verified": true,
+    "board_verification_scope": "VGM volume/mix digital acceptance; no analog recording"
+  },
+  "modes": {
+    "passed": true,
+    "midi": {
+      "left": {
+        "passed": true,
+        "hardware_capture": true,
+        "audio_clocks": 4096,
+        "errors": 0,
+        "first_errors": [],
+        "distinct_frames": 17,
+        "nonzero_frames": 4096,
+        "frame_examples": [
+          "009a0000",
+          "00ab0000",
+          "fd5a0000",
+          "fd5c0000",
+          "fd680000",
+          "fd7d0000",
+          "fda50000",
+          "fdab0000"
+        ],
+        "dc_expected_frame": null
+      },
+      "right": {
+        "passed": true,
+        "hardware_capture": true,
+        "audio_clocks": 4096,
+        "errors": 0,
+        "first_errors": [],
+        "distinct_frames": 16,
+        "nonzero_frames": 4096,
+        "frame_examples": [
+          "0000fccd",
+          "0000fcd4",
+          "0000fcea",
+          "0000fd01",
+          "0000fd04",
+          "0000fd21",
+          "0000fd33",
+          "0000fd4a"
+        ],
+        "dc_expected_frame": null
+      },
+      "stereo": {
+        "passed": true,
+        "hardware_capture": true,
+        "audio_clocks": 4096,
+        "errors": 0,
+        "first_errors": [],
+        "distinct_frames": 17,
+        "nonzero_frames": 4096,
+        "frame_examples": [
+          "003c000a",
+          "006f004f",
+          "0073009a",
+          "0090009b",
+          "00910083",
+          "fc14fbff",
+          "fc2cfc2f",
+          "fc7bfc9a"
+        ],
+        "dc_expected_frame": null
+      },
+      "quiet": {
+        "passed": true,
+        "hardware_capture": true,
+        "audio_clocks": 4096,
+        "errors": 0,
+        "first_errors": [],
+        "distinct_frames": 1,
+        "nonzero_frames": 0,
+        "frame_examples": [
+          "00000000"
+        ],
+        "dc_expected_frame": null
+      }
+    },
+    "cli_two_songs": true,
+    "gain_reset_unity": true,
+    "gui": true
+  },
+  "jtag_gain_probe": {
+    "1": {
+      "i2s": {
+        "passed": true,
+        "hardware_capture": true,
+        "audio_clocks": 4096,
+        "errors": 0,
+        "first_errors": [],
+        "distinct_frames": 1,
+        "nonzero_frames": 0,
+        "frame_examples": [
+          "00000000"
+        ],
+        "dc_expected_frame": null
+      },
+      "scaled_envelope_values": [
+        0
+      ],
+      "integer_model_exact": true
+    },
+    "3": {
+      "i2s": {
+        "passed": true,
+        "hardware_capture": true,
+        "audio_clocks": 4096,
+        "errors": 0,
+        "first_errors": [],
+        "distinct_frames": 1,
+        "nonzero_frames": 4096,
+        "frame_examples": [
+          "000d000d"
+        ],
+        "dc_expected_frame": null
+      },
+      "scaled_envelope_values": [
+        13
+      ],
+      "integer_model_exact": true
+    },
+    "5": {
+      "i2s": {
+        "passed": true,
+        "hardware_capture": true,
+        "audio_clocks": 4096,
+        "errors": 0,
+        "first_errors": [],
+        "distinct_frames": 2,
+        "nonzero_frames": 254,
+        "frame_examples": [
+          "00000000",
+          "00590059"
+        ],
+        "dc_expected_frame": null
+      },
+      "scaled_envelope_values": [
+        0,
+        89
+      ],
+      "integer_model_exact": true
+    },
+    "7": {
+      "i2s": {
+        "passed": true,
+        "hardware_capture": true,
+        "audio_clocks": 4096,
+        "errors": 0,
+        "first_errors": [],
+        "distinct_frames": 1,
+        "nonzero_frames": 4096,
+        "frame_examples": [
+          "02ab02ab"
+        ],
+        "dc_expected_frame": null
+      },
+      "scaled_envelope_values": [
+        683
+      ],
+      "integer_model_exact": true
+    }
+  },
+  "analog_recording": false,
+  "sample_exact_music_reproduction": false,
+  "sd_qspi_written": false,
+  "physical_sw0_restored": true,
+  "limitations": [
+    "Different emulation cores and source/board clocks; waveform comparisons are diagnostic, not sample-exact acceptance.",
+    "Reference matching restricted to capture arm time +/-25ms; DC recorded separately.",
+    "Existing register dispatch lateness remains.",
+    "Blue Nebula SSG fast noise/envelope windows have AC RMS ratios up to 1.514; MAME downsampling and FPGA ZOH differ.",
+    "Special K PCM at 64s has an AC RMS ratio up to 1.235 and DC offset; residual source-model differences remain."
+  ],
+  "scope": "VGM header gain compatibility and final mixer digital acceptance; not waveform equivalence"
+}

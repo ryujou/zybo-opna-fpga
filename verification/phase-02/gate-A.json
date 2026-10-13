@@ -1,0 +1,27 @@
+{
+  "phase": 2,
+  "step": "A",
+  "status": "通过",
+  "checks": [
+    "phase1_cumulative_regression",
+    "reference_reset_status",
+    "reference_ssg_masks",
+    "reference_busy_window",
+    "reference_timer_a",
+    "reference_timer_b",
+    "reference_irq_mask",
+    "reference_prescaler",
+    "reference_channel_mode",
+    "reference_bank_isolation",
+    "reference_reset_active",
+    "reference_extended_status_id",
+    "reference_timer_a_minimum",
+    "reference_timer_b_minimum",
+    "reference_timer_enable_stop",
+    "reference_flag_control",
+    "reference_status_read_hold",
+    "reference_timers_prescaler",
+    "reference_bus_phase_sweep",
+    "default_timer_periods"
+  ]
+}

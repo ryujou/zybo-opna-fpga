@@ -1,0 +1,1236 @@
+{
+  "passed": true,
+  "hardware_capture": true,
+  "profiles": {
+    "dc": {
+      "native": {
+        "passed": true,
+        "hardware_capture": true,
+        "native_ticks": 8192,
+        "public_bits_per_tick": 74,
+        "warmup_discarded": 0,
+        "differences": 0,
+        "first_differences": [],
+        "fault_ticks": 0,
+        "stimulus_complete": true,
+        "register_writes": [
+          [
+            0,
+            7,
+            63
+          ],
+          [
+            0,
+            8,
+            15
+          ],
+          [
+            0,
+            9,
+            8
+          ],
+          [
+            0,
+            10,
+            0
+          ]
+        ],
+        "phase_errors": 0,
+        "sys_tick_gaps": [
+          6,
+          7
+        ],
+        "programmed_write_ticks": 256,
+        "active_nonzero_pcm_left_ticks": 0,
+        "active_nonzero_pcm_right_ticks": 0,
+        "value_ranges": {
+          "dout": [
+            0,
+            0
+          ],
+          "irq_n": [
+            1,
+            1
+          ],
+          "busy": [
+            0,
+            1
+          ],
+          "pcm_valid": [
+            0,
+            2
+          ],
+          "pcm_left": [
+            0,
+            36
+          ],
+          "pcm_right": [
+            -32768,
+            36
+          ],
+          "ssg_a": [
+            0,
+            31
+          ],
+          "ssg_b": [
+            0,
+            17
+          ],
+          "ssg_c": [
+            0,
+            1
+          ],
+          "dm": [
+            0,
+            37
+          ],
+          "dm_d": [
+            0,
+            1
+          ],
+          "a8": [
+            0,
+            0
+          ],
+          "ras_n": [
+            0,
+            1
+          ],
+          "cas_n": [
+            1,
+            1
+          ],
+          "we_n": [
+            1,
+            1
+          ],
+          "romcs_n": [
+            1,
+            1
+          ],
+          "mden": [
+            0,
+            0
+          ]
+        }
+      },
+      "audio": {
+        "passed": true,
+        "hardware_capture": true,
+        "audio_clocks": 4096,
+        "errors": 0,
+        "first_errors": [],
+        "distinct_frames": 1,
+        "nonzero_frames": 4096,
+        "frame_examples": [
+          "46394639"
+        ],
+        "dc_expected_frame": "46394639"
+      }
+    },
+    "fm": {
+      "native": {
+        "passed": true,
+        "hardware_capture": true,
+        "native_ticks": 8192,
+        "public_bits_per_tick": 74,
+        "warmup_discarded": 0,
+        "differences": 0,
+        "first_differences": [],
+        "fault_ticks": 0,
+        "stimulus_complete": true,
+        "register_writes": [
+          [
+            0,
+            41,
+            159
+          ],
+          [
+            0,
+            48,
+            1
+          ],
+          [
+            0,
+            80,
+            31
+          ],
+          [
+            0,
+            128,
+            15
+          ],
+          [
+            0,
+            176,
+            7
+          ],
+          [
+            0,
+            180,
+            128
+          ],
+          [
+            0,
+            164,
+            34
+          ],
+          [
+            0,
+            160,
+            105
+          ],
+          [
+            0,
+            40,
+            16
+          ]
+        ],
+        "phase_errors": 0,
+        "sys_tick_gaps": [
+          6,
+          7
+        ],
+        "programmed_write_ticks": 576,
+        "active_nonzero_pcm_left_ticks": 993,
+        "active_nonzero_pcm_right_ticks": 0,
+        "value_ranges": {
+          "dout": [
+            0,
+            0
+          ],
+          "irq_n": [
+            1,
+            1
+          ],
+          "busy": [
+            0,
+            1
+          ],
+          "pcm_valid": [
+            0,
+            2
+          ],
+          "pcm_left": [
+            0,
+            363
+          ],
+          "pcm_right": [
+            -32768,
+            36
+          ],
+          "ssg_a": [
+            0,
+            1
+          ],
+          "ssg_b": [
+            0,
+            1
+          ],
+          "ssg_c": [
+            0,
+            1
+          ],
+          "dm": [
+            0,
+            37
+          ],
+          "dm_d": [
+            0,
+            1
+          ],
+          "a8": [
+            0,
+            0
+          ],
+          "ras_n": [
+            0,
+            1
+          ],
+          "cas_n": [
+            1,
+            1
+          ],
+          "we_n": [
+            1,
+            1
+          ],
+          "romcs_n": [
+            1,
+            1
+          ],
+          "mden": [
+            0,
+            0
+          ]
+        }
+      },
+      "audio": {
+        "passed": true,
+        "hardware_capture": true,
+        "audio_clocks": 4096,
+        "errors": 0,
+        "first_errors": [],
+        "distinct_frames": 17,
+        "nonzero_frames": 4096,
+        "frame_examples": [
+          "0cc80000",
+          "0d580000",
+          "0d9a0000",
+          "0dd20000",
+          "0e0c0000",
+          "0e480000",
+          "0e7a0000",
+          "0ed40000"
+        ],
+        "dc_expected_frame": null
+      }
+    },
+    "rhythm": {
+      "native": {
+        "passed": true,
+        "hardware_capture": true,
+        "native_ticks": 8192,
+        "public_bits_per_tick": 74,
+        "warmup_discarded": 0,
+        "differences": 0,
+        "first_differences": [],
+        "fault_ticks": 0,
+        "stimulus_complete": true,
+        "register_writes": [
+          [
+            0,
+            17,
+            63
+          ],
+          [
+            0,
+            24,
+            223
+          ],
+          [
+            0,
+            16,
+            1
+          ]
+        ],
+        "phase_errors": 0,
+        "sys_tick_gaps": [
+          6,
+          7
+        ],
+        "programmed_write_ticks": 192,
+        "active_nonzero_pcm_left_ticks": 1281,
+        "active_nonzero_pcm_right_ticks": 1425,
+        "value_ranges": {
+          "dout": [
+            0,
+            0
+          ],
+          "irq_n": [
+            1,
+            1
+          ],
+          "busy": [
+            0,
+            1
+          ],
+          "pcm_valid": [
+            0,
+            2
+          ],
+          "pcm_left": [
+            -32,
+            36
+          ],
+          "pcm_right": [
+            -32768,
+            36
+          ],
+          "ssg_a": [
+            0,
+            1
+          ],
+          "ssg_b": [
+            0,
+            1
+          ],
+          "ssg_c": [
+            0,
+            1
+          ],
+          "dm": [
+            0,
+            37
+          ],
+          "dm_d": [
+            0,
+            1
+          ],
+          "a8": [
+            0,
+            0
+          ],
+          "ras_n": [
+            0,
+            1
+          ],
+          "cas_n": [
+            1,
+            1
+          ],
+          "we_n": [
+            1,
+            1
+          ],
+          "romcs_n": [
+            1,
+            1
+          ],
+          "mden": [
+            0,
+            0
+          ]
+        }
+      },
+      "audio": {
+        "passed": true,
+        "hardware_capture": true,
+        "audio_clocks": 4096,
+        "errors": 0,
+        "first_errors": [],
+        "distinct_frames": 1,
+        "nonzero_frames": 0,
+        "frame_examples": [
+          "00000000"
+        ],
+        "dc_expected_frame": null
+      }
+    },
+    "rom": {
+      "native": {
+        "passed": true,
+        "hardware_capture": true,
+        "native_ticks": 8192,
+        "public_bits_per_tick": 74,
+        "warmup_discarded": 0,
+        "differences": 0,
+        "first_differences": [],
+        "fault_ticks": 0,
+        "stimulus_complete": true,
+        "register_writes": [
+          [
+            1,
+            1,
+            193
+          ],
+          [
+            1,
+            4,
+            1
+          ],
+          [
+            1,
+            12,
+            255
+          ],
+          [
+            1,
+            13,
+            255
+          ],
+          [
+            1,
+            9,
+            255
+          ],
+          [
+            1,
+            10,
+            255
+          ],
+          [
+            1,
+            11,
+            255
+          ],
+          [
+            1,
+            0,
+            176
+          ]
+        ],
+        "phase_errors": 0,
+        "sys_tick_gaps": [
+          6,
+          7,
+          173306
+        ],
+        "programmed_write_ticks": 512,
+        "active_nonzero_pcm_left_ticks": 705,
+        "active_nonzero_pcm_right_ticks": 561,
+        "value_ranges": {
+          "dout": [
+            0,
+            0
+          ],
+          "irq_n": [
+            1,
+            1
+          ],
+          "busy": [
+            0,
+            1
+          ],
+          "pcm_valid": [
+            0,
+            2
+          ],
+          "pcm_left": [
+            0,
+            96
+          ],
+          "pcm_right": [
+            -32768,
+            48
+          ],
+          "ssg_a": [
+            0,
+            1
+          ],
+          "ssg_b": [
+            0,
+            1
+          ],
+          "ssg_c": [
+            0,
+            1
+          ],
+          "dm": [
+            0,
+            239
+          ],
+          "dm_d": [
+            0,
+            1
+          ],
+          "a8": [
+            0,
+            0
+          ],
+          "ras_n": [
+            0,
+            1
+          ],
+          "cas_n": [
+            0,
+            1
+          ],
+          "we_n": [
+            1,
+            1
+          ],
+          "romcs_n": [
+            0,
+            1
+          ],
+          "mden": [
+            0,
+            0
+          ]
+        },
+        "sample_memory": {
+          "stable_pin_sample_checks": 40,
+          "addresses": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "differences": 0,
+          "first_differences": []
+        }
+      },
+      "audio": {
+        "passed": true,
+        "hardware_capture": true,
+        "audio_clocks": 4096,
+        "errors": 0,
+        "first_errors": [],
+        "distinct_frames": 16,
+        "nonzero_frames": 3840,
+        "frame_examples": [
+          "00000000",
+          "00100000",
+          "00300010",
+          "00600030",
+          "009c0060",
+          "00f4009c",
+          "021c0308",
+          "02cc0188"
+        ],
+        "dc_expected_frame": null
+      }
+    },
+    "ram8": {
+      "native": {
+        "passed": true,
+        "hardware_capture": true,
+        "native_ticks": 8192,
+        "public_bits_per_tick": 74,
+        "warmup_discarded": 0,
+        "differences": 0,
+        "first_differences": [],
+        "fault_ticks": 0,
+        "stimulus_complete": true,
+        "register_writes": [
+          [
+            1,
+            1,
+            194
+          ],
+          [
+            1,
+            4,
+            1
+          ],
+          [
+            1,
+            12,
+            255
+          ],
+          [
+            1,
+            13,
+            255
+          ],
+          [
+            1,
+            9,
+            255
+          ],
+          [
+            1,
+            10,
+            255
+          ],
+          [
+            1,
+            11,
+            255
+          ],
+          [
+            1,
+            0,
+            176
+          ]
+        ],
+        "phase_errors": 0,
+        "sys_tick_gaps": [
+          6,
+          7,
+          173337
+        ],
+        "programmed_write_ticks": 512,
+        "active_nonzero_pcm_left_ticks": 705,
+        "active_nonzero_pcm_right_ticks": 561,
+        "value_ranges": {
+          "dout": [
+            0,
+            0
+          ],
+          "irq_n": [
+            1,
+            1
+          ],
+          "busy": [
+            0,
+            1
+          ],
+          "pcm_valid": [
+            0,
+            2
+          ],
+          "pcm_left": [
+            0,
+            96
+          ],
+          "pcm_right": [
+            -32768,
+            48
+          ],
+          "ssg_a": [
+            0,
+            1
+          ],
+          "ssg_b": [
+            0,
+            1
+          ],
+          "ssg_c": [
+            0,
+            1
+          ],
+          "dm": [
+            0,
+            239
+          ],
+          "dm_d": [
+            0,
+            1
+          ],
+          "a8": [
+            0,
+            0
+          ],
+          "ras_n": [
+            0,
+            1
+          ],
+          "cas_n": [
+            0,
+            1
+          ],
+          "we_n": [
+            1,
+            1
+          ],
+          "romcs_n": [
+            1,
+            1
+          ],
+          "mden": [
+            0,
+            1
+          ]
+        },
+        "sample_memory": {
+          "stable_pin_sample_checks": 40,
+          "addresses": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "differences": 0,
+          "first_differences": []
+        }
+      },
+      "audio": {
+        "passed": true,
+        "hardware_capture": true,
+        "audio_clocks": 4096,
+        "errors": 0,
+        "first_errors": [],
+        "distinct_frames": 10,
+        "nonzero_frames": 4096,
+        "frame_examples": [
+          "06682100",
+          "1940f994",
+          "210034d0",
+          "3fbc1940",
+          "3fbc3fbc",
+          "c040c040",
+          "c040e6bc",
+          "cb2cc040"
+        ],
+        "dc_expected_frame": null
+      }
+    },
+    "ram1": {
+      "native": {
+        "passed": true,
+        "hardware_capture": true,
+        "native_ticks": 8192,
+        "public_bits_per_tick": 74,
+        "warmup_discarded": 0,
+        "differences": 0,
+        "first_differences": [],
+        "fault_ticks": 0,
+        "stimulus_complete": true,
+        "register_writes": [
+          [
+            1,
+            1,
+            192
+          ],
+          [
+            1,
+            4,
+            1
+          ],
+          [
+            1,
+            12,
+            255
+          ],
+          [
+            1,
+            13,
+            255
+          ],
+          [
+            1,
+            9,
+            255
+          ],
+          [
+            1,
+            10,
+            255
+          ],
+          [
+            1,
+            11,
+            255
+          ],
+          [
+            1,
+            0,
+            176
+          ]
+        ],
+        "phase_errors": 0,
+        "sys_tick_gaps": [
+          6,
+          7,
+          174118
+        ],
+        "programmed_write_ticks": 512,
+        "active_nonzero_pcm_left_ticks": 417,
+        "active_nonzero_pcm_right_ticks": 273,
+        "value_ranges": {
+          "dout": [
+            0,
+            0
+          ],
+          "irq_n": [
+            1,
+            1
+          ],
+          "busy": [
+            0,
+            1
+          ],
+          "pcm_valid": [
+            0,
+            2
+          ],
+          "pcm_left": [
+            0,
+            48
+          ],
+          "pcm_right": [
+            -32768,
+            36
+          ],
+          "ssg_a": [
+            0,
+            1
+          ],
+          "ssg_b": [
+            0,
+            1
+          ],
+          "ssg_c": [
+            0,
+            1
+          ],
+          "dm": [
+            0,
+            37
+          ],
+          "dm_d": [
+            0,
+            1
+          ],
+          "a8": [
+            0,
+            0
+          ],
+          "ras_n": [
+            0,
+            1
+          ],
+          "cas_n": [
+            0,
+            1
+          ],
+          "we_n": [
+            1,
+            1
+          ],
+          "romcs_n": [
+            1,
+            1
+          ],
+          "mden": [
+            0,
+            1
+          ]
+        },
+        "sample_memory": {
+          "stable_pin_sample_checks": 256,
+          "addresses": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "differences": 0,
+          "first_differences": []
+        }
+      },
+      "audio": {
+        "passed": true,
+        "hardware_capture": true,
+        "audio_clocks": 4096,
+        "errors": 0,
+        "first_errors": [],
+        "distinct_frames": 14,
+        "nonzero_frames": 3840,
+        "frame_examples": [
+          "00000000",
+          "0000fd68",
+          "00300010",
+          "00600030",
+          "009c0060",
+          "00dc021c",
+          "00f4009c",
+          "018800f4"
+        ],
+        "dc_expected_frame": null
+      }
+    },
+    "write_ram8": {
+      "native": {
+        "passed": true,
+        "hardware_capture": true,
+        "native_ticks": 8192,
+        "public_bits_per_tick": 74,
+        "warmup_discarded": 0,
+        "differences": 0,
+        "first_differences": [],
+        "fault_ticks": 0,
+        "stimulus_complete": true,
+        "register_writes": [
+          [
+            1,
+            1,
+            194
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            1,
+            4,
+            8
+          ],
+          [
+            1,
+            12,
+            255
+          ],
+          [
+            1,
+            13,
+            255
+          ],
+          [
+            1,
+            0,
+            96
+          ],
+          [
+            1,
+            8,
+            165
+          ]
+        ],
+        "phase_errors": 0,
+        "sys_tick_gaps": [
+          6,
+          7,
+          359356
+        ],
+        "programmed_write_ticks": 448,
+        "active_nonzero_pcm_left_ticks": 0,
+        "active_nonzero_pcm_right_ticks": 0,
+        "value_ranges": {
+          "dout": [
+            0,
+            0
+          ],
+          "irq_n": [
+            1,
+            1
+          ],
+          "busy": [
+            0,
+            1
+          ],
+          "pcm_valid": [
+            0,
+            2
+          ],
+          "pcm_left": [
+            0,
+            36
+          ],
+          "pcm_right": [
+            -32768,
+            36
+          ],
+          "ssg_a": [
+            0,
+            1
+          ],
+          "ssg_b": [
+            0,
+            1
+          ],
+          "ssg_c": [
+            0,
+            1
+          ],
+          "dm": [
+            0,
+            239
+          ],
+          "dm_d": [
+            0,
+            1
+          ],
+          "a8": [
+            0,
+            0
+          ],
+          "ras_n": [
+            0,
+            1
+          ],
+          "cas_n": [
+            0,
+            1
+          ],
+          "we_n": [
+            0,
+            1
+          ],
+          "romcs_n": [
+            1,
+            1
+          ],
+          "mden": [
+            0,
+            1
+          ]
+        },
+        "native_memory_writes": [
+          [
+            5433,
+            165
+          ]
+        ]
+      },
+      "ddr_readback_bytes": 262144
+    },
+    "write_ram1": {
+      "native": {
+        "passed": true,
+        "hardware_capture": true,
+        "native_ticks": 8192,
+        "public_bits_per_tick": 74,
+        "warmup_discarded": 0,
+        "differences": 0,
+        "first_differences": [],
+        "fault_ticks": 0,
+        "stimulus_complete": true,
+        "register_writes": [
+          [
+            1,
+            1,
+            192
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            1,
+            4,
+            8
+          ],
+          [
+            1,
+            12,
+            255
+          ],
+          [
+            1,
+            13,
+            255
+          ],
+          [
+            1,
+            0,
+            96
+          ],
+          [
+            1,
+            8,
+            165
+          ]
+        ],
+        "phase_errors": 0,
+        "sys_tick_gaps": [
+          6,
+          7,
+          360143
+        ],
+        "programmed_write_ticks": 448,
+        "active_nonzero_pcm_left_ticks": 0,
+        "active_nonzero_pcm_right_ticks": 0,
+        "value_ranges": {
+          "dout": [
+            0,
+            0
+          ],
+          "irq_n": [
+            1,
+            1
+          ],
+          "busy": [
+            0,
+            1
+          ],
+          "pcm_valid": [
+            0,
+            2
+          ],
+          "pcm_left": [
+            0,
+            36
+          ],
+          "pcm_right": [
+            -32768,
+            36
+          ],
+          "ssg_a": [
+            0,
+            1
+          ],
+          "ssg_b": [
+            0,
+            1
+          ],
+          "ssg_c": [
+            0,
+            1
+          ],
+          "dm": [
+            0,
+            255
+          ],
+          "dm_d": [
+            0,
+            1
+          ],
+          "a8": [
+            0,
+            0
+          ],
+          "ras_n": [
+            0,
+            1
+          ],
+          "cas_n": [
+            0,
+            1
+          ],
+          "we_n": [
+            0,
+            1
+          ],
+          "romcs_n": [
+            1,
+            1
+          ],
+          "mden": [
+            0,
+            1
+          ]
+        },
+        "native_memory_writes": [
+          [
+            5441,
+            255
+          ],
+          [
+            5481,
+            0
+          ],
+          [
+            5521,
+            1
+          ],
+          [
+            5561,
+            254
+          ],
+          [
+            5625,
+            0
+          ],
+          [
+            5665,
+            1
+          ],
+          [
+            5705,
+            0
+          ],
+          [
+            5745,
+            255
+          ]
+        ]
+      },
+      "ddr_readback_bytes": 262144
+    }
+  }
+}
